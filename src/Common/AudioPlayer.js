@@ -6,13 +6,13 @@ export default function AudioPlayer({music}) {
   const timeoutId = setTimeout(timeoutFunc, 500);
   const [time, setTime] = React.useState("0");
   const [playing, setPlaying] = React.useState(false);
-  const [mute, setMute] = React.useState(false);
   
   function timeoutFunc() {
     setTime(playerRef.current.currentTime);
   }
   
   React.useEffect(async () => {
+    playerRef.current.volume = 0.50;
     return () => {
       clearTimeout(timeoutId)
     };
@@ -28,16 +28,16 @@ export default function AudioPlayer({music}) {
     playerRef.current.pause();
   }
 
-  function muteAudio() {
-    console.log("mute")
-    setMute(true);
-    playerRef.current.volume = 0;
+  function decreaseVolume() {
+    if (playerRef.current.volume === 0) return;
+    playerRef.current.volume = (playerRef.current.volume -0.10).toFixed(2);
+    console.log("volume: ", playerRef.current.volume);
   }
 
-  function giveBackAudio() {
-    console.log("unmute")
-    setMute(false);
-    playerRef.current.volume = 0.50;
+  function addVolume() {
+    if (playerRef.current.volume === 1) return;
+    playerRef.current.volume = (playerRef.current.volume +0.10).toFixed(2);
+    console.log("volume: ", playerRef.current.volume);
   }
 
   return (
@@ -61,11 +61,9 @@ export default function AudioPlayer({music}) {
           }}
         />
       }
-      {mute?
-        <button className="musicControlsButton" onClick={giveBackAudio}><NoVolumeIcon /></button>
-      :
-        <button className="musicControlsButton" onClick={muteAudio}><VolumeIcon /></button>
-      }
+      <button className="musicControlsButton" onClick={decreaseVolume}><VolumeMinus /></button>
+      <VolumeEmpty />
+      <button className="musicControlsButton" onClick={addVolume}><VolumePlus /></button>
     </>
   );
 }
@@ -83,7 +81,7 @@ function PlayIcon() {
       <path fill-rule="evenodd" clip-rule="evenodd" d="M6 20H8.43757V19.2H9.65827V18.4H10.877V17.6H12.0958V16.8H13.3146V16H14.5333V15.2H15.7501V14.4H16.9689V13.6H18.1896V12.8H19.0021V11.2H18.1896V10.4H16.9689V9.6H15.7501V8.8H14.5333V8H13.3146V7.2H12.0958V6.4H10.877V5.6H9.65827V4.8H8.43757V4H6V20Z" fill="#333333"/>
       <rect width="2" height="2" transform="matrix(1 0 0 -1 11 13)" fill="#333333"/>
     </svg>
-  )
+  );
 }
 
 function PauseIcon() {
@@ -91,21 +89,29 @@ function PauseIcon() {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4H5V20H10V4ZM19 4H14V20H19V4Z" fill="#333333"/>
     </svg>
-  )
+  );
 }
 
-function NoVolumeIcon() {
+function VolumeEmpty() {
   return(
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2H9V4H7V6H5V8H3H1V10V14V16H3H5V18H7V20H9V22H11V2ZM7 18V16H5V14H3V10H5V8H7V6H9V18H7ZM13 10H15V14H13V10ZM21 4H19V6H21V18H19V20H21V18H23V6H21V4ZM19 8H17V6H13V8H17V16H13V18H17V16H19V8ZM19 2H13V4H19V2ZM19 20H13V22H19V20Z" fill="#333333"/>
+    <svg width="20" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0H10V20H8V18H6V16H8V4H6V2H8V0ZM4 6V4H6V6H4ZM2 8H4V6H2H0V8V12V14H2H4V16H6V14H4V12H2V8Z" fill="#333333"/>
     </svg>
-  )
+  );
 }
 
-function VolumeIcon() {
-  return(
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M13 2H11V4H9V6H7V8H5H3V10V14V16H5H7V18H9V20H11V22H13V2ZM9 18V16H7V14H5V10H7V8H9V6H11V18H9ZM19.0002 11.2233H17.0005V9.22327H15.0005V11.2233H17.0002V13.2233L15.0005 13.2233V15.2233H17.0005V13.2233L19.0002 13.2233V15.2233H21.0002V13.2233L19.0002 13.2233V11.2233ZM19.0002 11.2233H21.0002V9.22327H19.0002V11.2233Z" fill="#333333"/>
+function VolumeMinus() {
+  return (
+    <svg width="8" height="8" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="8" height="2" fill="#333333"/>
     </svg>
-  )
+  );
+}
+
+function VolumePlus() {
+  return (
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5V8H5V5H8V3H5V0H3V3H0V5H3Z" fill="#333333"/>
+    </svg>
+  );
 }
