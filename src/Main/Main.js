@@ -12,6 +12,7 @@ export default function Main({newAction}) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [image, setImage] = useState(null);
+  const [colors, setColors] = useState(generateRandomColors());
   const globeEl = useRef();  
   const transitionMs = 3000;
   const clickSound = new Audio(clickSoundOne);
@@ -31,6 +32,12 @@ export default function Main({newAction}) {
     [47.90771, 106.88324, "Ulaanbaatar", 11],
     [-18.91368, 47.53613, "Antananarivo", 12]
   ];
+  const coordListObjs = coordList.map((entry) => ({
+    lat: entry[0],
+    lng: entry[1],
+    city: entry[2],
+    index: entry[3]
+  }))
   
   function changeCenter([x, y]) {
     globeEl.current.pointOfView({
@@ -56,7 +63,12 @@ export default function Main({newAction}) {
     }
 
     const buyable = await getBuyableTokens();
-    setNftList(buyable);
+    const orderedBuyable = buyable.sort(function(a, b) {
+      const firstNum = a.token_id.slice(10, a.token_id.lastIndexOf("-"));
+      const secondNum = b.token_id.slice(10, b.token_id.lastIndexOf("-"));
+      return firstNum - secondNum;
+    })
+    setNftList(orderedBuyable);
   }, [])
 
   async function nftClicked(nftIndex) {
@@ -92,6 +104,14 @@ export default function Main({newAction}) {
     xhr.send();
   }
 
+  function generateRandomColors() {
+    let tempColors = [];
+    for (let i = 0; i < countriesGeo.features.length; i++) {
+      tempColors[i] = Math.round(Math.random() * Math.pow(2, 24)).toString(16).padStart(6, '0');
+    }
+    return tempColors;
+  }
+
 
   return (
     <main>
@@ -114,20 +134,19 @@ export default function Main({newAction}) {
           hexPolygonResolution={3}
           hexPolygonMargin={0.3}
           backgroundColor={'rgba(255,255,255, 0.0)'}
-          hexPolygonColor={() => `#${Math.round(Math.random() * Math.pow(2, 24)).toString(16).padStart(6, '0')}`}
-          labelsData={coordList}
-          labelLat={(entry) => entry[0]}
-          labelLng={(entry) => entry[1]}
-          labelLabel={(entry) => {
-            if (nftList.length > entry[3]) {
-              return (
-                <button className="nftButton" onClick={() => nftClicked(entry[3])} >
-                  {entry[2]}
-                </button>
-              )
-            } else {
-              return null;
-            }
+          hexPolygonColor={(entry) => {
+            const i = countriesGeo.features.findIndex((element) => element === entry);
+            return `#${colors[i]}`
+          }}
+          htmlElementsData={coordListObjs}
+          htmlElement={(entry) => {
+            if (nftList.length > entry.index) {
+              const element = document.createElement('button');
+              element.classList="nftButton"
+              element.innerHTML = entry.city;
+              element.onclick = () => console.log("entry: ");
+              return element;
+            } 
           }}
         />}
       </div>
@@ -143,3 +162,24 @@ export default function Main({newAction}) {
     </main>
   )
 }
+
+
+/* 
+onClick={() => nftClicked(entry[3])}
+
+                `<button class="nftButton" >
+                  ${entry[2]}
+                </button>`
+
+                else {
+              const element = document.createElement('button');
+              return element;
+            }
+
+          htmlAltitude={0.009}
+          htmlLat={(entry) => entry[0]}
+          htmlLng={(entry) => entry[1]}
+          htmlTransitionDuration={0}
+
+                
+*/
