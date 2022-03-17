@@ -144,7 +144,9 @@ export default function Main({newAction}) {
               const element = document.createElement('button');
               element.classList="nftButton"
               element.innerHTML = entry.city;
-              element.onclick = () => console.log("entry: ");
+              element.style['pointer-events'] = 'auto';
+              element.style.cursor = 'pointer';
+              element.onclick = () => nftClicked(entry.index);
               return element;
             } 
           }}
@@ -162,24 +164,3 @@ export default function Main({newAction}) {
     </main>
   )
 }
-
-
-/* 
-onClick={() => nftClicked(entry[3])}
-
-                `<button class="nftButton" >
-                  ${entry[2]}
-                </button>`
-
-                else {
-              const element = document.createElement('button');
-              return element;
-            }
-
-          htmlAltitude={0.009}
-          htmlLat={(entry) => entry[0]}
-          htmlLng={(entry) => entry[1]}
-          htmlTransitionDuration={0}
-
-                
-*/
