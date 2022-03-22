@@ -42,6 +42,11 @@ impl Contract {
             None                                                  // No memo
         );
 
+        // If this is the first buy, revenue table should be applied. 
+        // Otherwise, the royalty table should be applied, but ideally, that would be initiated from another contract with a cross-contract-call
+        // The problem is, we want to have a marketplace as well. So there we should have the contract, that way we will have 2 contracts
+        // We can create a testing-app, which would be just a very simple marketplace
+
         self.create_children(
             root_id, 
             token_id, 

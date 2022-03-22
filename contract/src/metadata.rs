@@ -43,7 +43,8 @@ pub struct Token {
     pub owner_id: AccountId,                                      // Owner of the token
     pub approved_account_ids: HashMap<AccountId, u64>,            // List of approved account IDs that have access to transfer the token. This maps an account ID to an approval ID
     pub next_approval_id: u64,                                    // Next approval ID
-    pub royalty: HashMap<AccountId, u32>,                         // Royalties
+    pub royalty: HashMap<AccountId, u32>,                         // Royalties (Forever Royalties)
+    pub revenue: HashMap<AccountId, u32>                          // Revenue table (only used at first purchase)
 }
 
 #[derive(Serialize, Deserialize)]                                 
@@ -65,7 +66,7 @@ pub struct JsonToken {
     pub metadata: TokenMetadata,
     pub approved_account_ids: HashMap<AccountId, u64>,
     pub royalty: HashMap<AccountId, u32>,
-
+    pub revenue: HashMap<AccountId, u32>
 }
 
 pub trait NonFungibleTokenMetadata {

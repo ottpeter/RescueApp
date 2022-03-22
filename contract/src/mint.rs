@@ -12,6 +12,7 @@ impl Contract {
         receiver_id: AccountId,
         children_price: SalePriceInYoctoNear,
         perpetual_royalties: Option<HashMap<AccountId, u32>>,
+        revenue_table: Option<HashMap<AccountId, u32>>,
     ) {
         log!("Starting MintRoot...");
 
@@ -23,14 +24,35 @@ impl Contract {
 
         let initial_storage_usage = env::storage_usage();                                       // Take note of initial storage usage for refund
         let mut royalty = HashMap::new();                                                       // Create royalty map to store in the token
+        let mut revenue = HashMap::new();                                                       // Create revenue map, this is one-time payout, royalty is applied at every transfer where marketplace has this function
 
         if let Some(perpetual_royalties) = perpetual_royalties {
             assert!(perpetual_royalties.len() < 7, "Cannot add more than 6 perpetual royalty amounts");
+            let mut total = 0;
     
             for (account, amount) in perpetual_royalties {
                 royalty.insert(account, amount);
+                total = total + amount;
+                assert!(total <= 10000, "Total royalty amount can not exceed 100%!");
             }
         }
+
+        let mut total = 0;                                                                      // The revenue total always has to add up to 100% (10000),
+        if let Some(revenue_table) = revenue_table {                                            // because the Vault itself is also on the Revenue Table
+            assert!(revenue.len() < 7, "Cannot add more than 6 revenue entries");
+
+            for (account, amount) in revenue_table {
+                revenue.insert(account, amount);
+                total = total + amount;
+                assert!(total <= 10000, "Total revenue can not exceed 100%!");
+            }
+        }
+        if total < 10000 {
+            revenue.insert(env::current_account_id(), 
+                revenue.get(&env::current_account_id()).unwrap_or_else(|| &0) + 10000 - total
+            );
+        }
+        log!(" Revenue Table {:?}", revenue);
 
         let token_id = "fono-root-".to_string() + &self.root_nounce.to_string();                // We generate the ID for the RootNFT. The RootNFT ID only has 1 number in it, like fono-root-22
         self.root_nounce = self.root_nounce + 1;                                                // We increment nounce to avoid collision
@@ -40,6 +62,7 @@ impl Contract {
             approved_account_ids: Default::default(),
             next_approval_id: 0,
             royalty,
+            revenue,
         };
 
         assert!(
@@ -48,7 +71,7 @@ impl Contract {
         );
 
 
-        // Although `instance_nounce` is sent from front-end, we make sure that it's value is 0
+        // Although `instance_nonce` is sent from front-end, we make sure that it's value is 0
         let mut modified_metadata = metadata;
         let mut extra_obj: Extra = serde_json::from_str(&modified_metadata.extra.unwrap()).unwrap();
         extra_obj.instance_nounce = 0;
@@ -71,7 +94,6 @@ impl Contract {
 
         env::log_str(&nft_mint_log.to_string());                                                // Log the serialized json.
 
-        log!("Exactly before CreateChildren");
         self.create_children(token_id.clone(), token_id, children_price, Some(HashMap::new())); // This has to happen before the refund
 
         let required_storage_in_bytes = env::storage_usage() - initial_storage_usage;
@@ -92,21 +114,13 @@ impl Contract {
         _perpetual_royalties: Option<HashMap<AccountId, u32>>,
     ) {
         log!("Starting CreateChildren...");
-
-        
         
         for child_num in 0..2 {
             log!("Entering loop...{}", child_num);
-            let royalty = HashMap::new();                                                   // We will decide on this later. Probably royalty shouldn't exist here
-            /*if let Some(perpetual_royalties) = perpetual_royalties {
-                assert!(perpetual_royalties.len() < 7, "Cannot add more than 6 perpetual royalty amounts");
-        
-                for (account, amount) in perpetual_royalties {
-                    royalty.insert(account, amount);
-                }
-            }*/
+            let royalty = self.tokens_by_id.get(&root).expect("No root token!").royalty;
+            let revenue = self.tokens_by_id.get(&root).expect("No root token!").revenue;
 
-            // We create the token_id. For this, we need the meta of the root NFT. We need to increment nounce
+            // We create the token_id. For this, we need the meta of the root NFT. We need to increment nonce
             let mut root_metadata = self.token_metadata_by_id.get(&root.to_owned()).unwrap();
             let mut root_extra_obj: Extra = serde_json::from_str(&root_metadata.extra.unwrap()).unwrap();
             let token_id = root.clone().to_owned() + &"-".to_string() + &root_extra_obj.instance_nounce.to_string();
@@ -136,6 +150,7 @@ impl Contract {
                 approved_account_ids: Default::default(),                                       // This is an individual NFT, all the values should start with 0,
                 next_approval_id: 0,                                                            // just like in the Root
                 royalty,
+                revenue,
             };
     
             assert!(

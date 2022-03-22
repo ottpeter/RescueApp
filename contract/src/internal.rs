@@ -150,6 +150,7 @@ impl Contract {
             approved_account_ids: Default::default(),                                       // We reset the approval account ids
             next_approval_id: token.next_approval_id,
             royalty: token.royalty.clone(),
+            revenue: token.revenue.clone(),                                                 // Probably this could be empty
         };
         self.tokens_by_id.insert(token_id, &new_token);
 
