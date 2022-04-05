@@ -3,7 +3,7 @@ use near_sdk::serde::{Serialize, Deserialize};
 pub type TokenId = String;
 
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(crate = "near_sdk::serde")]
 pub struct Payout {
     pub payout: HashMap<AccountId, U128>,

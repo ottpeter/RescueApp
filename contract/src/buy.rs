@@ -3,9 +3,8 @@ use crate::*;
 #[near_bindgen]
 impl Contract {
     /// Buy an NFT from the Vault (the contract). Only the next highest level NFT can be purchased (e.g. gen-2, not gen-5)
-    /// In the current version, `new_price` is turned off
     #[payable]
-    pub fn buy_nft_from_vault(&mut self, token_id: TokenId/*, new_price: SalePriceInYoctoNear*/) {
+    pub fn buy_nft_from_vault(&mut self, token_id: TokenId) {
         env::log_str(&"Start of buy_nft_from_vault".to_string());
 
         let initial_storage_usage = env::storage_usage();                                       // Take note of initial storage usage for refund
@@ -43,9 +42,21 @@ impl Contract {
         );
 
         // If this is the first buy, revenue table should be applied. 
+        // Both the revenue payout and the create_children should only happen, if this is the first buy. When marketplace is activated, this might not be the case anymore.
         // Otherwise, the royalty table should be applied, but ideally, that would be initiated from another contract with a cross-contract-call
         // The problem is, we want to have a marketplace as well. So there we should have the contract, that way we will have 2 contracts
         // We can create a testing-app, which would be just a very simple marketplace
+
+        let payout_table = self.revenue_payout(                   // Will contain amounts in yoctoNEAR
+            token_id.clone(),
+            price,
+            6
+        );
+        
+        for (key, amount) in payout_table.payout.iter() {         // Send the money to each account on the list
+            let beneficiary = key.clone();
+            Promise::new(beneficiary).transfer(u128::from(amount.clone()));
+        }
 
         self.create_children(
             root_id, 

@@ -1,9 +1,9 @@
 use crate::*;
 
 pub trait NonFungibleTokenCore {
-    // Calculates the payout for a token given the passed in balance. This is a view method
+    // Calculates the payout for a token given the passed in balance. This is a view method (Forever Royalty)
     fn nft_payout(&self, token_id: String, balance: U128, max_len_payout: u32) -> Payout;
-    
+        
     // Transfers the token to the receiver ID and returns the payout object that should be payed given the passed in balance. 
     fn nft_transfer_payout(
         &mut self,
