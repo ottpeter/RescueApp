@@ -8,9 +8,11 @@ import PreviewBox from './PreviewBox';
 import SmallUploader from './SmallUploader';
 import infoLogo from '../assets/info.svg';
 import ConnectWallet from './ConnectWallet';
+import xButton from '../assets/xButton.svg';
+import plusButton from '../assets/plusButton.svg';
 
 
-export default function Admin({newAction}) {  
+export default function Admin({newAction, vault}) {  
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("0");
@@ -26,6 +28,10 @@ export default function Admin({newAction}) {
   const [musicReady, setMusicReady] = useState(false);
   const [musicCID, setMusicCID] = useState("");
   const [musicHash, setMusicHash] = useState("");
+
+  // For the royalties
+  const [royaltyPercent, setRoyaltyPercent] = useState(1000);                    // Max is 10000, current value would be 10%
+  const [foreverRoyalties, setForeverRoyalties] = useState([]);                  // Will contain objects of the format { account: "alice.near", percent: 2000 }
   
 
   useEffect(async () => {
@@ -120,6 +126,13 @@ export default function Admin({newAction}) {
   }
 
   function createNFT() {
+    /**TEST */ console.log("creatorSplit: ", royaltyPercent); console.log("foreverRoyalties: ", foreverRoyalties);
+
+    const percentTotal = foreverRoyalties.reduce((total, item) => {
+      return total + item.percent;
+    }, 0);
+    console.log("percentTotal: ", percentTotal);
+
     if (!(imageReady && musicReady)) {
       newAction({
         errorMsg: "The image or the music is not ready!", errorDesc: ""
@@ -144,9 +157,26 @@ export default function Admin({newAction}) {
       });
       return;
     }
+    if (percentTotal > 10000) {
+      newAction({
+        errorMsg: "Total percent is higher then 100%!", errorDesc: "Total forever royalty percent has to be less then 100%!"
+      });
+      return;
+    }
     
+    const revenueTable = {
+      [window.accountId]: royaltyPercent,
+      [vault]: calculateVaultPercent(royaltyPercent)
+    };
+
+    const foreverTable = {};
+    foreverRoyalties.map((royaltyEntry) => {
+      foreverTable[royaltyEntry.account] = royaltyEntry.percent
+    });
+    
+
     const mintPromise = new Promise(async (resolve, reject) => {
-      const mintResult = await mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price);
+      const mintResult = await mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, revenueTable, foreverTable);
       if (mintResult) {
         resolve("The mint was successfull (message from promise)");
       } else {
@@ -159,6 +189,47 @@ export default function Admin({newAction}) {
       successPromiseTitle: "Redirecting to transaction", successPromiseDesc: "Please sign the transaction in the next screen!",
       errorPromiseTitle: "Redirecting to transaction", errorPromiseDesc: "Please sign the transaction in the next screen!"
     });
+  }
+
+  function calculateVaultPercent(creatorSplit) {
+    return 10000 - creatorSplit;
+  }
+
+  function changeOneTimeRoyaltyPercent(newValue) {
+    if (newValue > 100) return;
+    setRoyaltyPercent(Math.ceil(newValue*100));
+  }
+
+  function addNewRoyaltyEntry() {
+    setForeverRoyalties((state) => {
+      state.push({
+        account: "",
+        percent: 0,
+      })
+      return Object.assign([], state);
+    });
+  }
+
+  function removeRoyaltyEntry(index) {
+    setForeverRoyalties((state) => {
+      state.splice(index, 1);
+      return Object.assign([], state);
+    })
+  }
+
+  function changeRoyaltyAccount(index, newName) {
+    setForeverRoyalties((state) => {
+      state[index].account = newName;
+      return Object.assign([], state);
+    })
+  }
+
+  function changeRoyaltyPercent(index, newPercent) {
+    if (newPercent > 100) return;
+    setForeverRoyalties((state) => {
+      state[index].percent = Math.ceil(newPercent*100);
+      return Object.assign([], state);
+    })
   }
 
   if (!window.walletConnection.isSignedIn()) return <ConnectWallet />
@@ -195,6 +266,33 @@ export default function Admin({newAction}) {
             <input type={"text"} value={title} className="nftTitleInput" onChange={(e) => setTitle(e.target.value)} />
             <label className="fieldName">Description</label>
             <textarea value={desc} className="descInput" onChange={(e) => setDesc(e.target.value)} />
+            
+            <label className="fieldName">Royalty percentage</label>
+            <input className="nftTitleInput" type={"number"} min={0} value={royaltyPercent / 100} onChange={(e) => changeOneTimeRoyaltyPercent(e.target.value)}></input>
+            <label className="fieldName">Creator split
+              <button className="royaltyButton" onClick={addNewRoyaltyEntry}>
+                <img src={plusButton} alt={'+'}></img>
+              </button>
+            </label>
+            <ul className="royaltyList">
+              {foreverRoyalties.map((royalty, index) => (
+                <li className="royaltyElement" key={index}>
+                  <div>
+                    <label htmlFor="royaltyElementAddress" className="smallRoyaltyLabel">Address</label>
+                    <input id="royaltyElementAddress" type={"text"} value={royalty.account} onChange={(e) => changeRoyaltyAccount(index, e.target.value)}></input>
+                  </div>
+                  <div>
+                    <label htmlFor="royaltyElementPercent" className="smallRoyaltyLabel">Percentage</label>
+                    <input id="royaltyElementPercent" type={"number"} min={0} max={100} value={royalty.percent / 100} onChange={(e) => changeRoyaltyPercent(index, e.target.value)}></input>
+                  </div>
+                  <div>
+                    <label htmlFor="removeButton" className="placeholderLabel">X</label>
+                    <img id="removeButton" src={xButton} alt={'X'} onClick={() => removeRoyaltyEntry(index)}></img>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
             <label className="fieldName">Price</label>
             <input type={"number"} min={0} value={price} className="priceInput" onChange={(e) => setPrice(e.target.value)} />
           </div>

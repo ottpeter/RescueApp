@@ -124,7 +124,7 @@ export default function App() {
         <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
         <AdminTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
           setShowWallet={setShowWallet} showWallet={showWallet} />
-        <Admin newAction={newAction} />
+        <Admin newAction={newAction} vault={configObj.contractName} />
         <AdminFooter />
       </>
     );

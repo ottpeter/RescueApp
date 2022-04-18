@@ -142,7 +142,7 @@ export default function Main({newAction}) {
           htmlElement={(entry) => {
             if (nftList.length > entry.index) {
               const element = document.createElement('button');
-              element.classList="nftButton"
+              element.classList="nftButton nftButtonGlobe"
               element.innerHTML = entry.city;
               element.style['pointer-events'] = 'auto';
               element.style.cursor = 'pointer';

@@ -40,20 +40,21 @@ export async function getContractName() {
 // Initialize contract & set global variables
 export async function initContract() {
   const nearConfig = await getRealConfig('development');
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig))
-
+  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig));
+  
   window.walletConnection = new WalletConnection(near)  
   window.accountId = window.walletConnection.getAccountId()                                // Getting the Account ID. If still unauthorized, it's just empty string
-
+  
   window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
     viewMethods: ['nft_metadata', 'nft_token', 'nft_tokens_for_owner', 'nft_tokens', 'get_crust_key', 'get_next_buyable', 'view_guestbook_entries'],
     changeMethods: ['new_default_meta', 'new', 'mint_root', 'set_crust_key', 'buy_nft_from_vault', 'transfer_nft', 'create_guestbook_entry', 'withdraw'],
   })
 }
 
-export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price) {
+export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, revenue, foreverRoyalty) {
   let success = false;
-
+  const contractAccount = (await getRealConfig('development')).contractName;
+  
   const root_args = {
     receiver_id: window.accountId,
     metadata: {
@@ -77,7 +78,8 @@ export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, mu
       reference_hash: null                                         // Base64-encoded sha256 hash of JSON from reference field. Required if `reference` is included.
     },
     children_price: utils.format.parseNearAmount(price),           // Price for the next 2 NFTs (children). This will be their original_price
-    perpetual_royalties: null
+    perpetual_royalties: foreverRoyalty,
+    revenue_table: revenue
   }
 
   const gas = 100_000_000_000_000;
@@ -128,8 +130,12 @@ export async function buyNFTfromVault(tokenId, price) {
   };
   const gas = 200_000_000_000_000;
   const formattedPrice = utils.format.formatNearAmount(price);    // Human readable
-  const nearAmount = parseFloat(formattedPrice) + 0.1;
+  console.log("price: ", price)
+  console.log("formattedPrice: ", formattedPrice)
+  const nearAmount = (parseFloat(formattedPrice) + 0.1).toFixed(5);
   const amount = utils.format.parseNearAmount(nearAmount.toString());
+  console.log("nearAmount: ", nearAmount)
+  console.log("amount: ", amount)
   
   await window.contract.buy_nft_from_vault(args, gas, amount)
     .then((result) => console.log("Buy-result: ", result))
