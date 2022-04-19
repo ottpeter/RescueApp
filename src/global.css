@@ -58,6 +58,7 @@
 body {
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
   font-family: OurCustomFont;
 }
 
@@ -607,16 +608,19 @@ input[type=number] {
   height: 2px;
   margin-left: 20px;
   margin-right: 20px;
-  background-color: var(--control-grey);
+  /*background-color: var(--control-grey);*/
+  background-color: white;
 }
 .musicControlsSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 8px;
   width: 20px;
-  border: 7px solid var(--control-grey);
+  /*border: 7px solid var(--control-grey);*/
+  border: 7px solid white;
   border-top: none;
   border-bottom: none;
-  background-color: var(--control-grey);
+  /*background-color: var(--control-grey);*/
+  background-color: white;
   margin-top: -5px;
   border-radius: 8px;
 }
@@ -624,10 +628,12 @@ input[type=number] {
   -webkit-appearance: none;
   height: 8px;
   width: 20x;
-  border: 7px solid var(--control-grey);
+  /*border: 7px solid var(--control-grey);*/
+  border: 7px solid white;
   border-top: none;
   border-bottom: none;
-  background-color: var(--control-grey);
+  /*background-color: var(--control-grey);*/
+  background-color: white;
   margin-top: -5px;
   border-radius: 8px;
 }
@@ -700,6 +706,32 @@ input[type=number] {
 }
 
 
+#backgroundContainer {
+  z-index: 2;
+  background: url('./assets/sampleBackground.jpg');
+  height: 100%
+}
+#trackList {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 70%;
+}
+.nftCircle {
+  position: absolute;
+  z-index: 3;
+  text-align: center;
+  line-height: 180px;
+  color: yellow;
+  border-radius: 250px;
+  border: 2px solid red;
+  width: 200px;
+  height: 200px;
+  margin-right: 32px;
+  padding: 5px;
+}
+
+
 #globeContainer {
   z-index: 2;
 }
@@ -722,114 +754,43 @@ input[type=number] {
 
 .nftDetailsModal {
   position: absolute;
-  display: grid;
-  grid-template-areas: 
-    'bar'
-    'content';
-  top: 100px;
-  left: 16%;
+  display: flex;
+  flex-direction: column;
+  top: 20px;
+  left: calc(50% - 500px);
+  text-align: center;
+  align-items: center;
+  align-content: center;
   width: 1000px;
-  /*background-color: rgba(255, 255, 255, 0.90);*/
+  height: 1000px;
   border: 2px solid var(--control-grey);
-  box-shadow: 0px 1px 4px rgba(0,0,0, 0.2);
-  background-color: var(--modal-grey);
+  border-radius: 1000px;
+  font-family: IBM;
+  color: white;
+  background: none;
   z-index: 50;
 }
-#nftDetailsModalBar {
-  grid-area: bar;
-  font-family: VCR;
-  font-size: 16px;
-  height: 38px;
-  border-bottom: 1px solid #333;
-  
+.nftDetailsModalItem {
+  width: 50%;
+  flex-grow: 1;
+  text-align: center;
+  color: white;
+}
+.nftDetailsModalAudioPlayer {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
-#nftDetailsModalBar p {
-  margin: -10px 0;
-  flex-grow: 1;
-  text-transform: uppercase;
-  text-align: center;
-}
-#nftDetailsModalBar button {
+.nftDetailsModal button {
   margin: 0px 2px;
   border: none;
   background: transparent;
   font-family: VCR;
   font-size: 16px;
 }
-#nftDetailsModalContent {
-  grid-area: content;
 
-  padding: var(--spacing-3);
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  grid-template-areas: 
-  'picture right'
-  'audio buttons';
-}
-#nftDetailsModalPicture {
-  grid-area: picture;
-  padding-right: 20px;
-  display: flex;
-  flex-direction: column;
-}
-#nftDetailsModalPicture img {
-  width: 100%;
-}
-#nftDetailsModalRightSide {
-  grid-area: right;
 
-  display: flex;
-  flex-direction: column;
-}
-.nftDetailsModalRightSideContent {
-  padding: var(--spacing-1);
-  font-family: IBM;
-  font-size: 14px;
-  background-color: var(--modal-grey);
-  border: solid 1px var(--control-grey);
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-.nftDetailsModalRightSideGenBox {
-  font-family: IBM;
-  font-weight: bolder;
-  height: 45px;
-  font-size: 14px;
-  text-transform: uppercase;
-  border: solid 1px var(--control-grey);
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
-}
-.nftDetailsModalRightSideInput {
-  flex-grow: 1;
-  margin-right: 20px;
-  height: 34px;
-  padding-left: 12px;
-  background: #efefef;
-}
-.nftDetailsModalMenuLine {
-  height: 10px;
-  margin-bottom: 20px;
-  border: none;
-  
-  display: flex;
-}
-.nftDetailsModalMenuButton {
-  font-family: IBM;
-  font-size: 12px;
-  text-transform: uppercase;
-  border: none;
-  background: transparent;
-  flex-grow: 1;
-}
-.nftDetailsModalMenuSelected {
-  text-decoration: underline;
-}
+
+
 #nftDetailsModalAudio {
   grid-area: audio;
   margin-top: 20px;
@@ -837,15 +798,6 @@ input[type=number] {
   
   display: flex;
   align-items: center;
-}
-#nftDetailsModalButtons {
-  grid-area: buttons;
-  font-family: VCR;
-  font-size: 16px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
 }
 .buttonFrame {
   background: url('./assets/connect_frame.svg') no-repeat;
@@ -859,23 +811,7 @@ input[type=number] {
 .buttonFrame:hover {
   font-weight: bold;
 }
-.nftDetailsModalRightOwnerDiv {
-  padding: 8px;
-  border: 1px solid var(--control-grey);
-  margin-bottom: 20px;
-  display: flex;
-}
-.nftDetailsModalRightAccount {
-  font-weight: bolder;
-  text-transform: uppercase;
-  margin: 0;
-  flex-grow: 1;
-}
-.nftDetailsModalRightGen {
-  font-weight: bolder;
-  margin: 0;
-  text-transform: uppercase;
-}
+
 
 #guestbookMessages {
   border: solid 1px var(--control-grey);
@@ -909,7 +845,8 @@ input[type=number] {
   height: 37px;
   background-repeat: no-repeat;
   border: none;
-  background-color: var(--modal-grey);
+  color: white;
+  background-color: none;
   border-radius: 2px;
   margin-left: var(--spacing-3);
 }

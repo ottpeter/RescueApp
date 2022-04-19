@@ -5,6 +5,7 @@ import Globe from 'react-globe.gl';
 import countriesGeo from "../assets/countries.json";
 import TokenModal from './TokenModal';
 import clickSoundOne from '../assets/click.mp3';
+import sampleVideo from '../assets/sampleVideo.mp4'
 
 
 export default function Main({newAction}) {
@@ -40,6 +41,7 @@ export default function Main({newAction}) {
   }))
   
   function changeCenter([x, y]) {
+    return;
     globeEl.current.pointOfView({
       lat: x,
       lng: y,
@@ -68,18 +70,21 @@ export default function Main({newAction}) {
       const secondNum = b.token_id.slice(10, b.token_id.lastIndexOf("-"));
       return firstNum - secondNum;
     })
-    setNftList(orderedBuyable);
+  // FAKE
+  const fakeList = [...orderedBuyable, ...orderedBuyable, ...orderedBuyable];
+    setNftList(fakeList);
   }, [])
 
   async function nftClicked(nftIndex) {
-    if (openModal) {
-      setOpenModal(false);
-    }
-    clickSound.play();
+    //if (openModal) {
+     // setOpenModal(false);
+   // }
+    //clickSound.play();
     setSelectedNFT(nftIndex);
-    changeCenter(coordList[nftIndex]);
+    //changeCenter(coordList[nftIndex]);
     loadImage(nftList[nftIndex].metadata);
-    setTimeout(() => setOpenModal(true), transitionMs);
+    setOpenModal(true);
+    //setTimeout(() => setOpenModal(true), transitionMs);
   }
 
   // We are prefetching the image for faster loading
@@ -126,8 +131,43 @@ export default function Main({newAction}) {
         />
       )}
 
+      <div id="backgroundContainer">
+        <video autoplay={"autoplay"} loop={"loop"} width={"100%"} src={sampleVideo}></video>
+        <div id="leftList">
+            {nftList.map((nft, i) => {
+              const rightStart = "80%";
+              const circleWidth = "200px";
+              const marginWidth = "32px";
+              const cssPos = {
+                top: "50%",
+                right: `calc(${rightStart} + ${i} * (${circleWidth} + ${marginWidth}))`,
+              }
+              return (
+                <div className="nftCircle" onClick={() => nftClicked(i)} style={cssPos}>
+                  {nft.metadata.title}
+                </div>
+            )})}
+        </div>
+        <div id="rightList">
+          {nftList.map((nft, i) => {
+            const leftStart = "80%";
+            const circleWidth = "200px";
+            const marginWidth = "32px";
+            const cssPos = {
+              top: "50%", 
+              left: `calc(${leftStart} + ${i} * (${circleWidth} + ${marginWidth}))`,
+            }
+            return (
+              <div className="nftCircle" onClick={() => nftClicked(i)} style={cssPos}>
+                {nft.metadata.title}
+              </div>
+          )})}
+        </div>
+
+      </div>
+      
       <div id="globeContainer">
-        {true && <Globe 
+        {false && <Globe 
           ref={globeEl}
           globeImageUrl={"//unpkg.com/three-globe/example/img/earth-dark.jpg"}
           hexPolygonsData={countriesGeo.features}
@@ -153,13 +193,6 @@ export default function Main({newAction}) {
         />}
       </div>
 
-      <div id="nftButtonsList" className="nftButtonsList">
-        {nftList.map((nft, i) => (
-          <button className="nftButton" onClick={() => nftClicked(i)} >
-            {nft.metadata.title}
-          </button>
-        ))}
-      </div>
 
     </main>
   )

@@ -49,42 +49,21 @@ export default function TokenModal({id, metadata, image, newAction, setOpenModal
 
  
   return (
-    <Draggable handle={'#nftDetailsModalBar'} bounds={'main'} >
-      <div className="nftDetailsModal" >
-        <div id="nftDetailsModalBar">
-          <p>{metadata.title}</p>
-          <button onClick={() => setOpenModal(false)}><img src={close} alt='X'></img></button>
+    <div className="nftDetailsModal" >
+        <p className="nftDetailsModalItem">{metadata.title}</p>
+        <img className="nftDetailsModalItem" src={image} alt={metadata.title}></img>
+        <p className="nftDetailsModalItem">{metadata.description}</p>
+        
+        
+        <div className="nftDetailsModalItem nftDetailsModalAudioPlayer">
+          {music ? 
+            <AudioPlayer music={music} />
+          :
+            <p className="loadingLabel">loading music... </p>
+          }
         </div>
-        <div id="nftDetailsModalContent">
-          <div id="nftDetailsModalPicture">
-            <div id="placeholderAtImageSide" className="nftDetailsModalMenuLine"></div>
-            <img src={image} alt={metadata.title}></img>
-          </div>
-          <div id="nftDetailsModalRightSide">
-            <div className="nftDetailsModalMenuLine">
-              <button className="nftDetailsModalMenuButton nftDetailsModalMenuSelected">Info</button>
-              <button className="nftDetailsModalMenuButton"></button>
-              <button className="nftDetailsModalMenuButton"></button>
-            </div>
-            <div className="nftDetailsModalRightSideContent">
-              {metadata.description}
-            </div>
-            <div className="nftDetailsModalRightSideGenBox">
-              GEN {extra.generation}
-            </div>
-          </div>
-          <div id="nftDetailsModalAudio">
-            {music ? 
-              <AudioPlayer music={music} />
-            :
-              <p className="loadingLabel">loading music... </p>
-            }
-          </div>
-          <div id="nftDetailsModalButtons">
-            <button onClick={buyNFT} id="nftBuyButton"></button>
-          </div>
-        </div>
-      </div>
-    </Draggable>
+        
+        <button className="nftDetailsModalItem" onClick={buyNFT} id="nftBuyButton"></button>          
+    </div>
   );
 }
