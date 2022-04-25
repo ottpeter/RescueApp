@@ -36,10 +36,6 @@ export default function Admin({newAction, vault}) {
 
   useEffect(async () => {
     const urlParams = window.location.search;
-    let href = window.location.href;
-    href = href.slice(0, href.indexOf("?"));
-    history.pushState(null, "Admin", href + "?admin=1");
-    
     if (urlParams.includes('errorCode')) {
       newAction({
         errorMsg: "There was an error during the transaction!", errorMsgDesc: URLSearchParams.get('errorCode'),

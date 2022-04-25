@@ -11,9 +11,6 @@ export default function MyNFTs({newAction}) {
 
   useEffect(async () => {
     const urlParams = window.location.search;
-    let href = window.location.href;
-    href = href.slice(0, href.indexOf("?"));
-    history.pushState(null, "Admin", href + "?my-nfts");
     if (urlParams.includes('errorCode')) {
       newAction({
         errorMsg: "There was an error while processing the transaction!", errorMsgDesc: "errorCode",

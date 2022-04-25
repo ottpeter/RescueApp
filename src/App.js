@@ -1,8 +1,10 @@
 import React from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Admin from './Admin/Admin';
 import Main from './Main/Main';
+import SplashLanding from './Main/SplashLanding';
 import AdminTopMenu from './Admin/TopMenu';
 import MainTopMenu from './Main/TopMenu';
 import AdminFooter from './Admin/Footer';
@@ -99,57 +101,93 @@ export default function App() {
   }
 
   
-  /** We use url params instead of routes, because the IPFS gateways would think that we are looking for a file */
-  if (urlParams.includes('init')) {
-    return configObj.admin? 
-      <button onClick={initContract}>INIT</button>
-    :
-      <p>loading...</p>
-    ;
-  }
-  if (urlParams.includes('withdraw')) {
-    return (
-      <>
-        <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
-        <AdminTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-          setShowWallet={setShowWallet} showWallet={showWallet} />
-        <Withdraw />
-        <AdminFooter />
-      </>
-    );
-  }
-  if (urlParams.includes('admin')) {
-    return (
-      <>
-        <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
-        <AdminTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-          setShowWallet={setShowWallet} showWallet={showWallet} />
-        <Admin newAction={newAction} vault={configObj.contractName} />
-        <AdminFooter />
-      </>
-    );
-  } 
-  if (urlParams.includes('my-nfts')) {
-    return (
-      <>
-        {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
-        <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
-        <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-          setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
-        <MyNFTs newAction={newAction} />
-        <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-      </>
-    );
-  } else {
-    return (
-      <>
-        {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
-        <ToastContainer position="bottom-right" autoClose={5000} />
-        <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-          setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
-        <Main newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-        <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-      </>
-    );    
-  }
+  return (
+    <HashRouter>
+      <Routes>
+        <Route 
+          exact
+          path='/'
+          element={<p>SoundSplash Default</p>}
+        />
+        <Route 
+          exact
+          path='init'
+          element={ configObj.admin?<button onClick={initContract}>INIT</button> : <p>loading...</p> }
+        />
+        <Route 
+          exact
+          path='admin'
+          element={
+            <>
+              <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
+              <AdminTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
+                setShowWallet={setShowWallet} showWallet={showWallet} />
+              <Admin newAction={newAction} vault={configObj.contractName} />
+              <AdminFooter />
+            </>
+          }
+        />
+        <Route 
+          exact
+          path='my-nfts'
+          element={
+            <>
+              {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
+              <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
+              <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
+                setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
+              <MyNFTs newAction={newAction} />
+              <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
+            </>
+          }
+        />
+        <Route 
+          exact
+          path='oldmainobsolate'
+          element={
+            <>
+              {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
+              <ToastContainer position="bottom-right" autoClose={5000} />
+              <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
+                setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
+              <Main newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
+              <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
+            </>
+          }
+        />
+        {/** The 12 SoundSplash NFT Landing Pages */}
+        <Route 
+          exact
+          path='table'
+          element={
+            <SplashLanding 
+              index={0} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            />
+          }
+        />
+        <Route 
+          exact
+          path='sun'
+          element={
+            <SplashLanding 
+              index={1} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            />
+          }
+        />
+        <Route 
+          exact
+          path='withdraw'
+          element={
+            <>
+              <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
+              <AdminTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
+                setShowWallet={setShowWallet} showWallet={showWallet} />
+              <Withdraw />
+              <AdminFooter />
+            </>
+          }
+        />
+      </Routes>
+    </HashRouter>
+  );
 }

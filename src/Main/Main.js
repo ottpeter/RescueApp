@@ -51,9 +51,6 @@ export default function Main({newAction}) {
 
   React.useEffect(async () => {    
     const urlParams = window.location.search;
-    let href = window.location.href;
-    href = href.slice(0, href.indexOf("?")+1);
-    history.pushState(null, "Home", href + "");
     if (urlParams.includes('errorCode')) {
       newAction({
         errorMsg: "There was an error while processing the transaction!", errorMsgDesc: URLSearchParams.get('errorCode'),
