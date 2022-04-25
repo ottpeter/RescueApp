@@ -7,6 +7,8 @@ import TokenModal from './TokenModal';
 import TopMenu from './TopMenu';
 import Footer from './Footer';
 import sampleVideo from '../assets/sampleVideo.mp4';
+import Equalizer from './Equalizer';
+import NftInfoGrid from './NftInfoGrid';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowActivity, showActivity, actionHistory, setShowWallet, showWallet, changePage}) {
@@ -70,7 +72,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <TopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={changePage} />
 
     <main>
-      {openModal && (
+      {false && (
         <TokenModal 
           key={selectedNFT}
           id={nftList[selectedNFT].token_id}
@@ -81,9 +83,8 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
         />
       )}
 
-      <div id="backgroundContainer">
-        <video autoplay={"autoplay"} loop={"loop"} width={"100%"} src={sampleVideo}></video>
-      </div>
+    <Equalizer />
+    <NftInfoGrid />
     </main>
 
     <Footer openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
