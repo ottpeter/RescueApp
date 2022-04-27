@@ -1,20 +1,16 @@
-import React, { useState, useRef } from 'react';
-import { ToastContainer, toast, Slide } from 'react-toastify';
+import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getBuyableTokens, verify_sha256 } from '../utils';
 import 'regenerator-runtime/runtime';
-import TokenModal from './TokenModal';
 import TopMenu from './TopMenu';
 import Footer from './Footer';
-import sampleVideo from '../assets/sampleVideo.mp4';
 import Equalizer from './Equalizer';
-import NftInfoGrid from './NftInfoGrid';
+import SplashLandingGrid from './SplashLandingGrid';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowActivity, showActivity, actionHistory, setShowWallet, showWallet, changePage}) {
   const [nftList, setNftList] = React.useState([]);
-  const [openModal, setOpenModal] = useState(true);
-  const [selectedNFT, setSelectedNFT] = useState(index);
   const [image, setImage] = useState(null);
   
 
@@ -72,19 +68,13 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <TopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={changePage} />
 
     <main>
-      {false && (
-        <TokenModal 
-          key={selectedNFT}
-          id={nftList[selectedNFT].token_id}
-          metadata={nftList[selectedNFT].metadata}
-          image={image}
-          newAction={newAction}
-          setOpenModal={setOpenModal}
-        />
-      )}
-
-    <Equalizer />
-    <NftInfoGrid />
+      {/*<Equalizer />*/}
+      <SplashLandingGrid 
+        tokenId={nftList[index].token_id}
+        metadata={nftList[index].metadata}
+        image={image}
+        newAction={newAction}
+      />
     </main>
 
     <Footer openGuestBook={openGuestBook} setGuestBook={setGuestBook} />

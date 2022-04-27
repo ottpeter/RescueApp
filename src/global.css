@@ -24,6 +24,7 @@
   --toastify-text-color-light: #ffffff;
   --toastify-text-color-dark: #000000;
   
+  --splash-color: #121212;
 }
 
 @font-face {
@@ -218,7 +219,7 @@ footer {
 
 main {
   background-color: var(--main-bg);
-  background: url('./assets/background_small.png');
+  background: transparent;
   height: 100vh;
   background-size: cover;
   overflow: hidden;
@@ -604,38 +605,38 @@ input[type=number] {
 }
 .musicControlsSlider {
   flex-grow: 1;
-  width: 100%;
+  width: 80%;
   height: 2px;
   margin-left: 20px;
   margin-right: 20px;
   /*background-color: var(--control-grey);*/
-  background-color: white;
+  background-color: var(--splash-color);
 }
 .musicControlsSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 8px;
   width: 20px;
   /*border: 7px solid var(--control-grey);*/
-  border: 7px solid white;
+  border: 12px solid var(--splash-color);
   border-top: none;
   border-bottom: none;
   /*background-color: var(--control-grey);*/
-  background-color: white;
+  background-color: var(--splash-color);
   margin-top: -5px;
-  border-radius: 8px;
+  border-radius: 0;
 }
 .musicControlsSlider::-moz-range-thumb {
   -webkit-appearance: none;
   height: 8px;
   width: 20x;
   /*border: 7px solid var(--control-grey);*/
-  border: 7px solid white;
+  border: 12px solid var(--splash-color);
   border-top: none;
   border-bottom: none;
   /*background-color: var(--control-grey);*/
-  background-color: white;
+  background-color: var(--splash-color);
   margin-top: -5px;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .loadingLabel {
@@ -836,6 +837,90 @@ input[type=number] {
 .guestbookMessageMessage {
   margin-top: 20px;
   width: 100%;
+}
+
+/** Soundsplash */
+#splashLandingGrid {
+  display: grid;
+  /*height: 100%;*/
+  grid-template-columns: 50% 50%;
+  margin-top: var(--nav-size);
+  margin-bottom: var(--footer-size);
+  padding: 40px;
+}
+#splashPicture {
+  /*grid-area: picture;*/
+  margin: auto;
+  /*margin-right: 60px;*/
+}
+#splashInfoFlex {
+  /*grid-area: info;*/
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+}
+.splashInfoElement {
+  flex-grow: 1;
+}
+
+#splashSmallInfoBox {
+  display: flex;
+  align-items: baseline;
+}
+.splashInfoElementFirst {
+  margin-right: var(--spacing-3);
+}
+.splashInfoElementSecond {
+  flex-grow: 1;
+}
+.splashInfoElementThird {
+  margin-right: var(--spacing-3);
+}
+.splashInfoElementFourth {
+  margin-right: 0;
+}
+.splashSmallInfoBoxNearPrice {
+  margin-bottom: 0;
+}
+.splashSmallInfoBoxDollarPrice {
+  margin-top: 0;
+  padding-top: 0;
+  text-align: right;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#splashAudioContainer {
+  display: flex;
+  align-items: center;
+}
+.splashArtistListElement {
+  display: flex;
+  flex-direction: row;
+}
+
+#splashArtistList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.splashArtistListElementFirst {
+  flex-grow: 1;
+}
+.splashArtistListElementIcon {
+  margin-left: var(--spacing-1);
+}
+
+#splashBuy {
+  align-self: flex-end;
+  width: 110px;
+  height: 49px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--splash-color);
+  color: white;
+  font-weight: bold;
 }
 
 
