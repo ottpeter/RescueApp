@@ -176,6 +176,15 @@ export default function App() {
         />
         <Route 
           exact
+          path='dao'
+          element={
+            <SplashLanding 
+              index={2} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            />
+          }
+        />
+        <Route 
+          exact
           path='withdraw'
           element={
             <>

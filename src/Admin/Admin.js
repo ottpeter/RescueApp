@@ -30,8 +30,8 @@ export default function Admin({newAction, vault}) {
   const [musicHash, setMusicHash] = useState("");
 
   // For the royalties
-  const [royaltyPercent, setRoyaltyPercent] = useState(1000);                    // Max is 10000, current value would be 10%
-  const [foreverRoyalties, setForeverRoyalties] = useState([]);                  // Will contain objects of the format { account: "alice.near", percent: 2000 }
+  const [revenuePercent, setRevenuePercent] = useState(1000);                    // Max is 10000, current value would be 10%
+  const [royalties, setRoyalties] = useState([]);                                // Will contain objects of the format { account: "alice.near", percent: 2000 }
   
 
   useEffect(async () => {
@@ -122,9 +122,9 @@ export default function Admin({newAction, vault}) {
   }
 
   function createNFT() {
-    /**TEST */ console.log("creatorSplit: ", royaltyPercent); console.log("foreverRoyalties: ", foreverRoyalties);
+    /**TEST */ console.log("creatorSplit: ", revenuePercent); console.log("foreverRoyalties: ", royalties);
 
-    const percentTotal = foreverRoyalties.reduce((total, item) => {
+    const percentTotal = royalties.reduce((total, item) => {
       return total + item.percent;
     }, 0);
     console.log("percentTotal: ", percentTotal);
@@ -161,12 +161,12 @@ export default function Admin({newAction, vault}) {
     }
     
     const revenueTable = {
-      [window.accountId]: royaltyPercent,
-      [vault]: calculateVaultPercent(royaltyPercent)
+      [window.accountId]: revenuePercent,
+      [vault]: calculateVaultPercent(revenuePercent)
     };
 
     const foreverTable = {};
-    foreverRoyalties.map((royaltyEntry) => {
+    royalties.map((royaltyEntry) => {
       foreverTable[royaltyEntry.account] = royaltyEntry.percent
     });
     
@@ -191,13 +191,13 @@ export default function Admin({newAction, vault}) {
     return 10000 - creatorSplit;
   }
 
-  function changeOneTimeRoyaltyPercent(newValue) {
+  function changeRevenuePercent(newValue) {
     if (newValue > 100) return;
-    setRoyaltyPercent(Math.ceil(newValue*100));
+    setRevenuePercent(Math.ceil(newValue*100));
   }
 
   function addNewRoyaltyEntry() {
-    setForeverRoyalties((state) => {
+    setRoyalties((state) => {
       state.push({
         account: "",
         percent: 0,
@@ -207,14 +207,14 @@ export default function Admin({newAction, vault}) {
   }
 
   function removeRoyaltyEntry(index) {
-    setForeverRoyalties((state) => {
+    setRoyalties((state) => {
       state.splice(index, 1);
       return Object.assign([], state);
     })
   }
 
   function changeRoyaltyAccount(index, newName) {
-    setForeverRoyalties((state) => {
+    setRoyalties((state) => {
       state[index].account = newName;
       return Object.assign([], state);
     })
@@ -222,7 +222,7 @@ export default function Admin({newAction, vault}) {
 
   function changeRoyaltyPercent(index, newPercent) {
     if (newPercent > 100) return;
-    setForeverRoyalties((state) => {
+    setRoyalties((state) => {
       state[index].percent = Math.ceil(newPercent*100);
       return Object.assign([], state);
     })
@@ -264,14 +264,14 @@ export default function Admin({newAction, vault}) {
             <textarea value={desc} className="descInput" onChange={(e) => setDesc(e.target.value)} />
             
             <label className="fieldName">Royalty percentage</label>
-            <input className="nftTitleInput" type={"number"} min={0} value={royaltyPercent / 100} onChange={(e) => changeOneTimeRoyaltyPercent(e.target.value)}></input>
+            <input className="nftTitleInput" type={"number"} min={0} value={revenuePercent / 100} onChange={(e) => changeRevenuePercent(e.target.value)}></input>
             <label className="fieldName">Creator split
               <button className="royaltyButton" onClick={addNewRoyaltyEntry}>
                 <img src={plusButton} alt={'+'}></img>
               </button>
             </label>
             <ul className="royaltyList">
-              {foreverRoyalties.map((royalty, index) => (
+              {royalties.map((royalty, index) => (
                 <li className="royaltyElement" key={index}>
                   <div>
                     <label htmlFor="royaltyElementAddress" className="smallRoyaltyLabel">Address</label>
