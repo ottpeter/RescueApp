@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Canvas from './Canvas';
 
-export default function Equalizer() {
-  return (
-    <div>Equalizer</div>
-  )
+const Equalizer = () => {
+    return <>
+    <header className="App-header">
+        <Canvas />
+    </header>
+    </>
 }
+
+export default Equalizer;
