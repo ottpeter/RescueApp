@@ -85,10 +85,11 @@ export default function Admin({newAction, vault}) {
     const uploadPromise = new Promise(async (resolve, reject) => {
       const formData = new FormData();
       formData.append("myFile", file);
+      console.log("file: ", file)
       const headers = {
         'Content-Type': 'multipart/form-data',
       }
-      await axios.post(`http://172.105.246.99:3000/upload/${fileType}`, formData, { headers })
+      await axios.post(`http://test1.rarevandal.com:3000/upload/${fileType}`, formData, { headers })
         .then((response) => {
           console.log("THE RESPONSE: ", response);
           if (fileType === "image") {

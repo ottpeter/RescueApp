@@ -12,6 +12,8 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   const fontSettings = {
     family: 'neue-haas-grotesk-display',
     size: '32px',
+    buttonSize: '24px',
+    normalSize: '12px'
   }
 
   const aList = [
@@ -38,7 +40,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
       <ArtistList fontSettings={fontSettings} list={aList} />
       <Desc desc={metadata.description} fontSettings={fontSettings} />
       <Box gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} />
-      <Buy tokenId={tokenId} newAction={newAction} fontSettings={fontSettings} />
+      <Buy tokenId={tokenId} price={extra.original_price} newAction={newAction} fontSettings={fontSettings} />
     </div>
   )
 }

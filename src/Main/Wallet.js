@@ -36,7 +36,7 @@ export default function Wallet({setShowWallet, showWallet}) {
   } else {
     return (
       <>
-        <div className="controls">
+        <div className="controls controlsLast">
           <button className="mainWalletBadge"
             onClick={() => setShowWallet(!showWallet)}
             onBlur={() => setShowWallet(false)}
@@ -50,7 +50,7 @@ export default function Wallet({setShowWallet, showWallet}) {
           <div id="wallet" className="mainWalletContainer">
             <div id="mainWalletBalanceFlex">
               <p>BALANCE</p>
-              <img id="mainWalletNearLogo" src={nearLogo} alt='N' />
+              
               <p className="walletFlexPlaceholder"></p>
               <p>{formatNumber(balance, 3)}</p>
             </div>            
@@ -59,7 +59,7 @@ export default function Wallet({setShowWallet, showWallet}) {
               <p>~ ${formatNumber(dollar, 2)}</p>
             </div>
             <div id="mainWalletButtonContainer">
-              <button onClick={logout} id="mainDisconnect"></button>
+              <button onClick={logout} id="mainDisconnect">DISCONNECT</button>
             </div>
           </div>
         )}

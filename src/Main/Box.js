@@ -18,7 +18,6 @@ export default function Box({gen, price, fontSettings}) {
       return { price: 0 }
     });
     const dResult = nearPrice.price * priceInNear;
-    console.log("dResult: ", dResult)
     setDollar(dResult);
   }, [])
   

@@ -3,13 +3,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getBuyableTokens, verify_sha256 } from '../utils';
 import 'regenerator-runtime/runtime';
-import TopMenu from './TopMenu';
-import Footer from './Footer';
 import Equalizer from './Equalizer';
 import SplashLandingGrid from './SplashLandingGrid';
+import FooterSplash1 from './FooterSplash1';
+import TopMenuSplash1 from './TopMenuSplash1';
 
 
-export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowActivity, showActivity, actionHistory, setShowWallet, showWallet, changePage}) {
+export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
   
@@ -65,19 +65,24 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <>
     {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
     <ToastContainer position="bottom-right" autoClose={5000} />
-    <TopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={changePage} />
+    <div id='colorContainer'>
+      <div id='svgContainer'>
+        <TopMenuSplash1 setShowWallet={setShowWallet} showWallet={showWallet} />
 
-    <main>
-      {/*<Equalizer />*/}
-      <SplashLandingGrid 
-        tokenId={nftList[index].token_id}
-        metadata={nftList[index].metadata}
-        image={image}
-        newAction={newAction}
-      />
-    </main>
+        <main>
+          {/*<Equalizer />*/}
+          <SplashLandingGrid 
+            tokenId={nftList[index].token_id}
+            metadata={nftList[index].metadata}
+            image={image}
+            newAction={newAction}
+          />
+        </main>
 
-    <Footer openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
+        <FooterSplash1 />
+
+      </div>
+    </div>
   </>
   )
 }

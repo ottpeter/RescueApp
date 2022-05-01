@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Draggable from 'react-draggable';
 import AudioPlayer from '../Common/AudioPlayer';
-import close from '../assets/close.svg'
 import { getAllFromRoot, getContractName, transferNft, verify_sha256 } from '../utils'
 
 
@@ -94,80 +92,106 @@ export default function TransferModal({token, newAction, setOpenModal}) {
   loadImage();
 
   return (
-    <Draggable handle={'#nftDetailsModalBar'} bounds={'main'} >
-      <div className="nftDetailsModal">
-        <div id="nftDetailsModalBar">
-          <p>{title}</p>
-          <button onClick={() => setOpenModal(false)}><img src={close} alt='X'></img></button>
-        </div>
-        
-        <div id="nftDetailsModalContent">
-          <div id="nftDetailsModalPicture">
-            <div id="placeholderAtImageSide" className="nftDetailsModalMenuLine"></div>
-            <img src={image} alt={title}></img>
-          </div>
-          <div id="nftDetailsModalRightSide">
-            <div className="nftDetailsModalMenuLine">
-              <button 
-                onClick={() => setSelected("info")} 
-                className={"nftDetailsModalMenuButton " + (selected === "info" ? "nftDetailsModalMenuSelected" : null)}
-              >
-                Info
-              </button>
-              <button 
-                onClick={() => setSelected("owners")} 
-                className={"nftDetailsModalMenuButton " + (selected === "owners" ? "nftDetailsModalMenuSelected" : null)}
-              >
-                Owners
-              </button>
-              <button className="nftDetailsModalMenuButton"></button>
-            </div>
-
-            {(selected === "info") && (
-              <>
-                <div className="nftDetailsModalRightSideContent">
-                  {description}
-                </div>
-                <div className="nftDetailsModalRightSideGenBox">
-                  GEN {extra.generation}
-                </div>
-              </>
-            )}
-
-            {(selected === "owners") && (
-              <>
-                {all.map((nft) => (
-                  <div className="nftDetailsModalRightOwnerDiv">
-                    {nft.owner_id === vault ? 
-                      <p className="nftDetailsModalRightAccount">Vault</p>
-                    : 
-                    <p className="nftDetailsModalRightAccount">{nft.owner_id}</p>
-                    }
-                    <p className="nftDetailsModalRightGen">GEN: {JSON.parse(nft.metadata.extra).generation}</p>
-                  </div>
-                ))}
-              </>
-            )}
-
-          </div>
-          <div id="nftDetailsModalAudio">
-            {music ? 
-              <AudioPlayer music={music}/>
-              :
-              <p className="loadingLabel">loading music...</p>
-            }
-          </div>
-          <div id="nftDetailsModalButtons">
-            <input 
-              type={"text"} 
-              value={receiver} 
-              onChange={(e) => handleInputChange(e.target.value)} 
-              className="nftDetailsModalRightSideInput" 
-            />
-            <button onClick={transfer} className="buttonFrame">Transfer</button>
-          </div>
-        </div>
+    <div className="nftDetailsModal">
+      <div id="nftDetailsModalPicture">
+        <img src={image} alt={title}></img>
       </div>
-    </Draggable>
+      <div id="nftDetailsModalRightSide">
+        <button id="nftDetailsModalClose" onClick={() => setOpenModal(false)}><CloseButton /></button>
+        <div id="nftDetailsModalTitleAndGen">
+          <p>{token.metadata.title}</p>
+          <p>#{JSON.parse(token.metadata.extra).generation}</p>
+        </div>
+        <div id="nftDetailsModalArtistList">Artist List</div>
+        <div className="nftDetailsModalMenuLine">
+          <button 
+            onClick={() => setSelected("info")} 
+            className={"nftDetailsModalMenuButton " + (selected === "info" ? "nftDetailsModalMenuSelected" : null)}
+          >
+            INFO
+          </button>
+          <button 
+            onClick={() => setSelected("owners")} 
+            className={"nftDetailsModalMenuButton " + (selected === "owners" ? "nftDetailsModalMenuSelected" : null)}
+          >
+            OWNERS
+          </button>
+          <button 
+            onClick={() => setSelected("history")}
+            className={"nftDetailsModalMenuButton " + (selected === "history" ? "nftDetailsModalMenuSelected" : null)}
+          >
+            HISTORY
+          </button>
+        </div>
+        <div className={"nftDetailsModalSwitchableBox " + (selected !== "info" ? "scroll" : null)}>
+          {(selected === "info") && (
+            <>
+              {description}
+            </>
+          )}
+
+          {(selected === "owners") && (
+            <>
+              {all.map((nft) => (
+                <div className="nftDetailsModalRightOwnerDiv">
+                  {nft.owner_id === vault ? 
+                    <p className="nftDetailsModalRightAccount">Vault</p>
+                  : 
+                    <p className="nftDetailsModalRightAccount">{nft.owner_id}</p>
+                  }
+                  <p className="nftDetailsModalRightGen">GEN: {JSON.parse(nft.metadata.extra).generation}</p>
+                </div>
+              ))}
+            </>
+          )}
+
+          {(selected === "history") && (
+            <>
+              <p>history</p>
+            </>
+          )}
+        </div>
+        <div id="nftDetailsModalOwnerBox">
+          <p>OWNER</p>
+          <p>{token.owner_id}</p>
+        </div>
+        <div id="nftDetailsModalAudio">
+          {music ? 
+            <AudioPlayer music={null} cid={musicCID} />
+            :
+            <p className="loadingLabel">loading music...</p>
+          }
+        </div>
+        <div id="nftDetailsModalButtons">
+          <button onClick={transfer} className="buttonFrame">Transfer</button>
+        </div>
+
+
+        
+
+        
+      </div>
+      {/*
+      
+              <input 
+                type={"text"} 
+                value={receiver} 
+                onChange={(e) => handleInputChange(e.target.value)} 
+                className="nftDetailsModalRightSideInput" 
+              />
+      <div id="nftDetailsModalButtons">
+      </div>
+      */}
+    </div>
   );
+}
+
+
+function CloseButton() {
+  return(
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.5 9.0625H15.625V19.375H4.375V9.0625H7.5" stroke="#121212" strokeMiterlimit="10"/>
+      <path d="M13.4375 5L10 0.9375L6.5625 5M10 13.75V0.9375V13.75Z" stroke="#121212" strokeMiterlimit="10"/>
+    </svg>
+  )
 }

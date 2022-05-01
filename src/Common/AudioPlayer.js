@@ -44,7 +44,11 @@ export default function AudioPlayer({music, cid}) {
 
   return (
     <>
-      <audio style={{ display: "block" }} src={"https://ipfs.io/ipfs/" + cid} ref={playerRef} />
+      {music ? (
+          <audio style={{ display: "block" }} src={music} ref={playerRef} />
+        ) : (
+          <audio style={{ display: "block" }} src={"https://ipfs.io/ipfs/" + cid} ref={playerRef} />
+      )}
       {playing? 
         <button className="musicControlsButton" onClick={pauseClicked}><PauseIcon /></button>
       : 

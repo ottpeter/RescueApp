@@ -3,8 +3,6 @@ import GitHub from '../FrameElements/GitHub';
 import Twitter from '../FrameElements/Twitter';
 import Discord from '../FrameElements/Discord';
 import Insta from '../FrameElements/Insta';
-import logo from '../assets/BottomLeftLogo.png';
-import guestBookIcon from '../assets/guestbook.png';
 
 
 /** Footer for Main */

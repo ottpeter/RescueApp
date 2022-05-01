@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import Wallet from './Wallet';
 import { totalMinted } from '../utils';
@@ -6,7 +7,7 @@ import logo from '../assets/TopLeftLogo.png'
 
 
 /** Top Menu for Main */
-export default function TopMenu({setShowWallet, showWallet, changePage}) {
+export default function TopMenu({setShowWallet, showWallet}) {
   const [digits, setDigits] = useState([]);
 
   useEffect(async () => {
@@ -24,27 +25,13 @@ export default function TopMenu({setShowWallet, showWallet, changePage}) {
     };
   }, []);
 
-  function goToMyNfts() {
-    let href = window.location.href;
-    href = href.slice(0, href.indexOf("?"));
-    history.pushState(null, "MyNFTs", href + "?my-nfts=1");
-    changePage();
-  }
-
-  function goToHome() {
-    let href = window.location.href;
-    href = href.slice(0, href.indexOf("?"));
-    history.pushState(null, "Home", href);
-    changePage();
-  }
-
 
   return (
     <nav id="mainNav">
       <div className="leftLogo">
-        <button onClick={goToHome} className="logo controlsButton">
+        <Link to={'/'} className="logo controlsButton">
           <img src={logo} alt='Logo' id="topLeftImage" />
-        </button>
+        </Link>
       </div>
 
       <div className="logo">
@@ -59,7 +46,7 @@ export default function TopMenu({setShowWallet, showWallet, changePage}) {
         </div>
       </div>
       
-      <button onClick={goToMyNfts} className="controlsButton menuButton" >MY NFTS</button>
+      <Link to={'/my-nfts'} className="controlsButton menuButton">MY NFTS</Link>
       <Wallet 
         setShowWallet={setShowWallet}
         showWallet={showWallet}

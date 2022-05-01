@@ -127,6 +127,8 @@ nav {
   margin-right: 32px;
   margin-top: 7px;
   font-family: IBM;
+  text-decoration: none;
+  color: var(--control-grey);
 }
 .controlsButton img:hover {
   filter: brightness(2.5);
@@ -245,42 +247,44 @@ main {
   text-align: center;
 }
 .mainWalletBadge {
-  background: url('./assets/connect_frame.svg') no-repeat;
+  border: none;
+  border-radius: 50px;
+  background: #f2f2f2;
   text-transform: uppercase;
-  font-family: VCR;
+  font-family: neue-haas-grotesk-display;
   font-size: 16px;
   width: 179px;
   height: 39px;
   margin-right: 32px;
-  border: none;
 }
 .mainWalletBadge:hover {
   font-weight: bold;
 }
 .mainWalletContainer {
   position: absolute;
-  background: url('./assets/connect_frame.svg') no-repeat;
-  font-family: IBM;
-  font-size: 10px;
-  top: 45px;
-  width: 159px;
-  height: 84px;
-  padding: 8px;
+  font-family: neue-haas-grotesk-display;
+  background: white;
+  border-radius: 2px;
+  font-size: 12px;
+  top: 58px;
+  right: 50px;
+  padding: 16px;
+  right: 44px;
+  width: 183px;
+  height: 99px;
   text-transform: uppercase;
-  background: transparent;
-  border: 2px solid #333;
-  border-radius: 7px;
-  right: var(--spacing-3);
   z-index: 9998;
 }
 #mainDisconnect {
-  background: url('./assets/disconnect.svg') no-repeat;
-  width: 84px;
-  height: 28px;
+  background-color: var(--splash-color);
+  color: #f2f2f2;
+  border-radius: 50px;
+  width: 110px;
+  height: 24px;
   border: none;
 }
 #mainDisconnect:hover {
-  background: url('./assets/disconnect_hover.svg') no-repeat;
+  font-weight: bold;
 }
 #mainWalletBalanceFlex {
   display: flex;
@@ -299,10 +303,11 @@ main {
 #mainWalletDollarFlex {
   display: flex;
   margin-top: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 #mainWalletDollarFlex>* {
   margin-top: 0;
+  color: #4F4F4F;
   margin-bottom: 0;
 }
 #mainWalletButtonContainer {
@@ -574,26 +579,88 @@ input[type=number] {
   width: 30%;
 }
 
-#listContainer {
-  margin-top: calc(var(--nav-size) + 72px);
-  margin-bottom: calc(var(--footer-size) + 72px);
-  margin-left: 140px;
-  margin-right: 140px;
+h1 {
+  font-family: neue-haas-grotesk-display;
+  font-size: 40px;
+  /*margin-top: calc(var(--nav-size) + 72px);*/
+  margin-top: 60px;
+  margin-bottom: 40px;
+  text-align: center;
 }
-#listContainer ul li {
+
+#listContainer {
+  margin-bottom: calc(var(--footer-size) + 72px);
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0;
+}
+#listContainer li {
   list-style: none;
   display: inline-block;
-  margin: 10px;
+  margin: 20px;  
 }
 .nftCard {
-  background: transparent;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+  background: #FFFFFF;
+  border-radius: 10px;
   border: none;
-  width: 219px;
-  height: 193px;
+  width: 288px;
 }
 .nftCard img {
   max-width: 100%;
-  height: 100%;
+}
+.nftCardInfo {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-1);
+  align-items: flex-start;
+  font-family: neue-haas-grotesk-display;
+}
+.nftCardInfoArtistList {
+  font-size: 10px;
+  /* line-height: 11px;*/
+}
+.nftCardInfoTitleAndGen {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 14px;
+  margin-top: var(--spacing-1);
+  margin-bottom: 40px;
+  /* line-height: 17px;*/
+  font-weight: bold;
+}
+.nftCardInfoTitleAndGen p {
+  margin: 0;
+}
+.nftCardInfoTitleAndGen > :first-child {
+  flex-grow: 1;
+  text-align: left;
+}
+.nftCardInfoStatus {
+  align-self: flex-end;
+  font-size: 10px;
+  margin: 0;
+  color: #4F4F4F;
+  margin-bottom: 8px;
+  /* line-height: 11px;*/
+}
+.nftCardInfoNearPrice {
+  align-self: flex-end;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  color: var(--splash-color);
+  /* line-height: 14px;*/
+}
+.nftCardInfoDollarPrice {
+  align-self: flex-end;
+  font-size: 11px;
+  margin: 0;
+  color: #4F4F4F;
+  /* line-height: 11px;*/
 }
 
 .musicControlsButton {
@@ -755,44 +822,119 @@ input[type=number] {
 
 .nftDetailsModal {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 20px;
-  left: calc(50% - 500px);
+  display: grid;
+  grid-template-columns: 70% 30%;
+  top: 0;
+  left: 0;
   text-align: center;
   align-items: center;
   align-content: center;
-  width: 1000px;
-  height: 1000px;
-  border: 2px solid var(--control-grey);
-  border-radius: 1000px;
-  font-family: IBM;
-  color: white;
-  background: none;
+  width: 100%;
+  height: 100%;
+  font-family: neue-haas-grotesk-display;
   z-index: 50;
 }
-.nftDetailsModalItem {
-  width: 50%;
-  flex-grow: 1;
-  text-align: center;
-  color: white;
+#nftDetailsModalPicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: white;
+}
+#nftDetailsModalPicture img {
+  max-width: 90%;
+  max-height: 90%;
+}
+#nftDetailsModalRightSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: wheat;
+  height: 100vh;
+  padding: 40px;
+  padding-top: 16px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  -ms-box-sizing:     border-box;
+  -o-box-sizing:      border-box;
+  box-sizing:         border-box;
+}
+#nftDetailsModalClose {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  margin-bottom: 8px;
 }
 .nftDetailsModalAudioPlayer {
   display: flex;
   align-items: center;
 }
-.nftDetailsModal button {
-  margin: 0px 2px;
+#nftDetailsModalTitleAndGen {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+  color: var(--splash-color);
+  display: flex;
+  flex-direction: row;
+}
+#nftDetailsModalTitleAndGen p {
+  margin-right: 16px;
+}
+#nftDetailsModalArtistList {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #4F4F4F;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+.nftDetailsModalMenuLine {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.nftDetailsModalMenuLine button {
   border: none;
   background: transparent;
-  font-family: VCR;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--splash-color);
+  text-align: center;
+  flex-grow: 1;
 }
-
-
-
-
+.nftDetailsModalMenuLine button:last-child {
+  text-align: right;
+}
+.nftDetailsModalMenuLine button:first-child {
+  text-align: left;
+}
+.nftDetailsModalMenuSelected {
+  text-decoration: underline;
+}
+#nftDetailsModalOwnerBox {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: 93%;
+  padding: 16px;
+  border-radius: 7px;
+}
+#nftDetailsModalOwnerBox p {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: var(--splash-color);
+  padding: 0;
+  margin: 0;
+}
+#nftDetailsModalOwnerBox > p:first-child {
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: left;
+}
 #nftDetailsModalAudio {
+  width: 100%;
   grid-area: audio;
   margin-top: 20px;
   padding-right: 25px;
@@ -800,17 +942,96 @@ input[type=number] {
   display: flex;
   align-items: center;
 }
-.buttonFrame {
-  background: url('./assets/connect_frame.svg') no-repeat;
-  text-transform: uppercase;
-  font-family: VCR;
-  font-size: 16px;
-  width: 179px;
-  height: 39px;
-  border: none;
+#nftDetailsModalButtons {
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
+  flex-grow: 1;
+  margin-top: auto;
 }
-.buttonFrame:hover {
+#nftDetailsModalButtons button {
+  height: 38px;
+  border-radius: 50px;
+  font-size: 16px;
+  border: 2px solid var(--splash-color);
+  background: transparent;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-transform: uppercase;
+  line-height: 18px;
+  color: var(--splash-color);
+}
+#nftDetailsModalButtons button:hover {
   font-weight: bold;
+}
+.nftDetailsModalSwitchableBox {
+  background: white;
+  width: 93%;
+  height: 200px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--splash-color);
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 7px;
+}
+.scroll {
+  overflow-y: scroll;
+}
+
+#splash-1-Footer {
+  position: absolute;
+  background: transparent;
+  z-index: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+#splash-1-Footer ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-left: 127px;
+  list-style: none;
+}
+#splash-1-Footer ul li {
+  margin-right: 49px;
+}
+
+#splash-1-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  background: none;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+#splash-1-nav img {
+  justify-self: flex-start;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+.blurBox {
+  filter: blur(30px);
+  background: rgba(255, 255, 255, 0.4);
+  height: calc(var(--nav-size) + 50px);
+  width: 120%;
+  position: absolute;
+  top: -50px;
+  left: -80px;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+}
+
+.splashLogo {
+  flex-grow: 1;
+  margin-left: 127px;
 }
 
 
@@ -856,6 +1077,7 @@ input[type=number] {
 #splashInfoFlex {
   /*grid-area: info;*/
   display: flex;
+  color: white;
   flex-direction: column;
   margin-left: 60px;
 }
@@ -913,6 +1135,8 @@ input[type=number] {
 
 #splashBuy {
   align-self: flex-end;
+}
+#splashBuy button {
   width: 110px;
   height: 49px;
   padding: 10px 30px;
@@ -921,6 +1145,38 @@ input[type=number] {
   background-color: var(--splash-color);
   color: white;
   font-weight: bold;
+}
+
+/*#colorContainer {
+  background-color: #001b6c;
+}*/
+#colorContainer {
+  background: linear-gradient(223deg, #001b6c, #1047ec);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+#svgContainer {
+  background-image: url('./assets/splash1svg.svg');
+  background-size: cover;
 }
 
 

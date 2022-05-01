@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getListForAccount, verify_sha256 } from '../utils';
+import NftCard from './NftCard';
 import TransferModal from './TransferModal';
 
 
@@ -58,17 +59,19 @@ export default function MyNFTs({newAction}) {
 
   return (
     <main>
-      <div id="listContainer">
-        <ul>
+        <h1>MY NFTs</h1>
+        <ul id="listContainer">
           {list && list.map((item, i) => (
-            <li key={"image-" + i}>
-              <button onClick={() => openTransfer(i)} className="nftCard">
-                <img src={images[i]} alt={i}></img>
-              </button>
+            <li key={"nftCard-" + i}>
+              <NftCard 
+                image={images[i]} 
+                openTransfer={openTransfer} 
+                i={i} metadata={item.metadata} 
+              />
             </li>
           ))}
         </ul>
-      </div>
+      
 
       {showTransfer && 
         <TransferModal 
