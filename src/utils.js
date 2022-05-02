@@ -24,6 +24,15 @@ async function getRealConfig(env) {
         helperUrl: 'https://helper.testnet.near.org',
         explorerUrl: 'https://explorer.testnet.near.org',
       }
+    case 'mainnet':
+      return {
+        networkId: 'mainnet',
+        nodeUrl: 'https://rpc.mainnet.near.org',
+        contractName: contractName,
+        walletUrl: 'https://wallet.near.org',
+        helperUrl: 'https://helper.mainnet.near.org',
+        explorerUrl: 'https://explorer.mainnet.near.org',
+      }
     default:
       throw Error(`env is needed`);
   }
@@ -39,7 +48,7 @@ export async function getContractName() {
 
 // Initialize contract & set global variables
 export async function initContract() {
-  const nearConfig = await getRealConfig('development');
+  const nearConfig = await getRealConfig('mainnet');
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig));
   
   window.walletConnection = new WalletConnection(near)  
@@ -53,7 +62,7 @@ export async function initContract() {
 
 export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, revenue, foreverRoyalty) {
   let success = false;
-  const contractAccount = (await getRealConfig('development')).contractName;
+  const contractAccount = (await getRealConfig('mainnet')).contractName;
   
   const root_args = {
     receiver_id: window.accountId,
@@ -145,7 +154,7 @@ export async function buyNFTfromVault(tokenId, price) {
 export async function getBuyableTokens() {
   let rootIDs = null;
   let inVault = null;
-  const contractAccount = (await getRealConfig('development')).contractName
+  const contractAccount = (await getRealConfig('mainnet')).contractName
 
   console.log(window.accountId)
   console.log(contractAccount)
@@ -260,7 +269,7 @@ export async function getGuestBookEntries() {
 
 // does not work
 export async function checkIfAccountExists() {
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('development')));
+  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('mainnet')));
   const account = await near.account("account-ain9ahzair.testnet");
   const result = await account.getAccountDetails();
   return result;
@@ -336,5 +345,5 @@ export function logout() {
 }
 
 export async function login() {
-  window.walletConnection.requestSignIn((await getRealConfig('development')).contractName)
+  window.walletConnection.requestSignIn((await getRealConfig('mainnet')).contractName)
 }

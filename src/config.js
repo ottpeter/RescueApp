@@ -1,5 +1,6 @@
 /** We don't use this for config. We use getRealConfig for config */
-const CONTRACT_NAME = process.env.CONTRACT_NAME;
+//const CONTRACT_NAME = process.env.CONTRACT_NAME;
+const CONTRACT_NAME = "fono-root.optr.near";
 
 
 function getConfig(env) {
@@ -7,7 +8,7 @@ function getConfig(env) {
 
   case 'production':
   // Deactivate for development
-  /*case 'mainnet':
+  case 'mainnet':
     return {
       networkId: 'mainnet',
       nodeUrl: 'https://rpc.mainnet.near.org',
@@ -15,15 +16,15 @@ function getConfig(env) {
       walletUrl: 'https://wallet.near.org',
       helperUrl: 'https://helper.mainnet.near.org',
       explorerUrl: 'https://explorer.mainnet.near.org',
-    }*/
+    }
   case 'mainnet':
     return {
       networkId: 'testnet',
-      nodeUrl: 'https://rpc.testnet.near.org',
+      nodeUrl: 'https://rpc.near.org',
       contractName: CONTRACT_NAME,
-      walletUrl: 'https://wallet.testnet.near.org',
-      helperUrl: 'https://helper.testnet.near.org',
-      explorerUrl: 'https://explorer.testnet.near.org',
+      walletUrl: 'https://wallet.near.org',
+      helperUrl: 'https://helper.near.org',
+      explorerUrl: 'https://explorer.near.org',
     }
   case 'development':
   case 'testnet':
