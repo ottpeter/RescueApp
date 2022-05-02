@@ -3,8 +3,13 @@ import { buyNFTfromVault } from '../utils';
 
 export default function Buy({tokenId, price, newAction, fontSettings}) {
   const style = {
-    fontFamily: fontSettings.family,
-    fontSize: fontSettings.buttonSize
+    //fontFamily: fontSettings.family,
+    fontFamily: "Bebas",
+    fontSize: fontSettings.buttonSize,
+    fontWeight: "400",
+    lineHeight: "38px",
+    letterSpacing: "0.05em",
+    color: "#001A5E",
   }
 
   function buyNFT() {
@@ -25,7 +30,7 @@ export default function Buy({tokenId, price, newAction, fontSettings}) {
   }
 
   return (
-    <div id="splashBuy" className="splashInfoElement" >
+    <div id="splashBuy" >
       <button  onClick={buyNFT} style={style}>
           BUY
       </button>

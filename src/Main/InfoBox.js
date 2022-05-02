@@ -10,23 +10,41 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   const extra = JSON.parse(metadata.extra);
 
   const fontSettings = {
-    family: 'neue-haas-grotesk-display',
-    size: '32px',
-    buttonSize: '24px',
-    normalSize: '12px'
+    family: 'Bebas',
+    size: '70px',
+    buttonSize: '32px',
+    normalSize: '14px'
   }
 
   const aList = [
     {
-      name: "Test Artist",
-      twitter: "https://twitter.com/wrongpage",
-      insta: "testInsta",
+      name: "masia one ",
+      twitter: "https://twitter.com/masiaone",
+      insta: "https://www.instagram.com/masiaone/",
       youtube: "testYT"
     },
     {
-      name: "Other Artist",
-      twitter: "otherTwitter",
-      insta: "otherInsta",
+      name: "noyz134",
+      twitter: "https://twitter.com/chew_wui",
+      insta: "http://www.instagram.com/noyz134",
+      youtube: "otherYT"
+    },
+    {
+      name: "janine annice",
+      twitter: "https://twitter.com/JanineAnnice",
+      insta: "http://www.instagram.com/janineannice",
+      youtube: "otherYT"
+    },
+    {
+      name: "alx",
+      twitter: "https://twitter.com/alxtalhinhas",
+      insta: "http://www.instagram.com/alxtalhinhas",
+      youtube: "otherYT"
+    },
+    {
+      name: "jcb",
+      twitter: "https://twitter.com/JCBBeats",
+      insta: "http://www.instagram.com/JustinCBurkholder",
       youtube: "otherYT"
     },
   ]
@@ -34,13 +52,11 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   return (
     <div id="splashInfoFlex">
       <SongName title={metadata.title} fontSettings={fontSettings} />
-      <div id="splashAudioContainer" className="splashInfoElement">
-        <AudioPlayer music={null} cid={extra.music_cid} />
+      <div id="splashArtistDescBox">
+        <ArtistList fontSettings={fontSettings} list={aList} />
+        <Desc desc={metadata.description} fontSettings={fontSettings} />
       </div>
-      <ArtistList fontSettings={fontSettings} list={aList} />
-      <Desc desc={metadata.description} fontSettings={fontSettings} />
-      <Box gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} />
-      <Buy tokenId={tokenId} price={extra.original_price} newAction={newAction} fontSettings={fontSettings} />
+      <Box tokenId={tokenId} gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} newAction={newAction} />
     </div>
   )
 }

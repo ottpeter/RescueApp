@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { getBuyableTokens, verify_sha256 } from '../utils';
 import 'regenerator-runtime/runtime';
-import Globe from 'react-globe.gl';
 import countriesGeo from "../assets/countries.json";
 import TokenModal from './TokenModal';
 import clickSoundOne from '../assets/click.mp3';
@@ -13,10 +12,7 @@ export default function Main({newAction}) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [image, setImage] = useState(null);
-  const [colors, setColors] = useState(generateRandomColors());
-  const globeEl = useRef();  
-  const transitionMs = 3000;
-  const clickSound = new Audio(clickSoundOne);
+
   
   const coordList = [
     [-20.1619400, 57.4988900, "Port Louis", 0],
@@ -40,14 +36,6 @@ export default function Main({newAction}) {
     index: entry[3]
   }))
   
-  function changeCenter([x, y]) {
-    return;
-    globeEl.current.pointOfView({
-      lat: x,
-      lng: y,
-      altitude: 2,
-    }, transitionMs)
-  }
 
   React.useEffect(async () => {    
     const urlParams = window.location.search;
@@ -163,32 +151,6 @@ export default function Main({newAction}) {
 
       </div>
       
-      <div id="globeContainer">
-        {false && <Globe 
-          ref={globeEl}
-          globeImageUrl={"//unpkg.com/three-globe/example/img/earth-dark.jpg"}
-          hexPolygonsData={countriesGeo.features}
-          hexPolygonResolution={3}
-          hexPolygonMargin={0.3}
-          backgroundColor={'rgba(255,255,255, 0.0)'}
-          hexPolygonColor={(entry) => {
-            const i = countriesGeo.features.findIndex((element) => element === entry);
-            return `#${colors[i]}`
-          }}
-          htmlElementsData={coordListObjs}
-          htmlElement={(entry) => {
-            if (nftList.length > entry.index) {
-              const element = document.createElement('button');
-              element.classList="nftButton nftButtonGlobe"
-              element.innerHTML = entry.city;
-              element.style['pointer-events'] = 'auto';
-              element.style.cursor = 'pointer';
-              element.onclick = () => nftClicked(entry.index);
-              return element;
-            } 
-          }}
-        />}
-      </div>
 
 
     </main>

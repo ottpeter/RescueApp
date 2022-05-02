@@ -11,13 +11,14 @@ const height = window.innerHeight;
 const bars = 300;
 const bar_width = 3;
 const radius = 200;
-const center_x = width / 2;
+const center_x = 540;
 const center_y = height / 2;
 
 class Canvas extends Component {
     constructor(props) {
         super(props)
-        this.audio = new Audio(songFile);
+        this.audio = new Audio("https://ipfs.io/ipfs/" + props.musicCID);
+        console.log(this.audio)
         this.canvas = createRef();
         this.isInit = false;
     }
@@ -39,6 +40,7 @@ class Canvas extends Component {
 
         this.isInit = true;
         // this.initCanvas();
+        this.audio.play()
     }
 
     initCanvas() {

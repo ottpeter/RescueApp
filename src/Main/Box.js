@@ -1,8 +1,9 @@
 import React from 'react';
 import { utils } from 'near-api-js';
+import Buy from './Buy';
 
 
-export default function Box({gen, price, fontSettings}) {
+export default function Box({tokenId, gen, price, fontSettings, newAction}) {
   const priceInNear = utils.format.formatNearAmount(price);
   const [priceInDollar, setDollar] = React.useState("NaN");
 
@@ -24,23 +25,25 @@ export default function Box({gen, price, fontSettings}) {
   const labelStyle = {
     fontFamily: fontSettings.family,
     fontSize: fontSettings.normalSize,
+    fontSize: "12px",
+    lineHeight: "14px",
+    letterSpaceing: "0.05em",
   };
   const valueStyle = {
     fontFamily: fontSettings.family,
-    fontSize: fontSettings.normalSize,
+    fontSize: "24px",
+    lineHeight: "29px",
+    letterSpacing: "0.05em",
     fontWeight: "bold"
   }
 
 
   return (
     <div id="splashSmallInfoBox" className="splashInfoElement">
-      <p className="splashInfoElementFirst" style={labelStyle}>GEN</p>
+      <p className="splashInfoElementFirst" style={labelStyle}>GENERATION</p>
       <p className="splashInfoElementSecond" style={valueStyle}>#{gen}</p>
-      <p className="splashInfoElementThird" style={labelStyle}>PRICE</p>
-      <div className="splashInfoElementFourth" style={valueStyle}>
-        <p className="splashSmallInfoBoxNearPrice">{formatNumber(priceInNear,3)} NEAR</p>
-        <p className="splashSmallInfoBoxDollarPrice">~ ${formatNumber(priceInDollar,2)}</p>
-      </div>
+      <p className="splashSmallInfoBoxNearPrice" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p>
+      <Buy tokenId={tokenId} price={price} newAction={newAction} fontSettings={fontSettings} />
     </div>
   )
 }

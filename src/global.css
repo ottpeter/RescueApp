@@ -56,6 +56,11 @@
   src: url('./assets/Technology.ttf');
 }
 
+@font-face {
+  font-family: Bebas;
+  src: url('./assets/Bebas-Regular.ttf');
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -114,7 +119,7 @@ nav {
   flex-shrink: 0;
 }
 .controlsLast {
-  padding-right: var(--spacing-2);
+  margin-right: 120px;
 }
 .controlsButton {
   background: transparent;
@@ -156,7 +161,7 @@ nav {
 .wallet {
   position: absolute;
   top: var(--nav-size);
-  right: var(--spacing-3);
+  right: 120px;
   width: 480px;
   background-color: var(--box-color);
   box-shadow: 0 0 6px rgba(35, 173, 278, 1);
@@ -255,7 +260,6 @@ main {
   font-size: 16px;
   width: 179px;
   height: 39px;
-  margin-right: 32px;
 }
 .mainWalletBadge:hover {
   font-weight: bold;
@@ -269,7 +273,7 @@ main {
   top: 58px;
   right: 50px;
   padding: 16px;
-  right: 44px;
+  right: 220px;
   width: 183px;
   height: 99px;
   text-transform: uppercase;
@@ -293,6 +297,7 @@ main {
 #mainWalletBalanceFlex>* {
   margin-top: 0;
   margin-bottom: 0;
+  letter-spacing: 0.15em;
 }
 .walletFlexPlaceholder {
   flex-grow: 1;
@@ -304,6 +309,7 @@ main {
   display: flex;
   margin-top: 8px;
   margin-bottom: 16px;
+  letter-spacing: 0.15em;
 }
 #mainWalletDollarFlex>* {
   margin-top: 0;
@@ -993,7 +999,8 @@ h1 {
   align-items: center;
   margin: 0;
   padding: 0;
-  margin-left: 127px;
+  margin-left: 120px;
+  margin-right: 120px;
   list-style: none;
 }
 #splash-1-Footer ul li {
@@ -1006,7 +1013,9 @@ h1 {
   align-items: center;
   justify-content: flex-end;
   position: absolute;
-  background: none;
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.05);
+  padding-right: 120px;
   top: 0;
   left: 0;
   z-index: 3;
@@ -1016,22 +1025,10 @@ h1 {
   margin-top: 14px;
   margin-bottom: 14px;
 }
-.blurBox {
-  filter: blur(30px);
-  background: rgba(255, 255, 255, 0.4);
-  height: calc(var(--nav-size) + 50px);
-  width: 120%;
-  position: absolute;
-  top: -50px;
-  left: -80px;
-  margin: 0;
-  padding: 0;
-  z-index: 2;
-}
 
 .splashLogo {
   flex-grow: 1;
-  margin-left: 127px;
+  padding-left: 120px;
 }
 
 
@@ -1067,7 +1064,7 @@ h1 {
   grid-template-columns: 50% 50%;
   margin-top: var(--nav-size);
   margin-bottom: var(--footer-size);
-  padding: 40px;
+  padding: 120px;
 }
 #splashPicture {
   /*grid-area: picture;*/
@@ -1078,6 +1075,8 @@ h1 {
   /*grid-area: info;*/
   display: flex;
   color: white;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   flex-direction: column;
   margin-left: 60px;
 }
@@ -1085,9 +1084,15 @@ h1 {
   flex-grow: 1;
 }
 
+#splashArtistDescBox {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 80px;
+}
+
 #splashSmallInfoBox {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 .splashInfoElementFirst {
   margin-right: var(--spacing-3);
@@ -1134,46 +1139,55 @@ h1 {
 }
 
 #splashBuy {
-  align-self: flex-end;
+  margin-left: 40px;
 }
 #splashBuy button {
-  width: 110px;
-  height: 49px;
-  padding: 10px 30px;
-  border: none;
+  background: linear-gradient(97.12deg, #9BCFFF -5.56%, #FD9FFF 21.49%, #CEF6FF 47.9%, #A6C9FF 74.65%, #E547FF 110.09%, #EA6CFF 122.21%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  background-color: var(--splash-color);
-  color: white;
-  font-weight: bold;
+  border: none;
+  width: 185px;
+  height: 60px;
+}
+
+.splash-eq {
+  position: absolute;
+  left: 000px;
 }
 
 /*#colorContainer {
   background-color: #001b6c;
 }*/
 #colorContainer {
-  background: linear-gradient(223deg, #001b6c, #1047ec);
-  background-size: 400% 400%;
+  background: linear-gradient(13deg, #2e7cff, #2d1b8c, #bc09ff, #093aff);
+  background-size: 800% 800%;
 
-  -webkit-animation: AnimationName 15s ease infinite;
-  -moz-animation: AnimationName 15s ease infinite;
-  animation: AnimationName 15s ease infinite;
+  -webkit-animation: AnimationName 26s ease infinite;
+  -moz-animation: AnimationName 26s ease infinite;
+  -o-animation: AnimationName 26s ease infinite;
+  animation: AnimationName 26s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0%{background-position:41% 0%}
+  50%{background-position:60% 100%}
+  100%{background-position:41% 0%}
 }
 @-moz-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0%{background-position:41% 0%}
+  50%{background-position:60% 100%}
+  100%{background-position:41% 0%}
 }
-@keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@-o-keyframes AnimationName {
+  0%{background-position:41% 0%}
+  50%{background-position:60% 100%}
+  100%{background-position:41% 0%}
 }
+@keyframes AnimationName { 
+  0%{background-position:41% 0%}
+  50%{background-position:60% 100%}
+  100%{background-position:41% 0%}
+} 
 #svgContainer {
   background-image: url('./assets/splash1svg.svg');
   background-size: cover;

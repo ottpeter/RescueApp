@@ -70,7 +70,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
         <TopMenuSplash1 setShowWallet={setShowWallet} showWallet={showWallet} />
 
         <main>
-          {/*<Equalizer />*/}
+          <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} />
           <SplashLandingGrid 
             tokenId={nftList[index].token_id}
             metadata={nftList[index].metadata}

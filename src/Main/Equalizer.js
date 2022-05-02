@@ -1,10 +1,10 @@
 import React from 'react';
 import Canvas from './Canvas';
 
-const Equalizer = () => {
+const Equalizer = ({musicCID}) => {
     return <>
-    <header className="App-header">
-        <Canvas />
+    <header className="splash-eq">
+        <Canvas musicCID={musicCID} />
     </header>
     </>
 }
