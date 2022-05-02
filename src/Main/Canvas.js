@@ -18,6 +18,7 @@ class Canvas extends Component {
     constructor(props) {
         super(props)
         this.audio = new Audio("https://ipfs.io/ipfs/" + props.musicCID);
+        console.log(props.musicCID)
         console.log(this.audio)
         this.canvas = createRef();
         this.isInit = false;

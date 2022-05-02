@@ -7,6 +7,7 @@ import Equalizer from './Equalizer';
 import SplashLandingGrid from './SplashLandingGrid';
 import FooterSplash1 from './FooterSplash1';
 import TopMenuSplash1 from './TopMenuSplash1';
+import Splash1ObjectContainer from './Splash1ObjectContainer';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
@@ -71,6 +72,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
 
         <main>
           <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} />
+          <Splash1ObjectContainer />
           <SplashLandingGrid 
             tokenId={nftList[index].token_id}
             metadata={nftList[index].metadata}
