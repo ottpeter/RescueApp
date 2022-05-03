@@ -1,5 +1,6 @@
 import React from 'react'
 import AudioPlayer from '../Common/AudioPlayer'
+import AudioPlayerNftStorage from '../Common/AudioPlayerNftStorage';
 import ArtistList from './ArtistList'
 import Box from './Box'
 import Buy from './Buy'
@@ -49,6 +50,8 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     },
   ]
 
+  const preludeMusicNftStorageLink = "https://bafybeiehqpn5z5izotm5ddnhvqkoj3ovylgqnnpz3wuhmrhurwh5dwanii.ipfs.nftstorage.link/";
+
   return (
     <div id="splashInfoFlex">
       <SongName title={metadata.title} fontSettings={fontSettings} />
@@ -60,3 +63,10 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     </div>
   )
 }
+
+/*
+      <div className="previewBoxItem">
+        <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} />
+      </div>
+
+*/

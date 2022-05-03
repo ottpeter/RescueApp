@@ -31,7 +31,7 @@ export default function Wallet({setShowWallet, showWallet}) {
         <div className="controls">
           <button className="walletBadge"
             onClick={() => setShowWallet(!showWallet)}
-            onBlur={() => setShowWallet(false)}
+            onBlur={() => setShowWallet(true)}
             tabIndex={"0"}
           >
             {network === "Error" ? <span className="dot redDot"></span>  : <span className="dot blueDot"></span> } 

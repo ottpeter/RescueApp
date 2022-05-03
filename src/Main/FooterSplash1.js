@@ -10,7 +10,7 @@ export default function FooterSplash1() {
     <footer id="splash-1-Footer">
       <ul>
         <li>
-          <a href={'https://duckduckgo.com'}>
+          <a href={'https://www.daorecords.org/'}>
             <img src={DaoLogo} alt={'DAOrecords'} />
           </a>
         </li>
@@ -20,7 +20,7 @@ export default function FooterSplash1() {
           </a>
         </li>
         <li>
-          <a href={'https://duckduckgo.com'}>
+          <a href={'http://bit.ly/SoundSplashSpace'}>
             <img src={CryptoVoxels} alt={'CryptoVoxels'} />
           </a>
         </li>

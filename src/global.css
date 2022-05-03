@@ -64,7 +64,7 @@
 body {
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: OurCustomFont;
 }
 
@@ -134,6 +134,9 @@ nav {
   font-family: IBM;
   text-decoration: none;
   color: var(--control-grey);
+}
+.menuButton:hover {
+  text-decoration: underline;
 }
 .controlsButton img:hover {
   filter: brightness(2.5);
@@ -207,21 +210,39 @@ nav {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
+  background: transparent;
+  z-index: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
   display: flex;
   bottom: 0;
   left: 0;
   height: var(--footer-size);
   width: 100%;
-  background-color: var(--footer-bg);
   align-items: center;
 }
-#mainFooter {
-  margin-bottom: 30px;
-  align-items: flex-end;
-  background: transparent;
-  position: absolute;
-  z-index: 2;
+footer ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-left: 120px;
+  margin-right: 120px;
+  list-style: none;
+}
+footer ul li {
+  margin-right: 49px;
+}
+footer ul li a {
+  font-family: neue-haas-grotesk-display;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  color: #121212;
+  font-weight: 400;
 }
 
 main {
@@ -264,6 +285,10 @@ main {
 .mainWalletBadge:hover {
   background: #BDBDBD;
   font-weight: bold;
+}
+.mainWalletBadgeTransparent {
+  background: none;
+  border: 2px solid var(--control-grey);
 }
 .mainWalletContainer {
   position: absolute;
@@ -686,6 +711,9 @@ h1 {
   /*background-color: var(--control-grey);*/
   background-color: var(--splash-color);
 }
+.musicControlsSliderWhite {
+  background-color: white;
+}
 .musicControlsSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 8px;
@@ -699,6 +727,12 @@ h1 {
   margin-top: -5px;
   border-radius: 0;
 }
+.musicControlsSliderWhite::-webkit-slider-thumb {
+  border: 12px solid white;
+  border-top: none;
+  border-bottom: none;
+  background-color: white;
+}
 .musicControlsSlider::-moz-range-thumb {
   -webkit-appearance: none;
   height: 8px;
@@ -711,6 +745,12 @@ h1 {
   background-color: var(--splash-color);
   margin-top: -5px;
   border-radius: 0;
+}
+.musicControlsSliderWhite::-moz-range-thumb {
+  border: 12px solid white;
+  border-top: none;
+  border-bottom: none;
+  background-color: white;
 }
 
 .loadingLabel {
@@ -1031,6 +1071,18 @@ h1 {
   flex-grow: 1;
   padding-left: 120px;
 }
+.daoLogo {
+  flex-grow: 1;
+  padding-left: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+}
+.daoLogo p {
+  margin-left: 4px;
+  color: var(--control-grey);
+}
 
 
 #guestbookMessages {
@@ -1065,11 +1117,19 @@ h1 {
   grid-template-columns: 50% 50%;
   margin-top: var(--nav-size);
   margin-bottom: var(--footer-size);
-  padding: 120px;
+  /*padding: 120px;*/
+  
+  height: calc(100vh - var(--nav-size) - var(--footer-size));
+  padding-left: 120px;
+  padding-right: 120px;
+  
 }
 #splashPicture {
   /*grid-area: picture;*/
   margin: auto;
+  max-width: 75%;
+  height: 500px;
+  /*max-height: 75%;*/
   /*margin-right: 60px;*/
 }
 #splashInfoFlex {
@@ -1097,6 +1157,7 @@ h1 {
   display: grid;
   grid-template-columns: 30% 70%;
   grid-gap: 80px;
+  width: 90%;
 }
 
 #splashSmallInfoBox {
@@ -1290,4 +1351,61 @@ h1 {
 .testClass {
   /* this is where toastify would append this class*/
   font-style: italic;
+}
+
+/** Audio Player*/
+.Player{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    height: 360px;
+    width: 360px;
+}
+
+#Player-canvas{
+  position: absolute;
+  width: 1200px;
+  height: 1200px;
+  display: flex;
+  align-self: center;
+}
+
+.Player .controls{
+  display: grid;
+  grid-template: "prev play next";
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.Player .controls .pause-play-song{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: rgba(97,218,251,0.8) 3px solid;
+    border-radius: 50%;
+    padding: 0.5rem;
+    width: 104px;
+    height: 104px;
+}
+
+.Player .song-footer{
+  color: rgba(97,218,251,0.8);
+  position: absolute;
+  z-index: 2;
+  bottom: 2rem;
+  width: 100%;
+}
+
+.playerButton {
+  background: none;
+  border: none;
+}
+
+.splash-eq {
+  top: calc(50% - 250px + var(--nav-size));
+  left: calc((100vw / 4) - 250px + 120px);
 }

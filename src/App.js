@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Admin from './Admin/Admin';
@@ -107,7 +107,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<p>SoundSplash Default</p>}
+          element={<Navigate replace to="/testnft" />}
         />
         <Route 
           exact
@@ -158,7 +158,7 @@ export default function App() {
         {/** The 12 SoundSplash NFT Landing Pages */}
         <Route 
           exact
-          path='table'
+          path='testnft'
           element={
             <SplashLanding 
               index={0} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 

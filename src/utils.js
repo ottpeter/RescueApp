@@ -325,7 +325,7 @@ export async function withdrawFunds(amount) {
 }
 
 export async function getBalance() {
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('development')));
+  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('mainnet')));
   const account = await near.account(window.accountId);
   const yocto =  await account.getAccountBalance();
   return utils.format.formatNearAmount(yocto.available);
@@ -340,8 +340,9 @@ export async function verify_sha256(blob, hash) {
 }
 
 export function logout() {
+  console.log("?")
   window.walletConnection.signOut()
-  window.location.replace(window.location.origin + window.location.pathname)               // reload page
+  //window.location.replace(window.location.origin + window.location.pathname)               // reload page
 }
 
 export async function login() {

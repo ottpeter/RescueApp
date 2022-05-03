@@ -3,7 +3,7 @@ import { login, logout, getBalance } from '../utils';
 import nearLogo from '../assets/near.svg';
 
 
-export default function Wallet({setShowWallet, showWallet}) {
+export default function Wallet({setShowWallet, showWallet, transparent}) {
   const [balance, setBalance] = React.useState("NaN");
   const [dollar, setDollar] = React.useState("NaN");
 
@@ -28,7 +28,7 @@ export default function Wallet({setShowWallet, showWallet}) {
   if (!window.walletConnection.isSignedIn()) {
     return (
       <>
-        <div className="controls">
+        <div className="controls controlsLast">
           <button onClick={login}  className="mainWalletBadge">Connect Wallet</button>
         </div>
       </>
@@ -37,9 +37,9 @@ export default function Wallet({setShowWallet, showWallet}) {
     return (
       <>
         <div className="controls controlsLast">
-          <button className="mainWalletBadge"
+          <button className={transparent ? "mainWalletBadge mainWalletBadgeTransparent" : "mainWalletBadge"}
             onClick={() => setShowWallet(!showWallet)}
-            onBlur={() => setShowWallet(false)}
+            onBlur={() => setShowWallet(true)}
             tabIndex={"0"}
           >
             {window.accountId}

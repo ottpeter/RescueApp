@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import {
+/*  import {
     PlayArrow,
     Pause,
     VolumeMute,
     VolumeDown,
     VolumeUp
-} from '@material-ui/icons';
+} from '@material-ui/icons';*/
 
-class Canvas1 extends Component {
+class Canvas extends Component {
     constructor(props) {
         super(props)
 
@@ -128,7 +128,9 @@ class Canvas1 extends Component {
     }
 
     componentWillUnmount() {
-        this.audioWorker.terminate()
+        this.suspendSong()
+        // we have problem here
+        //this.state.audioWorker.terminate()
     }
 
     showPlayer() {
@@ -169,6 +171,7 @@ class Canvas1 extends Component {
                 javascriptNode,
                 audioContextCreatedTime
             }, () => {
+                console.log("this.props.musicCID: ", this.props.musicCID)
                 this.loadSong("https://ipfs.io/ipfs/" + this.props.musicCID);
             })
         } catch (error) {
@@ -259,6 +262,7 @@ class Canvas1 extends Component {
     }
 
     resumeSong() {
+        console.log("resume")
         const { firstPlay } = this.state
         if (firstPlay) {
             this.setState({ isLoadingSong: true })
@@ -865,18 +869,18 @@ class Canvas1 extends Component {
                             {this.state.isLoadingSong
                                 ? <div className='loader'><div></div><div></div></div>
                                 : !this.state.playing
-                                    ? <PlayArrow style={{ fontSize: '72px', color: 'rgba(97, 218, 251, 0.8)', margin: '1rem', cursor: 'pointer' }} onClick={this.resumeSong} />
-                                    : <Pause style={{ fontSize: '72px', color: 'rgba(97, 218, 251, 0.8)', margin: '1rem', cursor: 'pointer' }} onClick={this.suspendSong} />
+                                    ? <button onClick={this.resumeSong} className='playerButton'><PlayIcon /></button>
+                                    : <button onClick={this.suspendSong}  className='playerButton'><PauseIcon  /></button>
                             }
                         </div>
                     </div>
-                    <div className='song-footer'>
+                    <div className='song-footer' style={{display: "none"}}>
                         <div className='song-gain'>{
                             this.getVolume() === 0
-                                ? <VolumeMute style={{ cursor: 'pointer' }} onClick={this.changeVolume} />
+                                ? <VolumeEmpty onClick={this.changeVolume} />
                                 : this.getVolume() < 1
-                                    ? <VolumeDown style={{ cursor: 'pointer' }} onClick={this.changeVolume} />
-                                    : <VolumeUp style={{ cursor: 'pointer' }} onClick={this.changeVolume} />
+                                    ? <VolumeMinus style={{ cursor: 'pointer' }} onClick={this.changeVolume} />
+                                    : <VolumePlus style={{ cursor: 'pointer' }} onClick={this.changeVolume} />
                         }
                         </div>
                         <div className='song-duration'>{this.state.timeControl.textContent}</div>
@@ -887,4 +891,48 @@ class Canvas1 extends Component {
     }
 }
 
-export default Canvas1
+export default Canvas
+
+
+function PlayIcon() {
+    return (
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.25 18.75L42.75 30L23.25 41.25V18.75Z" fill="#FFFFFF"/>
+        <circle cx="30" cy="30" r="29.5" stroke="#FFFFFF"/>
+      </svg>
+    );
+  }
+  
+  function PauseIcon() {
+    return(
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 16H26V44H20V16Z" fill="#FFFFFF"/>
+        <path d="M34 16H40V44H34V16Z" fill="#FFFFFF"/>
+        <circle cx="30" cy="30" r="29.5" stroke="#FFFFFF"/>
+      </svg>
+    );
+  }
+  
+  function VolumeEmpty() {
+    return(
+      <svg width="20" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fillRule="evenodd" clipRule="evenodd" d="M8 0H10V20H8V18H6V16H8V4H6V2H8V0ZM4 6V4H6V6H4ZM2 8H4V6H2H0V8V12V14H2H4V16H6V14H4V12H2V8Z" fill="#FFFFFF"/>
+      </svg>
+    );
+  }
+  
+  function VolumeMinus() {
+    return (
+      <svg width="8" height="8" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="8" height="2" fill="#FFFFFF"/>
+      </svg>
+    );
+  }
+  
+  function VolumePlus() {
+    return (
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fillRule="evenodd" clipRule="evenodd" d="M3 5V8H5V5H8V3H5V0H3V3H0V5H3Z" fill="#FFFFFF"/>
+      </svg>
+    );
+  }

@@ -163,7 +163,6 @@ export default function TransferModal({token, newAction, setOpenModal}) {
           }
         </div>
         <div id="nftDetailsModalButtons">
-          <button onClick={transfer} className="buttonFrame">Transfer</button>
         </div>
 
 
@@ -172,6 +171,7 @@ export default function TransferModal({token, newAction, setOpenModal}) {
         
       </div>
       {/*
+          <button onClick={transfer} className="buttonFrame">Transfer</button>
       
               <input 
                 type={"text"} 
