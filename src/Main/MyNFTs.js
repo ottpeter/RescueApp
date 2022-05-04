@@ -23,6 +23,7 @@ export default function MyNFTs({newAction}) {
     }
 
     const nftList = await getListForAccount();
+    console.log("nftList", nftList)
     setList(nftList);
     loadImages(nftList);
   }, []);
@@ -65,6 +66,7 @@ export default function MyNFTs({newAction}) {
             <li key={"nftCard-" + i}>
               <NftCard 
                 image={images[i]} 
+                artistList={artistLists[0]}
                 openTransfer={openTransfer} 
                 i={i} metadata={item.metadata} 
               />
@@ -76,6 +78,7 @@ export default function MyNFTs({newAction}) {
       {showTransfer && 
         <TransferModal 
           token={list[selected]} 
+          artistList={artistLists[0]}
           newAction={newAction} 
           setOpenModal={setShowTransfer}
         />
@@ -83,3 +86,38 @@ export default function MyNFTs({newAction}) {
     </main>
   );
 }
+
+const artistLists = [
+  [
+    {
+      name: "masia one ",
+      twitter: "https://twitter.com/masiaone",
+      insta: "https://www.instagram.com/masiaone/",
+      youtube: "testYT"
+    },
+    {
+      name: "noyz134",
+      twitter: "https://twitter.com/chew_wui",
+      insta: "http://www.instagram.com/noyz134",
+      youtube: "otherYT"
+    },
+    {
+      name: "janine annice",
+      twitter: "https://twitter.com/JanineAnnice",
+      insta: "http://www.instagram.com/janineannice",
+      youtube: "otherYT"
+    },
+    {
+      name: "alx",
+      twitter: "https://twitter.com/alxtalhinhas",
+      insta: "http://www.instagram.com/alxtalhinhas",
+      youtube: "otherYT"
+    },
+    {
+      name: "jcb",
+      twitter: "https://twitter.com/JCBBeats",
+      insta: "http://www.instagram.com/JustinCBurkholder",
+      youtube: "otherYT"
+    },
+  ]
+];

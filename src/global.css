@@ -896,7 +896,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: wheat;
+  background: #f8fcfc;
   height: 100vh;
   padding: 40px;
   padding-top: 16px;
@@ -934,6 +934,30 @@ h1 {
   color: #4F4F4F;
   margin-top: 16px;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 0;
+}
+#nftDetailsModalArtistList li {
+  list-style: none;
+}
+.nftCardArtistList {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #121212;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 0;
+  margin: 0;
+}
+.nftCardArtistListElement {
+  list-style: none;
+  margin: 0 !important;
 }
 .nftDetailsModalMenuLine {
   display: flex;
@@ -1055,6 +1079,7 @@ h1 {
   justify-content: flex-end;
   position: absolute;
   backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   background: rgba(255, 255, 255, 0.05);
   padding-right: 120px;
   top: 0;
@@ -1127,7 +1152,6 @@ h1 {
 #splashPicture {
   /*grid-area: picture;*/
   margin: auto;
-  max-width: 75%;
   height: 500px;
   /*max-height: 75%;*/
   /*margin-right: 60px;*/
@@ -1138,11 +1162,11 @@ h1 {
   color: white;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   flex-direction: column;
   margin-left: 60px;
-}
-.splashInfoElement {
-  flex-grow: 1;
+  padding: 10px 10px 0 10px;
+  border-radius: 25px;
 }
 
 #splash1Objects {
@@ -1161,8 +1185,16 @@ h1 {
 }
 
 #splashSmallInfoBox {
+  flex-grow: 1;
   display: flex;
   align-items: center;
+}
+.splashSmallInfoBoxElement {
+  height: 60px;
+}
+#splashTitle {
+  margin-top: var(--spacing-5);
+  margin-bottom: var(--spacing-5);
 }
 .splashInfoElementFirst {
   margin-right: var(--spacing-3);
@@ -1232,35 +1264,36 @@ h1 {
   background-color: #001b6c;
 }*/
 #colorContainer {
-  background: linear-gradient(13deg, #2e7cff, #2d1b8c, #bc09ff, #093aff);
+  background: linear-gradient(133deg, #0032ff, #a300ff, #0d41ac, #6122ff);
   background-size: 800% 800%;
 
-  -webkit-animation: AnimationName 26s ease infinite;
-  -moz-animation: AnimationName 26s ease infinite;
-  -o-animation: AnimationName 26s ease infinite;
-  animation: AnimationName 26s ease infinite;
+  -webkit-animation: AnimationName 17s ease infinite;
+  -moz-animation: AnimationName 17s ease infinite;
+  -o-animation: AnimationName 17s ease infinite;
+  animation: AnimationName 17s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
-  0%{background-position:41% 0%}
-  50%{background-position:60% 100%}
-  100%{background-position:41% 0%}
+  0%{background-position:14% 0%}
+  50%{background-position:87% 100%}
+  100%{background-position:14% 0%}
 }
 @-moz-keyframes AnimationName {
-  0%{background-position:41% 0%}
-  50%{background-position:60% 100%}
-  100%{background-position:41% 0%}
+  0%{background-position:14% 0%}
+  50%{background-position:87% 100%}
+  100%{background-position:14% 0%}
 }
 @-o-keyframes AnimationName {
-  0%{background-position:41% 0%}
-  50%{background-position:60% 100%}
-  100%{background-position:41% 0%}
+  0%{background-position:14% 0%}
+  50%{background-position:87% 100%}
+  100%{background-position:14% 0%}
 }
-@keyframes AnimationName { 
-  0%{background-position:41% 0%}
-  50%{background-position:60% 100%}
-  100%{background-position:41% 0%}
-} 
+@keyframes AnimationName {
+  0%{background-position:14% 0%}
+  50%{background-position:87% 100%}
+  100%{background-position:14% 0%}
+}
+
 #svgContainer {
   background-image: url('./assets/splash1svg.svg');
   background-size: cover;
@@ -1366,8 +1399,8 @@ h1 {
 
 #Player-canvas{
   position: absolute;
-  width: 1200px;
-  height: 1200px;
+  width: 900px;
+  height: 900px;
   display: flex;
   align-self: center;
 }

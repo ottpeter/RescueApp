@@ -15,7 +15,7 @@ export default function FooterSplash1() {
           </a>
         </li>
         <li>
-          <a href={'https://duckduckgo.com'} >
+          <a href={'https://near.realitychain.io/2dcity/index.html?pos=x-192y-32'} >
             <img src={RealityChain} alt={'RealityChain'} />
           </a>
         </li>

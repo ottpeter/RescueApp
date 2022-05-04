@@ -30,7 +30,7 @@ export default function Buy({tokenId, price, newAction, fontSettings}) {
   }
 
   return (
-    <div id="splashBuy" >
+    <div id="splashBuy"  className="splashSmallInfoBoxElement">
       <button  onClick={buyNFT} style={style}>
           BUY
       </button>

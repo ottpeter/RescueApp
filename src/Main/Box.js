@@ -40,9 +40,9 @@ export default function Box({tokenId, gen, price, fontSettings, newAction}) {
 
   return (
     <div id="splashSmallInfoBox" className="splashInfoElement">
-      <p className="splashInfoElementFirst" style={labelStyle}>GENERATION</p>
-      <p className="splashInfoElementSecond" style={valueStyle}>#{gen}</p>
-      <p className="splashSmallInfoBoxNearPrice" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p>
+      <p className="splashInfoElementFirst splashSmallInfoBoxElement" style={labelStyle}>GENERATION</p>
+      <p className="splashInfoElementSecond splashSmallInfoBoxElement" style={valueStyle}>#{gen}</p>
+      <p className="splashSmallInfoBoxNearPrice splashSmallInfoBoxElement" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p>
       <Buy tokenId={tokenId} price={price} newAction={newAction} fontSettings={fontSettings} />
     </div>
   )

@@ -12,7 +12,7 @@ export default function SongName({title, fontSettings}) {
   }
 
   return (
-    <div id="splashTitle" className="splashInfoElement" style={style}>
+    <div id="splashTitle" style={style}>
       {title}
     </div>
   )

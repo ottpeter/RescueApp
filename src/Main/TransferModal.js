@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AudioPlayer from '../Common/AudioPlayer';
+import AudioPlayerNftStorage from "../Common/AudioPlayerNftStorage";
 import { getAllFromRoot, getContractName, transferNft, verify_sha256 } from '../utils'
 
 
-export default function TransferModal({token, newAction, setOpenModal}) {
+export default function TransferModal({token, artistList, newAction, setOpenModal}) {
   const [receiver, setReceiver] = useState("receiver.near");
   const [music, setMusic] = useState(null);
   const [image, setImage] = useState(null);
@@ -102,7 +103,13 @@ export default function TransferModal({token, newAction, setOpenModal}) {
           <p>{token.metadata.title}</p>
           <p>#{JSON.parse(token.metadata.extra).generation}</p>
         </div>
-        <div id="nftDetailsModalArtistList">Artist List</div>
+        <ul id="nftDetailsModalArtistList">
+          {artistList.map((artist) => (
+            <li>
+              {artist.name}
+            </li>
+          ))}
+        </ul>
         <div className="nftDetailsModalMenuLine">
           <button 
             onClick={() => setSelected("info")} 
@@ -147,7 +154,7 @@ export default function TransferModal({token, newAction, setOpenModal}) {
 
           {(selected === "history") && (
             <>
-              <p>history</p>
+              <p></p>
             </>
           )}
         </div>
@@ -157,7 +164,7 @@ export default function TransferModal({token, newAction, setOpenModal}) {
         </div>
         <div id="nftDetailsModalAudio">
           {music ? 
-            <AudioPlayer music={null} cid={musicCID} />
+            <AudioPlayerNftStorage nftStorageLink={"https://bafybeiehqpn5z5izotm5ddnhvqkoj3ovylgqnnpz3wuhmrhurwh5dwanii.ipfs.nftstorage.link/"} />
             :
             <p className="loadingLabel">loading music...</p>
           }
@@ -172,6 +179,7 @@ export default function TransferModal({token, newAction, setOpenModal}) {
       </div>
       {/*
           <button onClick={transfer} className="buttonFrame">Transfer</button>
+          <AudioPlayer music={null} cid={musicCID} />
       
               <input 
                 type={"text"} 

@@ -2,7 +2,7 @@ import React from 'react';
 import { utils } from 'near-api-js';
 
 
-export default function NftCard({image, openTransfer, i, metadata}) {
+export default function NftCard({image, artistList, openTransfer, i, metadata}) {
   const extra = JSON.parse(metadata.extra);
   const priceInNear = utils.format.formatNearAmount(extra.original_price);
   const [priceInDollar, setDollar] = React.useState("NaN");
@@ -27,7 +27,13 @@ export default function NftCard({image, openTransfer, i, metadata}) {
     <button onClick={() => openTransfer(i)} className="nftCard">
       <img src={image} alt={'nft-image'}></img>
       <div className="nftCardInfo">
-        <div className="nftCardInfoArtistList">Artist List</div>
+      <ul className="nftCardArtistList">
+          {artistList.map((artist) => (
+            <li className="nftCardArtistListElement">
+              {artist.name}
+            </li>
+          ))}
+        </ul>
         <div className="nftCardInfoTitleAndGen">
           <p>{metadata.title}</p>
           <p>#{extra.generation}</p>

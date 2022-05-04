@@ -129,7 +129,9 @@ class Canvas extends Component {
     }
 
     componentWillUnmount() {
-        this.suspendSong()
+        if (this.state.audioContext) {
+            this.suspendSong()
+        }
         // we have problem here
         //this.state.audioWorker.terminate()
     }
@@ -172,8 +174,7 @@ class Canvas extends Component {
                 javascriptNode,
                 audioContextCreatedTime
             }, () => {
-                console.log("this.props.musicCID: ", this.props.musicCID)
-                this.loadSong("https://ipfs.io/ipfs/" + this.props.musicCID);
+                this.loadSong(this.props.nftStorageLink);
             })
         } catch (error) {
             console.error(error)

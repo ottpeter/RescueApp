@@ -89,7 +89,7 @@ export default function Admin({newAction, vault}) {
       const headers = {
         'Content-Type': 'multipart/form-data',
       }
-      await axios.post(`http://test1.rarevandal.com:3000/upload/${fileType}`, formData, { headers })
+      await axios.post(`http://daorecords.io:3000/upload/${fileType}`, formData, { headers })
         .then((response) => {
           console.log("THE RESPONSE: ", response);
           if (fileType === "image") {
