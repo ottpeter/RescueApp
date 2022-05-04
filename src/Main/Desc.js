@@ -4,7 +4,7 @@ export default function Desc({desc, fontSettings}) {
   const style = {
     //fontFamily: fontSettings.family,
     //fontFamily: "Neue Haas Grotesk Display Pro",
-    fontFamily: "Inter",
+    fontFamily: "termina",
     fontSize: fontSettings.normalSize,
     textTransform: "uppercase",
     fontWeight: "400",

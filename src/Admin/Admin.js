@@ -173,7 +173,7 @@ export default function Admin({newAction, vault}) {
     
 
     const mintPromise = new Promise(async (resolve, reject) => {
-      const mintResult = await mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, revenueTable, foreverTable);
+      const mintResult = await mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, foreverTable, revenueTable);
       if (mintResult) {
         resolve("The mint was successfull (message from promise)");
       } else {
