@@ -107,7 +107,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/testnft" />}
+          element={<Navigate replace to="/weekone" />}
         />
         <Route 
           exact

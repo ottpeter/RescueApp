@@ -3,8 +3,8 @@ import React from 'react'
 export default function Desc({desc, fontSettings}) {
   const style = {
     //fontFamily: fontSettings.family,
-    //fontFamily: "Neue Haas Grotesk Display Pro",
-    fontFamily: "termina",
+    fontFamily: "Neue Haas Grotesk Display Pro",
+    //fontFamily: "termina",
     fontSize: fontSettings.normalSize,
     textTransform: "uppercase",
     fontWeight: "400",

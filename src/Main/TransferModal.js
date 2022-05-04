@@ -170,6 +170,13 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
           }
         </div>
         <div id="nftDetailsModalButtons">
+          <input 
+            type={"text"} 
+            value={receiver} 
+            onChange={(e) => handleInputChange(e.target.value)} 
+            className="nftDetailsModalRightSideInput" 
+          />
+          <button onClick={transfer} className="buttonFrame">Transfer</button>
         </div>
 
 
@@ -178,15 +185,8 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
         
       </div>
       {/*
-          <button onClick={transfer} className="buttonFrame">Transfer</button>
           <AudioPlayer music={null} cid={musicCID} />
       
-              <input 
-                type={"text"} 
-                value={receiver} 
-                onChange={(e) => handleInputChange(e.target.value)} 
-                className="nftDetailsModalRightSideInput" 
-              />
       <div id="nftDetailsModalButtons">
       </div>
       */}
