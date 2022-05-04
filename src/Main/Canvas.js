@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import loaderIcon from "../assets/player-loader.gif";
 
 /*  import {
     PlayArrow,
@@ -867,7 +868,7 @@ class Canvas extends Component {
                     <div className='controls'>
                         <div className='pause-play-song'>
                             {this.state.isLoadingSong
-                                ? <div className='loader'><div></div><div></div></div>
+                                ? <img src={loaderIcon} className="player-loader"/>
                                 : !this.state.playing
                                     ? <button onClick={this.resumeSong} className='playerButton'><PlayIcon /></button>
                                     : <button onClick={this.suspendSong}  className='playerButton'><PauseIcon  /></button>

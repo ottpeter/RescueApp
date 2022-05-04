@@ -1403,9 +1403,15 @@ h1 {
 .playerButton {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .splash-eq {
   top: calc(50% - 250px + var(--nav-size));
   left: calc((100vw / 4) - 250px + 120px);
+}
+
+.player-loader{
+  max-width: 100%;
+  border-radius: inherit;
 }
