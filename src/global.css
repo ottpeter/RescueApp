@@ -1167,13 +1167,16 @@ h1 {
   margin-left: 60px;
   padding: 10px 10px 0 10px;
   border-radius: 25px;
+}
+#splashInfoFlex::-webkit-scrollbar {
+  display: none;
+}
+#splashDesc {
+  max-height: 30vh;
   overflow-y: scroll;
   overflow-x: visible;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-}
-#splashInfoFlex::-webkit-scrollbar {
-  display: none;
 }
 
 #splash1Objects {
