@@ -1168,7 +1168,12 @@ h1 {
   padding: 10px 10px 0 10px;
   border-radius: 25px;
   overflow-y: scroll;
-  overflow-x: clip;
+  overflow-x: visible;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+#splashInfoFlex::-webkit-scrollbar {
+  display: none;
 }
 
 #splash1Objects {
@@ -1183,7 +1188,7 @@ h1 {
   display: grid;
   grid-template-columns: 30% 70%;
   grid-gap: 80px;
-  width: 90%;
+  width: 80%;
 }
 
 #splashSmallInfoBox {
