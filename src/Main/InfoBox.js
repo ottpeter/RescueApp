@@ -61,9 +61,9 @@ export default function InfoBox({tokenId, metadata, newAction}) {
       <SongName title={metadata.title} fontSettings={fontSettings} />
       {(screenWidth < 1200) && (
         <div className="previewBoxItem">
-          <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} />
+          <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} color={"#F2F2F2"} dark={false} />
         </div>
-      )}
+      )}={}
       <div id="splashArtistDescBox">
         <ArtistList fontSettings={fontSettings} list={aList} />
         <Desc desc={metadata.description} fontSettings={fontSettings} />

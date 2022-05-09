@@ -28,8 +28,8 @@ export default function NftCard({image, artistList, openTransfer, i, metadata}) 
       <img src={image} alt={'nft-image'}></img>
       <div className="nftCardInfo">
       <ul className="nftCardArtistList">
-          {artistList.map((artist) => (
-            <li className="nftCardArtistListElement">
+          {artistList.map((artist, i) => (
+            <li key={"artist-" + i} className="nftCardArtistListElement">
               {artist.name}
             </li>
           ))}

@@ -7,6 +7,7 @@
   --modal-grey: #e7e7e7;
   --nav-size: 64px;
   --footer-size: 64px;
+  --mobile-footer-size: 196px;
   
   --spacing-1: 16px;
   --spacing-2: 24px;
@@ -276,11 +277,24 @@ main {
 @media only screen and (max-width: 1200px) {
   footer {
     position: relative;
-
+    margin-left: 0;
+    margin-right: 0;
+    width: 100vw;
+    height: var(--mobile-footer-size);
+  }
+  footer ul {
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+  footer ul li {
+    margin: 8px;
   }
   main {
     overflow-y: scroll;
-    height: calc(100vh - var(--footer-size));
+    height: 100vh;
     width: 100vw;
   }
 }
@@ -338,7 +352,7 @@ main {
 }
 @media only screen and (max-width: 1200px) {
   .mainWalletContainer {
-    right: 128px;
+    right: 8px;
   }
 }
 #mainDisconnect {
@@ -730,6 +744,14 @@ h1 {
   color: #4F4F4F;
   /* line-height: 11px;*/
 }
+@media only screen and (max-width: 1200px) {
+  #listContainer {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
 
 .musicControlsButton {
   flex-shrink: 1;
@@ -1083,6 +1105,31 @@ h1 {
   margin-bottom: 16px;
   border-radius: 7px;
 }
+@media only screen and (max-width: 1200px) {
+  .nftDetailsModal {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+    grid-gap: 0;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  #nftDetailsModalPicture {
+    height: 100vw;
+    width: 100vw;
+    margin: 0;
+  }
+  #nftDetailsModalPicture img {
+    width: 100vw;
+    height: 100vw;
+    max-width: none;
+    max-height: none;
+  }
+  #nftDetailsModalRightSide {
+    padding: 10px;
+    width: 100vw;
+    height: auto;
+  }
+}
 .scroll {
   overflow-y: scroll;
 }
@@ -1124,6 +1171,8 @@ h1 {
 @media only screen and (max-width: 1200px) {
   #splash-1-nav {
     justify-content: space-between;
+    padding-right: 0;
+    width: 100vw;
   }
   #splash-1-Footer {
     margin-left: 0;
@@ -1146,14 +1195,28 @@ h1 {
   margin-bottom: 14px;
 }
 
+.menuColorContainer {
+  position: absolute;
+  background: linear-gradient(133deg, #0032ff, #a300ff, #0d41ac, #6122ff);
+  /*background-size: 800% 800%;*/
+  top: var(--nav-size);
+  left: 0;
+  height: 160px;
+  width: 100vw;
+  -webkit-animation: AnimationName 17s ease infinite;
+  -moz-animation: AnimationName 17s ease infinite;
+  -o-animation: AnimationName 17s ease infinite;
+  animation: AnimationName 17s ease infinite;
+
+  z-index: 4;
+}
 #splash-1-menu-container {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: var(--nav-size);
+  /*top: var(--nav-size);*/
   left: 0;
-  background-color: red;
-/*  height: 500px;*/
+  height: 160px;
   width: 100%;
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
@@ -1162,8 +1225,15 @@ h1 {
 }
 .hamburgerElement {
   padding: 16px;
-  font-family: Inter;
+  font-family: 'neue-haas-grotesk-display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
   text-decoration: none;
+  text-align: center;
+  color: #F2F2F2;
 }
 .hamburgerElement:hover {
   text-decoration: underline;
@@ -1236,8 +1306,6 @@ h1 {
   /*grid-area: picture;*/
   margin: auto;
   height: 500px;
-  /*max-height: 75%;*/
-  /*margin-right: 60px;*/
 }
 #splashInfoFlex {
   /*grid-area: info;*/

@@ -11,6 +11,7 @@ import Splash1ObjectContainer from './Splash1ObjectContainer';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
+  const screenWidth = window.screen.availWidth;
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
   
@@ -82,7 +83,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
           />
         </main>
 
-        <FooterSplash1 />
+        {(screenWidth > 1200)&& <FooterSplash1 />}
 
       </div>
     </div>

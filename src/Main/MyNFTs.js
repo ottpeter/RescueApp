@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Footer';
+import TopMenu from './TopMenu';
 import { getListForAccount, verify_sha256 } from '../utils';
 import NftCard from './NftCard';
 import TransferModal from './TransferModal';
 
 
-export default function MyNFTs({newAction}) {
+export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const [list, setList] = useState([]);
   const [images, setImages] = useState(Array(100).fill(null));
   const [showTransfer, setShowTransfer] = useState(false);
@@ -59,31 +63,45 @@ export default function MyNFTs({newAction}) {
 
 
   return (
-    <main>
-        <h1>MY NFTs</h1>
-        <ul id="listContainer">
-          {list && list.map((item, i) => (
-            <li key={"nftCard-" + i}>
-              <NftCard 
-                image={images[i]} 
-                artistList={artistLists[0]}
-                openTransfer={openTransfer} 
-                i={i} metadata={item.metadata} 
-              />
-            </li>
-          ))}
-        </ul>
+    <>
+      {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
+      <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
       
+      <div id='colorContainer'>
+        <div id='svgContainer'>
+          <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
-      {showTransfer && 
-        <TransferModal 
-          token={list[selected]} 
-          artistList={artistLists[0]}
-          newAction={newAction} 
-          setOpenModal={setShowTransfer}
-        />
-      }
-    </main>
+          <main>
+            <h1>MY NFTs</h1>
+            <ul id="listContainer">
+              {list && list.map((item, i) => (
+                <li key={"nftCard-" + i}>
+                  <NftCard 
+                    image={images[i]} 
+                    artistList={artistLists[0]}
+                    openTransfer={openTransfer} 
+                    i={i} metadata={item.metadata} 
+                  />
+                </li>
+              ))}
+            </ul>
+            
+
+            {showTransfer && 
+              <TransferModal 
+                token={list[selected]} 
+                artistList={artistLists[0]}
+                newAction={newAction} 
+                setOpenModal={setShowTransfer}
+              />
+            }
+            
+            <Footer />
+          </main>
+        </div>
+      </div>
+
+    </>
   );
 }
 

@@ -32,10 +32,12 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
         </nav>
 
         {menuOpen && (
-          <div id="splash-1-menu-container">
-            <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
-            <Link to={''} className="hamburgerElement"></Link>
-            <Link to={''} className="hamburgerElement"></Link>
+          <div className="menuColorContainer">
+            <div id="splash-1-menu-container">
+              <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
+              <Link to={''} className="hamburgerElement">X</Link>
+              <Link to={''} className="hamburgerElement">Y</Link>
+            </div>
           </div>
         )}
       </>
@@ -59,3 +61,7 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
   }
   
 }
+
+/*
+
+*/

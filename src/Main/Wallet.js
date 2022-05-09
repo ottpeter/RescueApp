@@ -43,7 +43,7 @@ export default function Wallet({setShowWallet, showWallet, transparent, setMenuO
         <div className="controls controlsLast">
           <button className={transparent ? "mainWalletBadge mainWalletBadgeTransparent" : "mainWalletBadge"}
             onClick={badgeClicked}
-            
+            onBlur={() => console.log("onblur does nothing")}
             tabIndex={"0"}
           >
             {window.accountId}

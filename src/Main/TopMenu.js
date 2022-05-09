@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import Wallet from './Wallet';
@@ -15,9 +15,9 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
     setMenuOpen(!menuOpen);
     setShowWallet(false);
   }
+    
 
   if (screenWidth < 1200) {                               // This is the hamburger view
-    console.log("hello world! :)")
     return (
       <>
         <nav id="splash-1-nav">
@@ -32,10 +32,12 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
         </nav>
 
         {menuOpen && (
-          <div id="splash-1-menu-container">
-            <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
-            <Link to={''} className="hamburgerElement"></Link>
-            <Link to={''} className="hamburgerElement"></Link>
+          <div className="menuColorContainer">
+            <div id="splash-1-menu-container">
+              <Link to={'/'} className="hamburgerElement">Home</Link>
+              <Link to={''} className="hamburgerElement"></Link>
+              <Link to={''} className="hamburgerElement"></Link>
+            </div>
           </div>
         )}
       </>
@@ -54,7 +56,6 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
           setShowWallet={setShowWallet}
           showWallet={showWallet}
           setMenuOpen={setMenuOpen}
-          transparent={true}
         />
       </nav>
     )

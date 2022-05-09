@@ -131,14 +131,7 @@ export default function App() {
           exact
           path='my-nfts'
           element={
-            <>
-              {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
-              <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
-              <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-                setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
-              <MyNFTs newAction={newAction} />
-              <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-            </>
+            <MyNFTs newAction={newAction} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowWallet={setShowWallet} showWallet={showWallet} />
           }
         />
         <Route 
