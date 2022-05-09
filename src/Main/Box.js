@@ -23,14 +23,16 @@ export default function Box({tokenId, gen, price, fontSettings, newAction}) {
   }, [])
   
   const labelStyle = {
-    fontFamily: fontSettings.family,
-    fontSize: fontSettings.normalSize,
+    fontFamily: fontSettings.secondFamily,
+    fontWeight: "bold",
     fontSize: "12px",
+    color: fontSettings.color,
     lineHeight: "14px",
     letterSpaceing: "0.05em",
   };
   const valueStyle = {
     fontFamily: fontSettings.family,
+    color: fontSettings.color,
     fontSize: "24px",
     lineHeight: "29px",
     letterSpacing: "0.05em",
@@ -40,9 +42,9 @@ export default function Box({tokenId, gen, price, fontSettings, newAction}) {
 
   return (
     <div id="splashSmallInfoBox" className="splashInfoElement">
-      <p className="splashInfoElementFirst splashSmallInfoBoxElement" style={labelStyle}>GENERATION</p>
-      <p className="splashInfoElementSecond splashSmallInfoBoxElement" style={valueStyle}>#{gen}</p>
-      <p className="splashSmallInfoBoxNearPrice splashSmallInfoBoxElement" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p>
+      <div><p className="splashInfoElementFirst splashSmallInfoBoxElement" style={labelStyle}>GENERATION</p></div>
+      <div className="splashInfoElementSecond"><p className="splashSmallInfoBoxElement" style={valueStyle}>#{gen}</p></div>
+      <div className="splashSmallInfoBoxNearPrice"><p className="splashSmallInfoBoxElement" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p></div>
       <Buy tokenId={tokenId} price={price} newAction={newAction} fontSettings={fontSettings} />
     </div>
   )

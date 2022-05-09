@@ -52,7 +52,7 @@ export default function AudioPlayerNftStorage({nftStorageLink}) {
       }
       {playerRef.current && 
         <input 
-          className="musicControlsSlider"
+          className="musicControlsSlider musicControlsSliderWhite"
           type={"range"}
           min={"0"}
           max={playerRef.current.duration}
@@ -78,8 +78,8 @@ export default function AudioPlayerNftStorage({nftStorageLink}) {
 function PlayIcon() {
   return (
     <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M23.25 18.75L42.75 30L23.25 41.25V18.75Z" fill="#121212"/>
-      <circle cx="30" cy="30" r="29.5" stroke="#121212"/>
+      <path d="M23.25 18.75L42.75 30L23.25 41.25V18.75Z" fill="#F2F2F2"/>
+      <circle cx="30" cy="30" r="29.5" stroke="#F2F2F2"/>
     </svg>
   );
 }
@@ -87,9 +87,9 @@ function PlayIcon() {
 function PauseIcon() {
   return(
     <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 16H26V44H20V16Z" fill="#121212"/>
-      <path d="M34 16H40V44H34V16Z" fill="#121212"/>
-      <circle cx="30" cy="30" r="29.5" stroke="#121212"/>
+      <path d="M20 16H26V44H20V16Z" fill="#F2F2F2"/>
+      <path d="M34 16H40V44H34V16Z" fill="#F2F2F2"/>
+      <circle cx="30" cy="30" r="29.5" stroke="#F2F2F2"/>
     </svg>
   );
 }

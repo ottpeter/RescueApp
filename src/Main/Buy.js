@@ -5,6 +5,7 @@ export default function Buy({tokenId, price, newAction, fontSettings}) {
   const style = {
     //fontFamily: fontSettings.family,
     fontFamily: "Bebas",
+    color: fontSettings.color,
     fontSize: fontSettings.buttonSize,
     fontWeight: "400",
     lineHeight: "38px",

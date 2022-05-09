@@ -2,15 +2,14 @@ import React from 'react'
 
 export default function  ArtistList({list, fontSettings}) {
   const style = {
-    //fontFamily: fontSettings.family,
-    fontFamily: 'Neue Haas Grotesk Display Pro',
+    fontFamily: fontSettings.secondFamily,
+    color: fontSettings.color,
     //fontSize: fontSettings.normalSize,
     fontSize: "12px",
     lineHeight: "14px",
     textTransform: "uppercase",
-    fontWeight: "400",
+    fontWeight: "700",
     letterSpacing: "0.05em",
-    color: "29FFD9",
   }
 
   return (

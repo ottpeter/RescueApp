@@ -52,14 +52,14 @@ export default function Splash1ObjectContainer() {
 
   return (
     <>
-      <img src={camera_to_right} style={camToRight} />
-      <img src={camera_to_left} style={camToLeft} />
-      <img src={phone_1} style={mobileOnePos} />
-      <img src={phone_1} style={mobileOneCopyPos} />
-      <img src={phone_2} style={mobileTwoPos} />
-      <img src={phone_3} style={mobileThreePos} />
-      <img src={phone_4} style={mobileFourPos} />
-      <img src={text} style={textObjPos} />
+      <img src={camera_to_right} style={camToRight} className="splashOneObject" />
+      <img src={camera_to_left} style={camToLeft} className="splashOneObject" />
+      <img src={phone_1} style={mobileOnePos} className="splashOneObject" />
+      <img src={phone_1} style={mobileOneCopyPos} className="splashOneObject" />
+      <img src={phone_2} style={mobileTwoPos} className="splashOneObject" />
+      <img src={phone_3} style={mobileThreePos} className="splashOneObject" />
+      <img src={phone_4} style={mobileFourPos} className="splashOneObject" />
+      <img src={text} style={textObjPos} className="splashOneObject" />
     </>
   )
 }
