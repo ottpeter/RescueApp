@@ -6,6 +6,7 @@ import TopMenu from './TopMenu';
 import { getListForAccount, verify_sha256 } from '../utils';
 import NftCard from './NftCard';
 import TransferModal from './TransferModal';
+import svgBackground from '../assets/splash1svg.svg';
 
 
 export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
@@ -68,7 +69,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
       <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
       
       <div id='colorContainer'>
-        <div id='svgContainer'>
+        <div id='svgContainer' style={{ backgroundImage: `url(${svgBackground})` }}>
           <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
           <main>
@@ -136,6 +137,14 @@ const artistLists = [
       twitter: "https://twitter.com/JCBBeats",
       insta: "http://www.instagram.com/JustinCBurkholder",
       youtube: "otherYT"
+    },
+  ],
+  [
+    {
+      name: "DEDEUKWU",
+      twitter: "https://twitter.com/_dedeukwu/status/1493308920676466697?s=21&t=xd4BJufPNKs2CxsiOizdew",
+      insta: "https://www.instagram.com/p/CbLxPYbIohY/?utm_medium=copy_link",
+      youtube: "https://youtu.be/Sk6oNlDtGec"
     },
   ]
 ];

@@ -1,7 +1,7 @@
 import React from 'react'
 import FooterSplash1 from './Footer'
 import ThePicture from './ThePicture'
-import InfoBox from './InfoBox';
+import Week2InfoBox from './Week2InfoBox';
 
 export default function SplashLandingGrid({tokenId, metadata, image, newAction}) {
   const screenWidth = window.screen.availWidth;
@@ -9,13 +9,13 @@ export default function SplashLandingGrid({tokenId, metadata, image, newAction})
   return (
     <div id="splashLandingGrid">
       <ThePicture image={image} />
-      <InfoBox
+      <Week2InfoBox
         tokenId={tokenId}
         metadata={metadata}
         image={image}
         newAction={newAction}
       />
-      {(screenWidth <= 1200) && <FooterSplash1 />}
+      {(screenWidth <= 1200) && <FooterSplash2 />}
     </div>
   )
 }

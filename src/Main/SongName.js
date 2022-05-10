@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SongName({title, fontSettings}) {
+export default function SongName({title, fontSettings, image}) {
   const style = {
     fontFamily: fontSettings.family,
     color: fontSettings.color,
@@ -12,9 +12,18 @@ export default function SongName({title, fontSettings}) {
 
   }
 
-  return (
-    <div id="splashTitle" style={style}>
-      {title}
-    </div>
-  )
+
+  if (image) {
+    return (
+      <div id="splashTitle">
+        <img src={image} alt={title} />
+      </div>
+    )
+  } else {
+    return (
+      <div id="splashTitle" style={style}>
+        {title}
+      </div>
+    )
+  }
 }

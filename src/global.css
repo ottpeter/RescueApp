@@ -29,7 +29,7 @@
 }
 
 @font-face {
-  font-family: OurCustomFont;
+  font-family: Inter;
   font-weight: 1600;
   /* orig: 100 900*/
   font-display: swap;  --toastify-color-progress-dark: #bb86fc;
@@ -1203,10 +1203,10 @@ h1 {
   left: 0;
   height: 160px;
   width: 100vw;
-  -webkit-animation: AnimationName 17s ease infinite;
-  -moz-animation: AnimationName 17s ease infinite;
-  -o-animation: AnimationName 17s ease infinite;
-  animation: AnimationName 17s ease infinite;
+  -webkit-animation: WeekOneAnimation 17s ease infinite;
+  -moz-animation: WeekOneAnimation 17s ease infinite;
+  -o-animation: WeekOneAnimation 17s ease infinite;
+  animation: WeekOneAnimation 17s ease infinite;
 
   z-index: 4;
 }
@@ -1233,6 +1233,15 @@ h1 {
   letter-spacing: 0.05em;
   text-decoration: none;
   text-align: center;
+  color: #F2F2F2;
+}
+.InterMenu {
+  font-family: Inter;
+  color: #333333;
+}
+.InterButton {
+  background-color: #333333;
+  font-family: Inter;
   color: #F2F2F2;
 }
 .hamburgerElement:hover {
@@ -1322,6 +1331,15 @@ h1 {
 #splashInfoFlex::-webkit-scrollbar {
   display: none;
 }
+.Week2splashInfoFlex {
+  width: 368px;
+  border-radius: 0 !important;
+  padding: 28px 41px 50px 41px !important;
+}
+.Week2Desc {
+  margin-top: 16px;
+  overflow: visible !important;
+}
 #splashDesc {
   max-height: 27vh;
   overflow-y: scroll;
@@ -1344,17 +1362,25 @@ h1 {
   grid-gap: 80px;
   width: 80%;
 }
+#Week2splashArtistDescBox {
+  display: grid;
+  grid-template-rows: auto auto;
+}
 
 #splashSmallInfoBox {
   flex-grow: 1;
   margin-top: var(--spacing-5);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: last baseline;
   justify-content: space-between;
 }
 .splashSmallInfoBoxElement {
   height: 60px;
+}
+.week2SplashSmallInfoBoxElement {
+  height: 0.05em;
 }
 #splashTitle {
   margin-bottom: var(--spacing-5);
@@ -1370,6 +1396,9 @@ h1 {
 }
 .splashInfoElementFourth {
   margin-right: 0;
+}
+.splashInfoElementBreak {
+  flex-basis: 100%;
 }
 .splashSmallInfoBoxNearPrice {
   margin-bottom: 0;
@@ -1406,6 +1435,27 @@ h1 {
 #splashBuy {
   margin-left: 40px;
 }
+#week2SplashBuy {
+  flex-grow: 1;
+  margin-top: 50px;
+  text-align: right;
+  width: 211px;
+  height: 62px;
+  width: 100%;
+  align-items: flex-end;
+}
+#week2SplashBuy button {
+  background-image: url('./assets/week2_buy.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 211px;
+  height: 62px;
+  border: none;
+}
+#week2SplashBuy button:hover {
+  background-image: url('./assets/week2_buy_hover.svg');
+  cursor: pointer;
+}
 #splashBuy button {
   background: linear-gradient(97.12deg, #9BCFFF -5.56%, #FD9FFF 21.49%, #CEF6FF 47.9%, #A6C9FF 74.65%, #E547FF 110.09%, #EA6CFF 122.21%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -1416,6 +1466,7 @@ h1 {
 }
 #splashBuy button:hover {
   background: linear-gradient(97.12deg, rgba(26, 145, 255, 0.97) -5.56%, #FB27FF 21.49%, #11D4FF 47.9%, #1875FF 74.65%, #DF17FF 110.09%);;
+  cursor: pointer;
 }
 
 .splash-eq {
@@ -1491,36 +1542,69 @@ h1 {
   background: linear-gradient(133deg, #0032ff, #a300ff, #0d41ac, #6122ff);
   background-size: 800% 800%;
 
-  -webkit-animation: AnimationName 17s ease infinite;
-  -moz-animation: AnimationName 17s ease infinite;
-  -o-animation: AnimationName 17s ease infinite;
-  animation: AnimationName 17s ease infinite;
+  -webkit-animation: WeekOneAnimation 17s ease infinite;
+  -moz-animation: WeekOneAnimation 17s ease infinite;
+  -o-animation: WeekOneAnimation 17s ease infinite;
+  animation: WeekOneAnimation 17s ease infinite;
 }
 
-@-webkit-keyframes AnimationName {
+@-webkit-keyframes WeekOneAnimation {
   0%{background-position:14% 0%}
   50%{background-position:87% 100%}
   100%{background-position:14% 0%}
 }
-@-moz-keyframes AnimationName {
+@-moz-keyframes WeekOneAnimation {
   0%{background-position:14% 0%}
   50%{background-position:87% 100%}
   100%{background-position:14% 0%}
 }
-@-o-keyframes AnimationName {
+@-o-keyframes WeekOneAnimation {
   0%{background-position:14% 0%}
   50%{background-position:87% 100%}
   100%{background-position:14% 0%}
 }
-@keyframes AnimationName {
+@keyframes WeekOneAnimation {
   0%{background-position:14% 0%}
   50%{background-position:87% 100%}
   100%{background-position:14% 0%}
+}
+
+#colorContainerSplashTwo {
+  background: linear-gradient(0deg, #00ea96, #60eaff, #91dcff, #c0cfff, #e2c5ff, #f5aeff, #ff97ff);
+  background-size: 1400% 1400%;
+
+  -webkit-animation: WeekTwoAnimation 22s ease infinite;
+  -moz-animation: WeekTwoAnimation 22s ease infinite;
+  -o-animation: WeekTwoAnimation 22s ease infinite;
+  animation: WeekTwoAnimation 22s ease infinite;
+}
+
+@-webkit-keyframes WeekTwoAnimation {
+  0%{background-position:48% 0%}
+  50%{background-position:53% 100%}
+  100%{background-position:48% 0%}
+}
+@-moz-keyframes WeekTwoAnimation {
+  0%{background-position:48% 0%}
+  50%{background-position:53% 100%}
+  100%{background-position:48% 0%}
+}
+@-o-keyframes WeekTwoAnimation {
+  0%{background-position:48% 0%}
+  50%{background-position:53% 100%}
+  100%{background-position:48% 0%}
+}
+@keyframes WeekTwoAnimation {
+  0%{background-position:48% 0%}
+  50%{background-position:53% 100%}
+  100%{background-position:48% 0%}
 }
 
 #svgContainer {
-  background-image: url('./assets/splash1svg.svg');
+  /*background-image: url('./assets/splash1svg.svg');*/
+  /*background-image: url('./assets/splash2svg.svg');*/
   background-size: cover;
+  background-position: center;
 }
 
 

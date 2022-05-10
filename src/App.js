@@ -16,6 +16,7 @@ import Err from './Activity/Err';
 import MyNFTs from './Main/MyNFTs';
 import GuestBook from './Main/GuestBook';
 import Withdraw from './Admin/Withdraw';
+import Week2SplashLanding from './Main/Week2SplashLanding';
 
 
 export default function App() {
@@ -153,8 +154,8 @@ export default function App() {
           exact
           path='testnft'
           element={
-            <SplashLanding 
-              index={0} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            <Week2SplashLanding
+              index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
             />
           }
         />

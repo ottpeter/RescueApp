@@ -165,7 +165,7 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
         <div id="nftDetailsModalAudio">
           {music ? 
             <AudioPlayerNftStorage 
-              nftStorageLink={"https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/"} 
+              nftStorageLink={"https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs./"} 
               color={"#121212"}
               dark={true}
             />
