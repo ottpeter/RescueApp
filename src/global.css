@@ -258,6 +258,9 @@ nav {
   width: 100% !important;
   display: block;
 }
+.dropdownContainerSplashTwo {
+  right: 500px !important;
+}
 
 footer {
   position: absolute;

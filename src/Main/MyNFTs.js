@@ -64,9 +64,9 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
 
   function getArtistIndex(tokenId) {
     /** We will manually need to update this list throughout the SoundSplash */
-    if (tokenId.includes('fono-root-0-')) return 2;
-    if (tokenId.includes('fono-root-2-')) return 0;
-    if (tokenId.includes('fono-root-3-')) return 1;
+    if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return 2;
+    if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return 0;
+    if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
   }
 
   return (
@@ -97,7 +97,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
             {showTransfer && 
               <TransferModal 
                 token={list[selected]} 
-                artistList={artistLists[0]}
+                artistList={artistLists[getArtistIndex(list[selected].token_id)]}
                 newAction={newAction} 
                 setOpenModal={setShowTransfer}
               />

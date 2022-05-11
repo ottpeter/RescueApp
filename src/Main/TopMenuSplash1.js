@@ -34,6 +34,7 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
             setShowWallet={setShowWallet}
             showWallet={showWallet}
             setMenuOpen={setMenuOpen}
+            setSplashMenuOpen={setSplashMenuOpen}
           />
         </nav>
 
@@ -41,8 +42,8 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
           <div id="dropdownContainer" className="mobileDropdownContainer">
               <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
               {/** List of the drops, we will append this as we go */}
-              <Link to={'/weekone'} className="controlsButton hamburgerElement">Masia One</Link>
-              <Link to={'/weektwo'} className="controlsButton hamburgerElement">Dolphins</Link>
+              <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
+              <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
           </div>
         )}
       </>
@@ -60,8 +61,8 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
         {splashMenuOpen && (
           <div id="dropdownContainer">
             {/** List of the drops, we will append this as we go */}
-            <Link to={'/weekone'} className="controlsButton menuButton">Masia One</Link>
-            <Link to={'/weektwo'} className="controlsButton menuButton">DEDEUKWU</Link>
+            <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
+            <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
           </div>
         )}
 

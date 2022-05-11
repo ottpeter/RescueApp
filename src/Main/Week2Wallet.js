@@ -44,15 +44,17 @@ export default function Week2Wallet({setShowWallet, showWallet, transparent, set
         <div className="controls controlsLast">
           <button className={transparent ? "mainWalletBadge Week2Wallet mainWalletBadgeTransparent InterButton" : "mainWalletBadge Week2Wallet InterButton"}
             onClick={badgeClicked}
-            onBlur={() => console.log("onblur does nothing")}
-            tabIndex={"0"}
           >
             {window.accountId}
           </button>
         </div>
 
         {showWallet && (
-          <div id="wallet" className="mainWalletContainer">
+          <div id="wallet" className="mainWalletContainer"
+            onBlur={() => console.log("onBlur")}
+            tabIndex={"0"}
+            onFocus={() => console.log("focus")}
+          >
             <div id="mainWalletBalanceFlex">
               <p>BALANCE</p>
               

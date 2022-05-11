@@ -108,7 +108,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/weekone" />}
+          element={<Navigate replace to="/weektwo" />}
         />
         <Route 
           exact
@@ -170,10 +170,10 @@ export default function App() {
         />
         <Route 
           exact
-          path='dao'
+          path='weektwo'
           element={
-            <SplashLanding 
-              index={2} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            <Week2SplashLanding 
+              index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
             />
           }
         />
