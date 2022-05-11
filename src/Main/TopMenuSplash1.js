@@ -10,9 +10,15 @@ import logo from '../assets/SoundSplashLogo.svg'
 export default function TopMenuSplash1({setShowWallet, showWallet}) {
   const screenWidth = window.screen.availWidth;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [splashMenuOpen, setSplashMenuOpen] = useState(false);
 
   function hamburgerClicked() {
     setMenuOpen(!menuOpen);
+    setShowWallet(false);
+  }
+
+  function splashDropdownClicked() {
+    setSplashMenuOpen(!splashMenuOpen);
     setShowWallet(false);
   }
 
@@ -32,12 +38,11 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
         </nav>
 
         {menuOpen && (
-          <div className="menuColorContainer">
-            <div id="splash-1-menu-container">
+          <div id="dropdownContainer" className="mobileDropdownContainer">
               <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
-              <Link to={''} className="hamburgerElement">X</Link>
-              <Link to={''} className="hamburgerElement">Y</Link>
-            </div>
+              {/** List of the drops, we will append this as we go */}
+              <Link to={'/weekone'} className="controlsButton hamburgerElement">Masia One</Link>
+              <Link to={'/weektwo'} className="controlsButton hamburgerElement">Dolphins</Link>
           </div>
         )}
       </>
@@ -49,19 +54,25 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
           <img src={logo} alt={'SoundSplash'} />
         </div>
         <Link to={''} className="controlsButton menuButton"></Link>
-        <Link to={''} className="controlsButton menuButton"></Link>
+        <button onClick={splashDropdownClicked} className="controlsButton menuButton">SPLASH DROPS</button>
         <Link to={'/my-nfts'} className="controlsButton menuButton">MY NFTS</Link>
+
+        {splashMenuOpen && (
+          <div id="dropdownContainer">
+            {/** List of the drops, we will append this as we go */}
+            <Link to={'/weekone'} className="controlsButton menuButton">Masia One</Link>
+            <Link to={'/weektwo'} className="controlsButton menuButton">DEDEUKWU</Link>
+          </div>
+        )}
+
         <Wallet 
           setShowWallet={setShowWallet}
           showWallet={showWallet}
           setMenuOpen={setMenuOpen}
+          setSplashMenuOpen={setSplashMenuOpen}
         />
       </nav>
     )
   }
   
 }
-
-/*
-
-*/

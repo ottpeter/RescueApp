@@ -3,7 +3,7 @@ import { login, logout, getBalance } from '../utils';
 import nearLogo from '../assets/near.svg';
 
 
-export default function Week2Wallet({setShowWallet, showWallet, transparent, setMenuOpen}) {
+export default function Week2Wallet({setShowWallet, showWallet, transparent, setMenuOpen, setSplashMenuOpen}) {
   const [balance, setBalance] = React.useState("NaN");
   const [dollar, setDollar] = React.useState("NaN");
 
@@ -25,6 +25,7 @@ export default function Week2Wallet({setShowWallet, showWallet, transparent, set
   }
 
   function badgeClicked() {
+    setSplashMenuOpen(false);
     setMenuOpen(false);
     setShowWallet(!showWallet);
   }

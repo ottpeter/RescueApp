@@ -152,7 +152,7 @@ export default function App() {
         {/** The 12 SoundSplash NFT Landing Pages */}
         <Route 
           exact
-          path='testnft'
+          path='testnft0926'
           element={
             <Week2SplashLanding
               index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 

@@ -10,12 +10,17 @@ import logo from '../assets/SoundSplashLogo2.svg'
 export default function TopMenuSplash2s({setShowWallet, showWallet}) {
   const screenWidth = window.screen.availWidth;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [splashMenuOpen, setSplashMenuOpen] = useState(false);
 
   function hamburgerClicked() {
     setMenuOpen(!menuOpen);
     setShowWallet(false);
   }
 
+  function splashDropdownClicked() {
+    setSplashMenuOpen(!splashMenuOpen);
+    setShowWallet(false);
+  }
 
   if (screenWidth < 1200) {                               // This is the hamburger view
     return (
@@ -32,12 +37,11 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
         </nav>
 
         {menuOpen && (
-          <div className="menuColorContainer">
-            <div id="splash-1-menu-container">
-              <Link to={'/my-nfts'} className="hamburgerElement InterMenu">MY NFTS</Link>
-              <Link to={''} className="hamburgerElement InterMenu">X</Link>
-              <Link to={''} className="hamburgerElement InterMenu">Y</Link>
-            </div>
+          <div id="dropdownContainer" className="mobileDropdownContainer">
+              <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
+              {/** List of the drops, we will append this as we go */}
+              <Link to={'/weekone'} className="controlsButton hamburgerElement">Masia One</Link>
+              <Link to={'/weektwo'} className="controlsButton hamburgerElement">Dolphins</Link>
           </div>
         )}
       </>
@@ -52,11 +56,22 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
         </div>
         <Link to={''} className="controlsButton menuButton InterMenu"></Link>
         <Link to={''} className="controlsButton menuButton InterMenu"></Link>
+        <button onClick={splashDropdownClicked} className="controlsButton menuButton InterMenu">SPLASH DROPS</button>
         <Link to={'/my-nfts'} className="controlsButton menuButton InterMenu">MY NFTS</Link>
+
+        {splashMenuOpen && (
+          <div id="dropdownContainer">
+            {/** List of the drops, we will append this as we go */}
+            <Link to={'/weekone'} className="controlsButton menuButton">Masia One</Link>
+            <Link to={'/weektwo'} className="controlsButton menuButton">DEDEUKWU</Link>
+          </div>
+        )}
+
         <Week2Wallet
           setShowWallet={setShowWallet}
           showWallet={showWallet}
           setMenuOpen={setMenuOpen}
+          setSplashMenuOpen={setSplashMenuOpen}
         />
       </nav>
     )

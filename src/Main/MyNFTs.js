@@ -62,6 +62,12 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     setShowTransfer(true);
   }
 
+  function getArtistIndex(tokenId) {
+    /** We will manually need to update this list throughout the SoundSplash */
+    if (tokenId.includes('fono-root-0-')) return 2;
+    if (tokenId.includes('fono-root-2-')) return 0;
+    if (tokenId.includes('fono-root-3-')) return 1;
+  }
 
   return (
     <>
@@ -79,7 +85,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
                 <li key={"nftCard-" + i}>
                   <NftCard 
                     image={images[i]} 
-                    artistList={artistLists[0]}
+                    artistList={artistLists[getArtistIndex(item.token_id)]}
                     openTransfer={openTransfer} 
                     i={i} metadata={item.metadata} 
                   />
@@ -146,5 +152,12 @@ const artistLists = [
       insta: "https://www.instagram.com/p/CbLxPYbIohY/?utm_medium=copy_link",
       youtube: "https://youtu.be/Sk6oNlDtGec"
     },
+  ],
+  [
+    {
+      name: "vandal",
+      twitter: "https://twitter.com",
+      insta: "https://instagram.com"
+    }
   ]
 ];
