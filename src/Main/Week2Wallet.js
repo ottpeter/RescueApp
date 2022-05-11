@@ -33,7 +33,7 @@ export default function Week2Wallet({setShowWallet, showWallet, transparent, set
     return (
       <>
         <div className="controls controlsLast">
-          <button onClick={login}  className="mainWalletBadge InterButton">Connect Wallet</button>
+          <button onClick={login}  className="mainWalletBadge Week2Wallet InterButton">Connect Wallet</button>
         </div>
       </>
     );
@@ -41,7 +41,7 @@ export default function Week2Wallet({setShowWallet, showWallet, transparent, set
     return (
       <>
         <div className="controls controlsLast">
-          <button className={transparent ? "mainWalletBadge mainWalletBadgeTransparent InterButton" : "mainWalletBadge InterButton"}
+          <button className={transparent ? "mainWalletBadge Week2Wallet mainWalletBadgeTransparent InterButton" : "mainWalletBadge Week2Wallet InterButton"}
             onClick={badgeClicked}
             onBlur={() => console.log("onblur does nothing")}
             tabIndex={"0"}

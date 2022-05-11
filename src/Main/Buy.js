@@ -14,6 +14,13 @@ export default function Buy({tokenId, price, newAction, fontSettings}) {
   }
 
   function buyNFT() {
+    if (!window.accountId) {
+      newAction({
+        errorMsg: "You are not logged in to NEAR. Please connect your wallet first!", errorMsgDesc: "",
+      }); 
+      return;
+    }
+
     const buyPromise = new Promise(async (resolve, reject) => {
       const buyResult = await buyNFTfromVault(tokenId, price);
       if (buyResult) {

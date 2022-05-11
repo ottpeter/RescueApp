@@ -4,7 +4,7 @@ export default function ThePicture({image}) {
   return (
     <img 
       id="splashPicture" 
-      alt="ThePicture"
+      alt="Picture loading..."
       src={image}
     >
     </img>

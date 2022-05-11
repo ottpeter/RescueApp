@@ -14,7 +14,7 @@ export default function Splash1ObjectContainer() {
   const dolphinsPos = {
     position: "absolute",
     bottom: "70px",
-    left: "44%"
+    left: "40%"
   }
   const playPos = {
     position: "absolute",

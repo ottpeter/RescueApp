@@ -158,6 +158,7 @@ nav {
 }
 .menuButton:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 .controlsButton img:hover {
   filter: brightness(2.5);
@@ -180,6 +181,7 @@ nav {
   padding-left: 14px;
   padding-right: 14px;
   margin-right: 7px;
+  cursor: pointer;
   /*#4d00b4*/
 }
 .wallet {
@@ -240,7 +242,7 @@ footer {
   bottom: 0;
   left: 0;
   height: var(--footer-size);
-  width: 100%;
+  width: 50%;
   align-items: center;
 }
 footer ul {
@@ -252,6 +254,11 @@ footer ul {
   margin-left: 120px;
   margin-right: 120px;
   list-style: none;
+}
+.mynftsFooter {
+  flex-grow: 1;
+  justify-content: flex-end;
+  width: 100%;
 }
 footer ul li {
   margin-right: 49px;
@@ -327,9 +334,18 @@ main {
   width: 179px;
   height: 39px;
 }
+.Week2Wallet {
+  background: #333333 !important;
+  color: #F2F2F2 !important;
+}
+.Week2Wallet:hover {
+  background: #F2F2F2 !important;
+  color: #333333 !important;
+}
 .mainWalletBadge:hover {
   background: #BDBDBD;
   font-weight: bold;
+  cursor: pointer;
 }
 .mainWalletBadgeTransparent {
   background: none;
@@ -365,6 +381,7 @@ main {
 }
 #mainDisconnect:hover {
   font-weight: bold;
+  cursor: pointer;
 }
 #mainWalletBalanceFlex {
   display: flex;
@@ -637,6 +654,7 @@ input[type=number] {
 }
 .mainButton:hover {
   background: #828282;
+  cursor: pointer;
 }
 .mainButton:disabled {
   background: #C4C4C4;
@@ -1092,6 +1110,7 @@ h1 {
 }
 #nftDetailsModalButtons button:hover {
   font-weight: bold;
+  cursor: pointer;
 }
 .nftDetailsModalSwitchableBox {
   background: white;
@@ -1385,6 +1404,9 @@ h1 {
 #splashTitle {
   margin-bottom: var(--spacing-5);
 }
+#splashTitle img {
+  max-width: 80vw;
+}
 .splashInfoElementFirst {
   margin-right: var(--spacing-3);
 }
@@ -1446,6 +1468,7 @@ h1 {
 }
 #week2SplashBuy button {
   background-image: url('./assets/week2_buy.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: auto;
   width: 211px;
@@ -1532,6 +1555,15 @@ h1 {
   }
   .splashSmallInfoBoxElement {
     height: auto;
+  }
+  .Week2splashInfoFlex {
+    padding: 10px !important;
+  }
+  #week2SplashBuy {
+    text-align: center;
+  }
+  .noFlexBasis {
+    flex-basis: auto;
   }
 }
 
@@ -1621,6 +1653,7 @@ h1 {
 }
 #nftBuyButton:hover {
   background-image: url('./assets/buyHover.svg');
+  cursor: pointer;
 }
 
 /* Toast messages*/

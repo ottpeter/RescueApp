@@ -5,9 +5,9 @@ import CryptoVoxels from '../assets/CryptoVoxelsLogo.svg';
 
 
 /** Footer for Main */
-export default function FooterSplash1() {
+export default function Footer() {
   return (
-    <footer>
+    <footer className="mynftsFooter">
       <ul>
         <li>
           <a href={'https://www.daorecords.org/'}>

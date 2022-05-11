@@ -1,6 +1,6 @@
 import React from 'react';
-import image from '../assets/ok-256.png'
+import info from '../assets/info.svg'
 
 export default function Err() {
-  return <img src={"image"} width={"40px"} ></img>;
+  return <img src={info} width={"40px"} ></img>;
 }

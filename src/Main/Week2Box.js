@@ -44,10 +44,10 @@ export default function Box({tokenId, gen, price, fontSettings, newAction}) {
   return (
     <div id="splashSmallInfoBox" className="splashInfoElement">
       <div><p className="splashInfoElementFirst week2SplashSmallInfoBoxElement" style={labelStyle}>GENERATION</p></div>
-      <div className="splashSmallInfoBoxNearPrice"><p className="week2SplashSmallInfoBoxElement" style={valueStyle}>#{gen}</p></div>
+      <div className="splashSmallInfoBoxNearPrice noFlexBasis"><p className="week2SplashSmallInfoBoxElement" style={valueStyle}>#{gen}</p></div>
       <div className="splashInfoElementBreak"></div>
       <div className="week2SplashSmallInfoBoxElement"><p style={labelStyle}>PRICE</p></div>
-      <div className="splashSmallInfoBoxNearPrice"><p className="week2SplashSmallInfoBoxElement" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p></div>
+      <div className="splashSmallInfoBoxNearPrice noFlexBasis"><p className="week2SplashSmallInfoBoxElement" style={valueStyle}>{formatNumber(priceInNear,3)} NEAR</p></div>
       <div className="splashInfoElementBreak"></div>
       <Week2Buy tokenId={tokenId} price={price} newAction={newAction} fontSettings={fontSettings} />
     </div>

@@ -1,6 +1,6 @@
-import React from 'react'
-import FooterSplash1 from './Footer'
-import ThePicture from './ThePicture'
+import React from 'react';
+import FooterSplash2 from './FooterSplash2';
+import ThePicture from './ThePicture';
 import Week2InfoBox from './Week2InfoBox';
 
 export default function SplashLandingGrid({tokenId, metadata, image, newAction}) {
