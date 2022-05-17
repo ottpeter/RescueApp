@@ -90,10 +90,13 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
   }
 
   function getNftStorageLink(tokenId) {
+    console.log("tokenId inside getArtistIndex: ", tokenId);
+
     /** We will manually need to update this list throughout the SoundSplash */
     if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return "https://bafybeiehqpn5z5izotm5ddnhvqkoj3ovylgqnnpz3wuhmrhurwh5dwanii.ipfs.nftstorage.link/";
     if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return "https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/";
     if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return "https://nftstorage.link/ipfs/bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi";
+    return null;
   }
 
   loadMusic();

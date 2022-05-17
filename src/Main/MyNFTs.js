@@ -63,10 +63,13 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
   }
 
   function getArtistIndex(tokenId) {
+    console.log("tokenId inside getArtistIndex: ", tokenId);
+
     /** We will manually need to update this list throughout the SoundSplash */
     if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return 2;
     if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return 0;
     if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
+    return 0;
   }
 
   return (
@@ -159,5 +162,15 @@ const artistLists = [
       twitter: "https://twitter.com",
       insta: "https://instagram.com"
     }
+  ],
+  [
+    {
+      name: "mantravine",
+      facebook: "https://www.facebook.com/Mantravine/",
+      twitter: "https://twitter.com/mantravine",
+      insta: "https://www.instagram.com/mantravine/",
+      youtube: "https://www.youtube.com/user/mantravine",
+      tiktok: "https://www.tiktok.com/@mantravine"
+    },
   ]
 ];

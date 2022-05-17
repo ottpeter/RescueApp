@@ -372,6 +372,14 @@ main {
   background: #F2F2F2 !important;
   color: #333333 !important;
 }
+.Week3Wallet {
+  background: #F2F2F2 !important;
+  color: #333333 !important;
+}
+.Week3Wallet:hover {
+  background: #333333 !important;
+  color: #F2F2F2 !important;
+}
 .mainWalletBadge:hover {
   background: #BDBDBD;
   font-weight: bold;
@@ -1217,6 +1225,19 @@ h1 {
   left: 0;
   z-index: 3;
 }
+#mantravineLogoContainer {
+  position: absolute;
+  background: transparent;
+  z-index: 2;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  height: 120px;
+  width: 120px;
+  align-items: center;
+}
 @media only screen and (max-width: 1200px) {
   #splash-1-nav {
     justify-content: space-between;
@@ -1288,6 +1309,9 @@ h1 {
 .InterMenu {
   font-family: Inter;
   color: #333333;
+}
+.F2White {
+  color: #F2F2F2;
 }
 .InterButton {
   background-color: #333333;
@@ -1365,6 +1389,7 @@ h1 {
   /*grid-area: picture;*/
   margin: auto;
   height: 500px;
+  z-index: 1;
 }
 #splashInfoFlex {
   /*grid-area: info;*/
@@ -1377,6 +1402,8 @@ h1 {
   margin-left: 60px;
   padding: 10px 10px 10px 10px;
   border-radius: 25px;
+  position: relative;
+  z-index: 2;
 }
 #splashInfoFlex::-webkit-scrollbar {
   display: none;
@@ -1438,6 +1465,10 @@ h1 {
 #splashTitle img {
   max-width: 80vw;
 }
+#splashTitleWeek3 img {
+  max-width: 30vw;
+  margin-top: -80px;
+}
 .splashInfoElementFirst {
   margin-right: var(--spacing-3);
 }
@@ -1480,6 +1511,8 @@ h1 {
 }
 .splashArtistListElementFirst {
   flex-grow: 1;
+  margin: 0;
+  margin-bottom: var(--spacing-3);
 }
 .splashArtistListElementIcon {
   margin-left: var(--spacing-1);
@@ -1519,6 +1552,23 @@ h1 {
   height: 60px;
 }
 #splashBuy button:hover {
+  background: linear-gradient(97.12deg, rgba(26, 145, 255, 0.97) -5.56%, #FB27FF 21.49%, #11D4FF 47.9%, #1875FF 74.65%, #DF17FF 110.09%);;
+  cursor: pointer;
+}
+#splashBuy3 {
+  margin-left: calc((386px / 2) + 44px);
+  margin-top: var(--spacing-2);
+  position: relative;
+  z-index: 2;
+}
+#splashBuy3 button {
+  background: linear-gradient(261.95deg, #FF00F5 -2.31%, #4ECAFF 29.23%, rgba(235, 255, 243, 0.91) 50.23%, #C728FF 95.38%);
+  border-radius: 50px;
+  border: none;
+  width: 96px;
+  height: 39px;
+}
+#splashBuy3 button:hover {
   background: linear-gradient(97.12deg, rgba(26, 145, 255, 0.97) -5.56%, #FB27FF 21.49%, #11D4FF 47.9%, #1875FF 74.65%, #DF17FF 110.09%);;
   cursor: pointer;
 }
@@ -1663,6 +1713,12 @@ h1 {
   100%{background-position:48% 0%}
 }
 
+#backgroundContainerSplashThree {
+  background-image: url('./assets/stellarBackgroundTooBig.png');
+  background-size: cover;
+  background-position: center;
+}
+
 #svgContainer {
   /*background-image: url('./assets/splash1svg.svg');*/
   /*background-image: url('./assets/splash2svg.svg');*/
@@ -1782,7 +1838,7 @@ h1 {
   grid-template: "prev play next";
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .Player .controls .pause-play-song{
