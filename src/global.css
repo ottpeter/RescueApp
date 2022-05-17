@@ -239,6 +239,7 @@ nav {
   border-radius: 1px;
   right: 478px;
   top: var(--nav-size);
+  z-index: 2;
 }
 #dropdownContainer a {
   font-family: Inter;
@@ -1646,6 +1647,13 @@ h1 {
   .noFlexBasis {
     flex-basis: auto;
   }
+  #splashTitleWeek3 img {
+    max-width: 100vw;
+  }
+  #splashBuy3 {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 
 /*#colorContainer {
@@ -1714,7 +1722,7 @@ h1 {
 }
 
 #backgroundContainerSplashThree {
-  background-image: url('./assets/stellarBackgroundTooBig.png');
+  background-image: url('./assets/stellarBackground.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -1831,6 +1839,7 @@ h1 {
   height: 900px;
   display: flex;
   align-self: center;
+  
 }
 
 .Player .controls{

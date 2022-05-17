@@ -35,21 +35,37 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
     setReceiver(accountName);
   }
 
-  function transfer() {
-    const transferPromise = new Promise(async (resolve, reject) => {
-      const transferResult = await transferNft(token.token_id, receiver);
-      if (transferResult) {
-        resolve("success(transfer)");
-      } else {
-        reject("reject(transfer)");
-      }
-    })
-    newAction({
-      thePromise: transferPromise, 
-      pendingPromiseTitle: "Prepairing transaction...", pendingPromiseDesc: "plase wait",
-      successPromiseTitle: "Redirecting to transaction", successPromiseDesc: "Please sign the transaction in the next screen!",
-      errorPromiseTitle: "Redirecting to transaction", errorPromiseDesc: "Please sign the transaction in the next screen!"
-    });
+  async function transfer() {
+    await fetch(`https://nearblocks.io/api/account/balance?address=${receiver}`)                        // Test if account exists or not (by account balance)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.balance) {                                                                             // Initiate the transfer if the balance field exists (otherwise we would have a message field instead)
+          const transferPromise = new Promise(async (resolve, reject) => {
+            const transferResult = await transferNft(token.token_id, receiver);
+            if (transferResult) {
+              resolve("success(transfer)");
+            } else {
+              reject("reject(transfer)");
+            }
+          })
+          newAction({
+            thePromise: transferPromise, 
+            pendingPromiseTitle: "Prepairing transaction...", pendingPromiseDesc: "plase wait",
+            successPromiseTitle: "Redirecting to transaction", successPromiseDesc: "Please sign the transaction in the next screen!",
+            errorPromiseTitle: "Redirecting to transaction", errorPromiseDesc: "Please sign the transaction in the next screen!"
+          });
+        }
+        else newAction({                                                                                // Toast message if it does not exist
+          errorMsg: "This address does not exist. Please check the receiver address!", errorMsgDesc: "",
+        });
+      })
+      .catch((err) => {                                                                                 // Toast message if there was an error with the API request
+        console.error("There was an error while testing if user exists or not. ", err);
+        newAction({
+          errorMsg: "There was an error while testing the address. Please try again!", errorMsgDesc: "",
+        });
+        return;
+      });
   }
 
   function loadImage() {
@@ -184,6 +200,13 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
           }
         </div>
         <div id="nftDetailsModalButtons">
+          <input 
+            type={"text"} 
+            value={receiver} 
+            onChange={(e) => handleInputChange(e.target.value)} 
+            className="nftDetailsModalRightSideInput" 
+          />
+          <button onClick={transfer} className="buttonFrame">Transfer</button>
         </div>
 
 
@@ -192,13 +215,6 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
         
       </div>
       {/*
-      <input 
-        type={"text"} 
-        value={receiver} 
-        onChange={(e) => handleInputChange(e.target.value)} 
-        className="nftDetailsModalRightSideInput" 
-      />
-      <button onClick={transfer} className="buttonFrame">Transfer</button>
           <AudioPlayer music={null} cid={musicCID} />
           
       <div id="nftDetailsModalButtons">
