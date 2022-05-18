@@ -1,9 +1,33 @@
+const express = require('express');
+const path = require("path");
+const fs = require('fs');
+const { exec } = require('child_process');
+const router = express.Router();
 
 
+router.get('/test', function(req, res) {
+  let result = null;
+  const options = {
+    root: path.join('/root/FonoRoot/backend/')
+  };
 
+  exec(`ipfs get ${req.query.cid}`, function (error, stdout, stderr) {
+    if (error) {                                                                      // ipfs command gave an error
+      console.log(`error: ${error.message}`);
+      result = -1;
+    }
+    if (result !== -1) {
+      const path = req.query.cid;                                                     // CID of the file
+      res.sendFile(path, options, function (err) {                                    // Send the file to the front-end
+        if (err) {
+          console.error("There was an error while trying to send the file: ", err);
+        } else {
+          console.log('Sent file: ', path);
+          fs.unlinkSync(path);                                                        // Clean up (delete the file from /backend folder)
+        }
+      });
+    }
+  });
+})
 
-// 1. First GET the file from (local) IPFS
-// 2. (file will be saved somewhere, on a temp file)
-// 3. serve that file
-
-// Would be better if w
+module.exports = router;
