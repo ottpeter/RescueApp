@@ -109,7 +109,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/weektwo" />}
+          element={<Navigate replace to="/weekthree" />}
         />
         <Route 
           exact
@@ -156,7 +156,7 @@ export default function App() {
           path='testnft0926'
           element={
             <Week3SplashLanding
-              index={0} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
             />
           }
         />
@@ -175,6 +175,15 @@ export default function App() {
           element={
             <Week2SplashLanding 
               index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+            />
+          }
+        />
+        <Route 
+          exact
+          path='weekthree'
+          element={
+            <Week3SplashLanding 
+              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
             />
           }
         />

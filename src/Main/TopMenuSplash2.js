@@ -43,6 +43,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
               {/** List of the drops, we will append this as we go */}
               <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
               <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
+              <Link to={'/weekthree'} className="controlsButton hamburgerElement">Week Three</Link>
           </div>
         )}
       </>
@@ -65,6 +66,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
             {/** List of the drops, we will append this as we go */}
             <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
             <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
+            <Link to={'/weekthree'} className="controlsButton menuButton">Week Three</Link>
           </div>
         )}
 

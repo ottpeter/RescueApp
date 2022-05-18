@@ -75,7 +75,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
 
           <main>
             <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
-              nftStorageLink={"https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/"} />
+              nftStorageLink={"https://bafybeihpdjr36dqneqfunibpr56sm2i4h5hsykho5dov2xtflglnh6sceq.ipfs.nftstorage.link/"} />
             <ObjectContainer />
             <SplashLandingGrid
               tokenId={nftList[index].token_id}
