@@ -7,7 +7,7 @@ import SongName from './SongName'
 
 
 export default function InfoBox({tokenId, metadata, newAction}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const extra = JSON.parse(metadata.extra);
 
   const fontSettings = {
@@ -47,7 +47,8 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     },
   ]
 
-  const preludeMusicNftStorageLink = "https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/";
+  const fetchLink = "https://daorecords.io:8443/fetch?cid=" + extra.music_cid;                 // Fetch url for our server
+  //"https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/";
 
   return (
     <div>
@@ -55,7 +56,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
         <SongName title={metadata.title} fontSettings={fontSettings} />
         {(screenWidth < 1200) && (
           <div className="previewBoxItem">
-            <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} color={"#F2F2F2"} dark={false} />
+            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#F2F2F2"} dark={false} />
           </div>
         )}
         <div id="splashArtistDescBox">

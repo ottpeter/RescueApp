@@ -8,7 +8,7 @@ import logo from '../assets/SoundSplashLogo.svg'
 
 /** Top Menu for Main */
 export default function TopMenuSplash1({setShowWallet, showWallet}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
   const [splashMenuOpen, setSplashMenuOpen] = useState(false);
 

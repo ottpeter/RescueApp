@@ -24,6 +24,11 @@ export default function Wallet({setShowWallet, showWallet, transparent, setMenuO
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)
   }
 
+  function disconnectClicked() {
+    logout();
+    setShowWallet(false);
+  }
+
   function badgeClicked() {
     setMenuOpen(false);
     setSplashMenuOpen(false);
@@ -64,7 +69,7 @@ export default function Wallet({setShowWallet, showWallet, transparent, setMenuO
               <p>~ ${formatNumber(dollar, 2)}</p>
             </div>
             <div id="mainWalletButtonContainer">
-              <button onClick={logout} id="mainDisconnect">DISCONNECT</button>
+              <button onClick={disconnectClicked} id="mainDisconnect">DISCONNECT</button>
             </div>
           </div>
         )}

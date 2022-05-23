@@ -13,7 +13,7 @@ import MantravineLogo from './MantravineLogo';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
   

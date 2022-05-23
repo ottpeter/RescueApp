@@ -9,7 +9,7 @@ import Week2ArtistList from './Week2ArtistList';
 
 
 export default function Week2InfoBox({tokenId, metadata, newAction}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const extra = JSON.parse(metadata.extra);
 
   const fontSettings = {
@@ -30,7 +30,8 @@ export default function Week2InfoBox({tokenId, metadata, newAction}) {
     },
   ]
 
-  const preludeMusicNftStorageLink = "https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/";
+  const fetchLink = "https://daorecords.io:8443/fetch?cid=" + extra.music_cid;                 // Fetch url for our server
+  //"https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/";
 
   return (
     <div>
@@ -38,7 +39,7 @@ export default function Week2InfoBox({tokenId, metadata, newAction}) {
       <div id="splashInfoFlex" className="Week2splashInfoFlex">
         {(screenWidth < 1200) && (
           <div className="previewBoxItem">
-            <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} color={"#F2F2F2"} dark={false} />
+            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#F2F2F2"} dark={false} />
           </div>
         )}
         <div id="Week2splashArtistDescBox">

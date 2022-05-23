@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const router = express.Router();
 
 
-router.get('/test', function(req, res) {
+router.get('/', function(req, res) {
   let result = null;
   const options = {
     root: path.join('/root/FonoRoot/backend/')
@@ -23,7 +23,7 @@ router.get('/test', function(req, res) {
           console.error("There was an error while trying to send the file: ", err);
         } else {
           console.log('Sent file: ', path);
-          fs.unlinkSync(path);                                                        // Clean up (delete the file from /backend folder)
+          //fs.unlinkSync(path);                                                        // Clean up (delete the file from /backend folder)
         }
       });
     }

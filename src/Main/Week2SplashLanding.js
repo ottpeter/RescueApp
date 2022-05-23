@@ -12,7 +12,7 @@ import svgBackground from '../assets/splash2svg.svg';
 
 
 export default function Week2SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
   
@@ -36,14 +36,14 @@ export default function Week2SplashLanding({index, newAction, openGuestBook, set
       return firstNum - secondNum;
     })
   
-    loadImage(orderedBuyable[index].metadata);
+    //loadImage(orderedBuyable[index].metadata);
     setNftList(orderedBuyable);
   }, [])
 
 
   function loadImage(metadata) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://ipfs.io/ipfs/" + metadata.media);
+    xhr.open("GET", "https://daorecords.io:8443/fetch?cid=" + metadata.media);
     xhr.responseType = "blob";
     xhr.onload = function() {
       let blob = xhr.response;
@@ -74,7 +74,7 @@ export default function Week2SplashLanding({index, newAction, openGuestBook, set
 
           <main>
             <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
-              nftStorageLink={"https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/"} />
+              nftStorageLink={`https://daorecords.io:8443/fetch?cid=${JSON.parse(nftList[index].metadata.extra).music_cid}`} />
             <Splash2ObjectContainer />
             <Week2SplashLandingGrid
               tokenId={nftList[index].token_id}

@@ -4,11 +4,11 @@ import ThePicture from './ThePicture'
 import InfoBox from './InfoBox';
 
 export default function SplashLandingGrid({tokenId, metadata, image, newAction}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
 
   return (
     <div id="splashLandingGrid">
-      <ThePicture image={image} />
+      <ThePicture image={image} imageCID={metadata.media} />
       <InfoBox
         tokenId={tokenId}
         metadata={metadata}

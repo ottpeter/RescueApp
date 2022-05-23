@@ -25,7 +25,7 @@ export default function NftCard({image, artistList, openTransfer, i, metadata}) 
   return (
     <>
     <button onClick={() => openTransfer(i)} className="nftCard">
-      <img src={image} alt={'nft-image'}></img>
+      <img src={`https://daorecords.io:8443/fetch?cid=${metadata.media}`} alt={'nft-image'}></img>
       <div className="nftCardInfo">
       <ul className="nftCardArtistList">
           {artistList.map((artist, i) => (

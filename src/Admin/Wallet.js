@@ -13,6 +13,11 @@ export default function Wallet({setShowWallet, showWallet}) {
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)
   }
 
+  function disconnectClicked() {
+    logout();
+    setShowWallet(false);
+  }
+
   let network = "Error";
   if (window.accountId.slice(-8) === ".testnet") network = "Testnet";
   if (window.accountId.slice(-5) === ".near") network = "Mainnet";
@@ -50,7 +55,7 @@ export default function Wallet({setShowWallet, showWallet}) {
                 <p className="accountBalanceBoxUpper">Available balance</p>
                 <p className="accountBalanceBoxDowner">{formatNumber(balance, 3)} NEAR</p>
               </div>
-              <button onClick={logout} id="disconnectButton" className="mainButton">Disconnect</button>
+              <button onClick={disconnectClicked} id="disconnectButton" className="mainButton">Disconnect</button>
           </div>
         )}
       </>

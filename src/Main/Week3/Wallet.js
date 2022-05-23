@@ -29,6 +29,11 @@ export default function Wallet({setShowWallet, showWallet, transparent, setMenuO
     setShowWallet(!showWallet);
   }
 
+  function disconnectClicked() {
+    logout();
+    setShowWallet(false);
+  }
+
   if (!window.walletConnection.isSignedIn()) {
     return (
       <>
@@ -65,7 +70,7 @@ export default function Wallet({setShowWallet, showWallet, transparent, setMenuO
               <p>~ ${formatNumber(dollar, 2)}</p>
             </div>
             <div id="mainWalletButtonContainer">
-              <button onClick={logout} id="mainDisconnect">DISCONNECT</button>
+              <button onClick={disconnectClicked} id="mainDisconnect">DISCONNECT</button>
             </div>
           </div>
         )}

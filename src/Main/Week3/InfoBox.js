@@ -9,8 +9,10 @@ import Buy from './Buy';
 
 
 export default function InfoBox({tokenId, metadata, newAction}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
   const extra = JSON.parse(metadata.extra);
+  const overflow = ((screenHeight < 814) && (screenWidth > 1200)) ? ({ overflowY: "scroll" }) : null;
 
   const fontSettings = {
     family: 'Inter',
@@ -32,15 +34,16 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     },
   ]
 
-  const preludeMusicNftStorageLink = "https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/";
+  const fetchLink = "https://daorecords.io:8443/fetch?cid=" + extra.music_cid;                 // Fetch url for our server
+  //"https://bafybeihpdjr36dqneqfunibpr56sm2i4h5hsykho5dov2xtflglnh6sceq.ipfs.nftstorage.link/";
 
   return (
-    <div>
+    <div style={overflow}>
       <SongName title={"Multiverse"} image={titleImage} fontSettings={fontSettings} />
       <div id="splashInfoFlex" className="Week2splashInfoFlex">
         {(screenWidth < 1200) && (
           <div className="previewBoxItem">
-            <AudioPlayerNftStorage nftStorageLink={preludeMusicNftStorageLink} color={"#F2F2F2"} dark={false} />
+            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#F2F2F2"} dark={false} />
           </div>
         )}
         <div id="Week2splashArtistDescBox">

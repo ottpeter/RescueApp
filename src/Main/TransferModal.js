@@ -116,13 +116,13 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
     return null;
   }
 
-  loadMusic();
-  loadImage();
+  //loadMusic();
+  //loadImage();
 
   return (
     <div className="nftDetailsModal">
       <div id="nftDetailsModalPicture">
-        <img src={image} alt={title}></img>
+        <img src={`https://daorecords.io:8443/fetch?cid=${imageCID}`} alt={title}></img>
       </div>
       <div id="nftDetailsModalRightSide">
         <button id="nftDetailsModalClose" onClick={() => setOpenModal(false)}><CloseButton /></button>
@@ -190,9 +190,9 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
           <p>{token.owner_id}</p>
         </div>
         <div id="nftDetailsModalAudio">
-          {music ? 
+          {true ? 
             <AudioPlayerNftStorage 
-              nftStorageLink={getNftStorageLink(token.token_id)} 
+              nftStorageLink={`https://daorecords.io:8443/fetch?cid=${extra.music_cid}`}
               color={"#121212"}
               dark={true}
             />
@@ -220,6 +220,8 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
           
       <div id="nftDetailsModalButtons">
       </div>
+
+      nftStorageLink={getNftStorageLink(token.token_id)} 
       */}
     </div>
   );

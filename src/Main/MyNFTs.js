@@ -69,7 +69,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return 2;
     if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return 0;
     if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
-    if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 1;
+    if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 3;
     return 0;
   }
 

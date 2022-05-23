@@ -174,7 +174,7 @@ class Canvas extends Component {
                 javascriptNode,
                 audioContextCreatedTime
             }, () => {
-                this.loadSong(this.props.nftStorageLink);
+                this.loadSong(`https://daorecords.io:8443/fetch?cid=${this.props.musicCID}`);
             })
         } catch (error) {
             console.error(error)

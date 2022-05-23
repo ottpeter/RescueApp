@@ -12,7 +12,7 @@ import svgBackground from '../assets/splash1svg.svg';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
-  const screenWidth = window.screen.availWidth;
+  const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
   
@@ -36,7 +36,7 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
       return firstNum - secondNum;
     })
   
-    loadImage(orderedBuyable[index].metadata);
+    //loadImage(orderedBuyable[index].metadata);
     setNftList(orderedBuyable);
   }, [])
 
@@ -66,28 +66,28 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
 
   return (
     <>
-    {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
-    <ToastContainer position="bottom-right" autoClose={5000} />
-    <div id='colorContainer'>
-      <div id='svgContainer' style={{ backgroundImage: `url(${svgBackground})` }}>
-        <TopMenuSplash1 setShowWallet={setShowWallet} showWallet={showWallet} />
+      {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
+      <ToastContainer position="bottom-right" autoClose={5000} />
+      <div id='colorContainer'>
+        <div id='svgContainer' style={{ backgroundImage: `url(${svgBackground})` }}>
+          <TopMenuSplash1 setShowWallet={setShowWallet} showWallet={showWallet} />
 
-        <main>
-          <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
-            nftStorageLink={"https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/"} />
-          <Splash1ObjectContainer />
-          <SplashLandingGrid 
-            tokenId={nftList[index].token_id}
-            metadata={nftList[index].metadata}
-            image={image}
-            newAction={newAction}
-          />
-        </main>
+          <main>
+            <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
+              nftStorageLink={"https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/"} />
+            <Splash1ObjectContainer />
+            <SplashLandingGrid 
+              tokenId={nftList[index].token_id}
+              metadata={nftList[index].metadata}
+              image={image}
+              newAction={newAction}
+            />
+          </main>
 
-        {(screenWidth > 1200)&& <FooterSplash1 />}
+          {(screenWidth > 1200)&& <FooterSplash1 />}
 
+        </div>
       </div>
-    </div>
-  </>
+    </>
   )
 }
