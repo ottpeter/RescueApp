@@ -1,11 +1,11 @@
 import React from 'react';
-import DaoLogo from '../assets/DaoLogoSplash2.svg';
-import RealityChain from '../assets/RealityChainSplash2.svg';
-import CryptoVoxels from '../assets/CryptoVoxelsSplash2.svg';
+import DaoLogo from '../../assets/DaoLogoSplash2.svg';
+import RealityChain from '../../assets/RealityChainSplash2.svg';
+import CryptoVoxels from '../../assets/CryptoVoxelsSplash2.svg';
 
 
 /** Footer for Main */
-export default function FooterSplash2() {
+export default function Footer() {
   return (
     <footer>
       <ul>

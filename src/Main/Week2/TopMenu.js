@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import hamburger from '../assets/hamburger.svg'
+import hamburger from '../../assets/hamburger.svg'
 import 'regenerator-runtime/runtime';
-import Week2Wallet from './Week2Wallet';
-import logo from '../assets/SoundSplashLogo2.svg'
+import Wallet from './Wallet';
+import logo from '../../assets/SoundSplashLogo2.svg'
 
 
 /** Top Menu for Main */
-export default function TopMenuSplash2s({setShowWallet, showWallet}) {
+export default function TopMenu({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
   const [splashMenuOpen, setSplashMenuOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
           <button onClick={hamburgerClicked} className="hamburgerIcon">
             <img src={hamburger} alt='Menu'></img>
           </button>
-          <Week2Wallet
+          <Wallet
             setShowWallet={setShowWallet}
             showWallet={showWallet}
             setMenuOpen={setMenuOpen}
@@ -70,7 +70,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
           </div>
         )}
 
-        <Week2Wallet
+        <Wallet
           setShowWallet={setShowWallet}
           showWallet={showWallet}
           setMenuOpen={setMenuOpen}

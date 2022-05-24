@@ -1,9 +1,8 @@
 import React from 'react';
-import { login, logout, getBalance } from '../utils';
-import nearLogo from '../assets/near.svg';
+import { login, logout, getBalance } from '../../utils';
 
 
-export default function Week2Wallet({setShowWallet, showWallet, transparent, setMenuOpen, setSplashMenuOpen}) {
+export default function Wallet({setShowWallet, showWallet, transparent, setMenuOpen, setSplashMenuOpen}) {
   const [balance, setBalance] = React.useState("NaN");
   const [dollar, setDollar] = React.useState("NaN");
 

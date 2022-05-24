@@ -1,11 +1,11 @@
 import React from 'react';
-import tree from '../assets/splash2_objects/tree.png';        //svg is 1 mb
-import dolphins from '../assets/splash2_objects/dolphins.svg';
-import play from '../assets/splash2_objects/play.svg';
+import tree from '../../assets/splash2_objects/tree.png';        //svg is 1 mb
+import dolphins from '../../assets/splash2_objects/dolphins.svg';
+import play from '../../assets/splash2_objects/play.svg';
 
 
 
-export default function Splash1ObjectContainer() {
+export default function ObjectContainer() {
   const treePos = {
     position: "absolute",
     bottom: "80px",

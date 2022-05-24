@@ -70,6 +70,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return 0;
     if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
     if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 3;
+    if (tokenId.includes('fono-root-5-') || tokenId === 'fono-root-5') return 4;
     return 0;
   }
 
@@ -173,5 +174,19 @@ const artistLists = [
       youtube: "https://www.youtube.com/user/mantravine",
       tiktok: "https://www.tiktok.com/@mantravine"
     },
+  ],
+  [
+    {
+      name: "COMA-CHI",
+      twitter: "https://twitter.com/coma_chi",
+      insta: "https://www.instagram.com/coma_chi/",
+      youtube: "https://www.youtube.com/user/QueensRoom"
+    },
+    {
+      name: "MeccaGodzilla",
+      twitter: "https://twitter.com/meccagodzilla",
+      insta: "https://www.instagram.com/meccagodzilla",
+      youtube: "https://www.youtube.com/manafestvision"
+    }
   ]
 ];

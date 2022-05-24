@@ -1451,8 +1451,11 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: last baseline;
+  align-items: baseline;
   justify-content: space-between;
+}
+.noSpaceTop {
+  margin-top: 0 !important;
 }
 .splashSmallInfoBoxElement {
   height: 60px;
@@ -1469,6 +1472,14 @@ h1 {
 #splashTitleWeek3 img {
   max-width: 30vw;
   margin-top: -80px;
+}
+#splashTitleWeek4 img {
+  max-width: 50vw;
+  margin-top: -240px;
+  margin-bottom: -240px;
+  margin-left: -160px;
+  position: relative;
+  z-index: 2;
 }
 .splashInfoElementFirst {
   margin-right: var(--spacing-3);
@@ -1514,6 +1525,9 @@ h1 {
   flex-grow: 1;
   margin: 0;
   margin-bottom: var(--spacing-3);
+}
+.splashArtistListElementFirstWeek4 {
+  margin-bottom: 6px !important;
 }
 .splashArtistListElementIcon {
   margin-left: var(--spacing-1);
@@ -1573,6 +1587,27 @@ h1 {
   background: linear-gradient(97.12deg, rgba(26, 145, 255, 0.97) -5.56%, #FB27FF 21.49%, #11D4FF 47.9%, #1875FF 74.65%, #DF17FF 110.09%);;
   cursor: pointer;
 }
+#splashBuy4 {
+  margin-left: calc((386px / 2) + 44px);
+  margin-top: var(--spacing-2);
+  position: relative;
+  z-index: 2;
+}
+#splashBuy4 button {
+  background: #333333;
+  color: #F2F2F2;
+  border-radius: 50px;
+  border: none;
+  width: 96px;
+  height: 39px;
+}
+#splashBuy4 button:hover {
+  background: #F2F2F2;
+  color: #333333;
+  border: 2px solid #333333;
+  cursor: pointer;
+}
+
 
 .splash-eq {
   position: absolute;
@@ -1648,6 +1683,9 @@ h1 {
     flex-basis: auto;
   }
   #splashTitleWeek3 img {
+    max-width: 100vw;
+  }
+  #splashTitleWeek4 img {
     max-width: 100vw;
   }
   #splashBuy3 {

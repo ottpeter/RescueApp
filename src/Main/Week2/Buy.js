@@ -1,5 +1,5 @@
 import React from 'react'
-import { buyNFTfromVault } from '../utils';
+import { buyNFTfromVault } from '../../utils';
 
 export default function Buy({tokenId, price, newAction, fontSettings}) {
   const style = {

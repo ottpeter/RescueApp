@@ -1,14 +1,13 @@
 import React from 'react';
-import AudioPlayerNftStorage from '../Common/AudioPlayerNftStorage';
+import AudioPlayerNftStorage from '../../Common/AudioPlayerNftStorage';
+import Box from './Box';
+import Week2Desc from './Desc';
+import SongName from '../SongName';
+import titleImage from '../../assets/splash2_title.svg';
 import ArtistList from './ArtistList';
-import Week2Box from './Week2Box';
-import Week2Desc from './Week2Desc';
-import SongName from './SongName';
-import titleImage from '../assets/splash2_title.svg';
-import Week2ArtistList from './Week2ArtistList';
 
 
-export default function Week2InfoBox({tokenId, metadata, newAction}) {
+export default function InfoBox({tokenId, metadata, newAction}) {
   const screenWidth = window.innerWidth;
   const extra = JSON.parse(metadata.extra);
 
@@ -43,10 +42,10 @@ export default function Week2InfoBox({tokenId, metadata, newAction}) {
           </div>
         )}
         <div id="Week2splashArtistDescBox">
-          <Week2ArtistList fontSettings={fontSettings} list={aList} />
+          <ArtistList fontSettings={fontSettings} list={aList} />
           <Week2Desc desc={metadata.description} fontSettings={fontSettings} />
         </div>
-        <Week2Box tokenId={tokenId} gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} newAction={newAction} />
+        <Box tokenId={tokenId} gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} newAction={newAction} />
       </div>
     </div>
   )

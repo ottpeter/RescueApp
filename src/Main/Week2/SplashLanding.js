@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getBuyableTokens, verify_sha256 } from '../utils';
+import { getBuyableTokens, verify_sha256 } from '../../utils';
 import 'regenerator-runtime/runtime';
-import Equalizer from './Equalizer';
-import Week2SplashLandingGrid from './Week2SplashLandingGrid';
-import FooterSplash2 from './FooterSplash2';
-import TopMenuSplash2 from './TopMenuSplash2';
-import Splash2ObjectContainer from './Splash2ObjectContainer';
-import svgBackground from '../assets/splash2svg.svg';
+import Equalizer from '../Equalizer';
+import SplashLandingGrid from './SplashLandingGrid';
+import Footer from './Footer';
+import TopMenu from './TopMenu';
+import ObjectContainer from './ObjectContainer';
+import svgBackground from '../../assets/splash2svg.svg';
 
 
-export default function Week2SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
+export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);
   const [image, setImage] = useState(null);
@@ -70,13 +70,13 @@ export default function Week2SplashLanding({index, newAction, openGuestBook, set
       <ToastContainer position="bottom-right" autoClose={5000} />
       <div id='colorContainerSplashTwo'>
         <div id='svgContainer' style={{ backgroundImage: `url(${svgBackground})` }}>
-          <TopMenuSplash2 setShowWallet={setShowWallet} showWallet={showWallet} />
+          <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
           <main>
             <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
               nftStorageLink={`https://daorecords.io:8443/fetch?cid=${JSON.parse(nftList[index].metadata.extra).music_cid}`} />
-            <Splash2ObjectContainer />
-            <Week2SplashLandingGrid
+            <ObjectContainer />
+            <SplashLandingGrid
               tokenId={nftList[index].token_id}
               metadata={nftList[index].metadata}
               image={image}
@@ -84,7 +84,7 @@ export default function Week2SplashLanding({index, newAction, openGuestBook, set
             />
           </main>
 
-          {(screenWidth > 1200)&& <FooterSplash2 />}
+          {(screenWidth > 1200)&& <Footer />}
 
         </div>
       </div>
