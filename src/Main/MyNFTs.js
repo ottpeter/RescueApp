@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast, Slide } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer';
 import TopMenu from './TopMenu';
@@ -11,7 +11,6 @@ import svgBackground from '../assets/splash1svg.svg';
 
 export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const [list, setList] = useState([]);
-  const [images, setImages] = useState(Array(100).fill(null));
   const [showTransfer, setShowTransfer] = useState(false);
   const [selected, setSelected] = useState(null);
 
@@ -30,32 +29,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     const nftList = await getListForAccount();
     console.log("nftList", nftList)
     setList(nftList);
-    loadImages(nftList);
   }, []);
-
-  function loadImages(nftList) {
-    for (let i = 0; i < nftList.length; i++) {
-      let xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://ipfs.io/ipfs/" + nftList[i].metadata.media);
-      xhr.responseType = "blob";
-      xhr.onload = function() {
-        let blob = xhr.response;
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onload = async function(e) {
-          const hash_correct = await verify_sha256(blob, nftList[i].metadata.media_hash);
-          if (hash_correct) setImages((state) => {
-            state[i] = e.target.result;
-            return [...state];
-          });
-          else newAction({
-            errorMsg: "There was an error while loading the image!", errorMsgDesc: "The image hash is incorrect.",
-          });
-        }
-      }
-      xhr.send();
-    }
-  }
 
   function openTransfer(index) {
     setSelected(index);
@@ -74,6 +48,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     return 0;
   }
 
+
   return (
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
@@ -89,7 +64,6 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
               {list && list.map((item, i) => (
                 <li key={"nftCard-" + i}>
                   <NftCard 
-                    image={images[i]} 
                     artistList={artistLists[getArtistIndex(item.token_id)]}
                     openTransfer={openTransfer} 
                     i={i} metadata={item.metadata} 

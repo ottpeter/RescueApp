@@ -12,6 +12,7 @@ export default function Desc({desc, fontSettings}) {
     color: fontSettings.color,
   }
 
+  
   return (
     <div id="splashDesc" className="splashInfoElement Week2Desc" style={style}>
       {desc}

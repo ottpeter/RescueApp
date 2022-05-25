@@ -1,5 +1,5 @@
 import React from 'react';
-import tree from '../../assets/splash2_objects/tree.png';        //svg is 1 mb
+import tree from '../../assets/splash2_objects/tree.png';
 import dolphins from '../../assets/splash2_objects/dolphins.svg';
 import play from '../../assets/splash2_objects/play.svg';
 

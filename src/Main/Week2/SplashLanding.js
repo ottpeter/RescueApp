@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getBuyableTokens, verify_sha256 } from '../../utils';
@@ -14,7 +14,6 @@ import svgBackground from '../../assets/splash2svg.svg';
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);
-  const [image, setImage] = useState(null);
   
 
   React.useEffect(async () => {    
@@ -36,31 +35,9 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
       return firstNum - secondNum;
     })
   
-    //loadImage(orderedBuyable[index].metadata);
     setNftList(orderedBuyable);
   }, [])
 
-
-  function loadImage(metadata) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://daorecords.io:8443/fetch?cid=" + metadata.media);
-    xhr.responseType = "blob";
-    xhr.onload = function() {
-      let blob = xhr.response;
-      const reader = new FileReader();
-      const verifier = new FileReader();
-      reader.readAsDataURL(blob);
-      
-      reader.onload = async function(e) {
-        const hash_correct = await verify_sha256(blob, metadata.media_hash);
-        if (hash_correct) setImage(e.target.result);
-        else newAction({
-          errorMsg: "There was an error while loading the image!", errorMsgDesc: "The image hash is incorrect.",
-        }); 
-      }
-    }
-    xhr.send();
-  }
 
   if (nftList.length === 0) return <p>Loading...</p>
 
@@ -79,7 +56,6 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
             <SplashLandingGrid
               tokenId={nftList[index].token_id}
               metadata={nftList[index].metadata}
-              image={image}
               newAction={newAction}
             />
           </main>

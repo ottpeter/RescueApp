@@ -3,18 +3,14 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Admin from './Admin/Admin';
-import Main from './Main/Main';
 import SplashLanding from './Main/SplashLanding';
 import AdminTopMenu from './Admin/TopMenu';
-import MainTopMenu from './Main/TopMenu';
 import AdminFooter from './Admin/Footer';
-import MainFooter from './Main/Footer';
 import Message from './Activity/Message';
 import Pending from './Activity/Pending';
 import Ok from './Activity/Ok';
 import Err from './Activity/Err';
 import MyNFTs from './Main/MyNFTs';
-import GuestBook from './Main/GuestBook';
 import Withdraw from './Admin/Withdraw';
 import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
@@ -22,16 +18,11 @@ import Week4SplashLanding from './Main/Week4/SplashLanding';
 
 
 export default function App() {
-  const [urlParams, setUrlParams] = React.useState(window.location.search);                             // We use this for routing
   const [configObj, setConfigObj] = React.useState({});
   const [actionHistory, setActionHistory] = React.useState([]);                                         // For the Notifications drop-down. But now we only have this in Admin
   const [showActivity, setShowActivity] = React.useState(false);
   const [openGuestBook, setGuestBook] = React.useState(false);
   const [showWallet, setShowWallet] = React.useState(false);
-
-  React.useEffect(() => {
-    doUrlParamsParsing();
-  }, []);
 
   React.useEffect(async () => {
     const fetchObj = await fetch(window.location.origin + window.location.pathname + '/' + 'projectConfig.json')
@@ -39,11 +30,6 @@ export default function App() {
     .catch((err) => console.error("Error while fetching projectConfig.json: ", err));
     setConfigObj(fetchObj);
   }, [])
-  
-  function doUrlParamsParsing() {
-    setUrlParams(window.location.search);
-    if (urlParams.includes('guestbook')) setGuestBook(true);                                           // This is important when user creates new entry
-  }
 
   function initContract() {
     const args = {
@@ -110,7 +96,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/weekthree" />}
+          element={<Navigate replace to="/weekfour" />}
         />
         <Route 
           exact
@@ -137,27 +123,13 @@ export default function App() {
             <MyNFTs newAction={newAction} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowWallet={setShowWallet} showWallet={showWallet} />
           }
         />
-        <Route 
-          exact
-          path='oldmainobsolate'
-          element={
-            <>
-              {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
-              <ToastContainer position="bottom-right" autoClose={5000} />
-              <MainTopMenu setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} 
-                setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} />
-              <Main newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-              <MainFooter openGuestBook={openGuestBook} setGuestBook={setGuestBook} />
-            </>
-          }
-        />
         {/** The 12 SoundSplash NFT Landing Pages */}
         <Route 
           exact
           path='testnft0926'
           element={
             <Week4SplashLanding
-              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
         />
@@ -166,7 +138,7 @@ export default function App() {
           path='weekone'
           element={
             <SplashLanding 
-              index={2} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+              index={2} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
         />
@@ -175,7 +147,7 @@ export default function App() {
           path='weektwo'
           element={
             <Week2SplashLanding 
-              index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+              index={3} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
             />
           }
         />
@@ -184,7 +156,16 @@ export default function App() {
           path='weekthree'
           element={
             <Week3SplashLanding 
-              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} changePage={doUrlParamsParsing} 
+              index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='weekfour'
+          element={
+            <Week4SplashLanding 
+              index={5} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
             />
           }
         />

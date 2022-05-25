@@ -8,15 +8,12 @@ import SplashLandingGrid from './SplashLandingGrid';
 import Footer from './Footer';
 import TopMenu from './TopMenu';
 import ObjectContainer from './ObjectContainer';
-import svgBackground from '../../assets/splash2svg.svg';
 import MantravineLogo from './MantravineLogo';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
-  const [nftList, setNftList] = React.useState([]);
-  const [image, setImage] = useState(null);
-  
+  const [nftList, setNftList] = React.useState([]);  
 
   React.useEffect(async () => {    
     const urlParams = window.location.search;
@@ -37,34 +34,12 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
       return firstNum - secondNum;
     })
   
-    loadImage(orderedBuyable[index].metadata);
     setNftList(orderedBuyable);
   }, [])
 
-
-  function loadImage(metadata) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://ipfs.io/ipfs/" + metadata.media);
-    xhr.responseType = "blob";
-    xhr.onload = function() {
-      let blob = xhr.response;
-      const reader = new FileReader();
-      const verifier = new FileReader();
-      reader.readAsDataURL(blob);
-      
-      reader.onload = async function(e) {
-        const hash_correct = await verify_sha256(blob, metadata.media_hash);
-        if (hash_correct) setImage(e.target.result);
-        else newAction({
-          errorMsg: "There was an error while loading the image!", errorMsgDesc: "The image hash is incorrect.",
-        }); 
-      }
-    }
-    xhr.send();
-  }
-
   if (nftList.length === 0) return <p>Loading...</p>
 
+  
   return (
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
@@ -74,13 +49,11 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
           <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
           <main>
-            <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} 
-              nftStorageLink={"https://bafybeihpdjr36dqneqfunibpr56sm2i4h5hsykho5dov2xtflglnh6sceq.ipfs.nftstorage.link/"} />
+            <Equalizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} />
             <ObjectContainer />
             <SplashLandingGrid
               tokenId={nftList[index].token_id}
               metadata={nftList[index].metadata}
-              image={image}
               newAction={newAction}
             />
           </main>

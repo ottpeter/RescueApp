@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import loaderIcon from "../../assets/player-loader.gif";
 
-/*  import {
-    PlayArrow,
-    Pause,
-    VolumeMute,
-    VolumeDown,
-    VolumeUp
-} from '@material-ui/icons';*/
 
 const color1 = '#FF00FF';               // this is bottom of the eq line
-const color2 = '#F50000';               // this is the top of the eq line
-const color3 = '#61dafb';
-const color4 = '#F5F5F5';
 const rgba1 = '255, 0, 0';              // this is time position color
-const rgba2 = '97, 218, 251';           // this is time position color
 
 function getRandomColorPair() {
     const colorPairs = [

@@ -1,9 +1,9 @@
 import React from 'react'
 import { buyNFTfromVault } from '../../utils';
 
+
 export default function Buy({tokenId, price, newAction, fontSettings}) {
   const style = {
-    //fontFamily: fontSettings.family,
     fontFamily: fontSettings.family,
     color: fontSettings.color,
     fontSize: fontSettings.buttonSize,
@@ -36,6 +36,7 @@ export default function Buy({tokenId, price, newAction, fontSettings}) {
       errorPromiseTitle: "Redirecting to transaction", errorPromiseDesc: "Please sign the transaction in the next screen!"
     });
   }
+
 
   return (
     <div id="splashBuy3"  className="splashSmallInfoBoxElement">

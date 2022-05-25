@@ -1,11 +1,9 @@
 import React from 'react';
 import { utils } from 'near-api-js';
-import Buy from './Buy';
 
 
-export default function Box({tokenId, gen, price, fontSettings, newAction}) {
+export default function Box({gen, price, fontSettings}) {
   const priceInNear = utils.format.formatNearAmount(price);
-  const [priceInDollar, setDollar] = React.useState("NaN");
 
   function formatNumber(number, maxDecimal) {
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)
@@ -58,7 +56,6 @@ export default function Box({tokenId, gen, price, fontSettings, newAction}) {
         <div className="splashSmallInfoBoxNearPrice noFlexBasis"><p className="week2SplashSmallInfoBoxElement" style={nearValueStyle}>{formatNumber(priceInNear,3)} NEAR</p></div>
         <div className="splashInfoElementBreak"></div>
       </div>
-      
     </>
   )
 }

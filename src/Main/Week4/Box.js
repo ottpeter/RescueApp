@@ -2,9 +2,8 @@ import React from 'react';
 import { utils } from 'near-api-js';
 
 
-export default function Box({tokenId, gen, price, fontSettings, newAction}) {
+export default function Box({gen, price, fontSettings}) {
   const priceInNear = utils.format.formatNearAmount(price);
-  const [priceInDollar, setDollar] = React.useState("NaN");
 
   function formatNumber(number, maxDecimal) {
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)

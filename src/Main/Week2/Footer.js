@@ -4,7 +4,7 @@ import RealityChain from '../../assets/RealityChainSplash2.svg';
 import CryptoVoxels from '../../assets/CryptoVoxelsSplash2.svg';
 
 
-/** Footer for Main */
+/** Footer for Week2 */
 export default function Footer() {
   return (
     <footer>

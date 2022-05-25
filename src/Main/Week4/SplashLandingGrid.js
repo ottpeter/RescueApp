@@ -3,12 +3,13 @@ import Footer from './Footer';
 import ThePicture from '../ThePicture';
 import InfoBox from './InfoBox';
 
-export default function SplashLandingGrid({tokenId, metadata, image, newAction}) {
+
+export default function SplashLandingGrid({tokenId, metadata, newAction}) {
   const screenWidth = window.innerWidth;
 
   return (
     <div id="splashLandingGrid">
-      <ThePicture image={image} imageCID={metadata.media} />
+      <ThePicture imageCID={metadata.media} />
       <InfoBox
         tokenId={tokenId}
         metadata={metadata}

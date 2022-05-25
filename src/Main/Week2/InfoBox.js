@@ -30,7 +30,6 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   ]
 
   const fetchLink = "https://daorecords.io:8443/fetch?cid=" + extra.music_cid;                 // Fetch url for our server
-  //"https://bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi.ipfs.nftstorage.link/";
 
   return (
     <div>
@@ -38,7 +37,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
       <div id="splashInfoFlex" className="Week2splashInfoFlex">
         {(screenWidth < 1200) && (
           <div className="previewBoxItem">
-            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#F2F2F2"} dark={false} />
+            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#333333"} dark={true} />
           </div>
         )}
         <div id="Week2splashArtistDescBox">

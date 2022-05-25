@@ -6,7 +6,7 @@ import Wallet from './Wallet';
 import logo from '../../assets/SoundSplashLogo2.svg'
 
 
-/** Top Menu for Main */
+/** Top Menu for Week4 */
 export default function TopMenu({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -81,7 +81,3 @@ export default function TopMenu({setShowWallet, showWallet}) {
   }
   
 }
-
-/*
-
-*/

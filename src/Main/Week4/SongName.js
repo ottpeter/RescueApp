@@ -1,6 +1,11 @@
 import React from 'react'
 
+
 export default function SongName({title, fontSettings, image}) {
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+  const overflow = ((screenHeight < 814) && (screenWidth > 1200)) ? true : false;
+
   const style = {
     fontFamily: fontSettings.family,
     color: fontSettings.color,
@@ -9,11 +14,18 @@ export default function SongName({title, fontSettings, image}) {
     lineHeight: "84px",
     letterSpacing: "0.01em",
     textTransform: "uppercase"
+  }
 
+  const plc = {
+    marginLeft: "0 !important",
+    width: "100%",
+    marginLeft: 0,
+    marginTop: "-100px",
+    marginBottom: "-150px",
   }
 
 
-  if (image) {
+  if (!overflow) {
     return (
       <div id="splashTitleWeek4">
         <img src={image} alt={title} />
@@ -21,8 +33,8 @@ export default function SongName({title, fontSettings, image}) {
     )
   } else {
     return (
-      <div id="splashTitle" style={style}>
-        {title}
+      <div id="splashTitleWeek4">
+        <img src={image} alt={title} style={plc} />
       </div>
     )
   }

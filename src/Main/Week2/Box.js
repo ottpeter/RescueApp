@@ -5,7 +5,6 @@ import Buy from './Buy';
 
 export default function Box({tokenId, gen, price, fontSettings, newAction}) {
   const priceInNear = utils.format.formatNearAmount(price);
-  const [priceInDollar, setDollar] = React.useState("NaN");
 
   function formatNumber(number, maxDecimal) {
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)

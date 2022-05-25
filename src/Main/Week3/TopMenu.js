@@ -6,7 +6,7 @@ import Wallet from './Wallet';
 import logo from '../../assets/SoundSplashLogo.svg'
 
 
-/** Top Menu for Main */
+/** Top Menu for Week3 */
 export default function TopMenuSplash2s({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
               {/** List of the drops, we will append this as we go */}
               <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
               <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
-              <Link to={'/weekthree'} className="controlsButton hamburgerElement">Week Three</Link>
+              <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
           </div>
         )}
       </>
@@ -66,7 +66,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
             {/** List of the drops, we will append this as we go */}
             <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
             <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
-            <Link to={'/weekthree'} className="controlsButton menuButton">Week Three</Link>
+            <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
           </div>
         )}
 
@@ -81,7 +81,3 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
   }
   
 }
-
-/*
-
-*/

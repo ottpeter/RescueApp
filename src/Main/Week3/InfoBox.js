@@ -35,7 +35,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   ]
 
   const fetchLink = "https://daorecords.io:8443/fetch?cid=" + extra.music_cid;                 // Fetch url for our server
-  //"https://bafybeihpdjr36dqneqfunibpr56sm2i4h5hsykho5dov2xtflglnh6sceq.ipfs.nftstorage.link/";
+
 
   return (
     <div style={overflow}>
@@ -50,10 +50,9 @@ export default function InfoBox({tokenId, metadata, newAction}) {
           <ArtistList fontSettings={fontSettings} list={aList} />
           <Desc desc={metadata.description} fontSettings={fontSettings} />
         </div>
-        <Box tokenId={tokenId} gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} newAction={newAction} />
+        <Box gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} />
       </div>
       <Buy tokenId={tokenId} price={extra.original_price} newAction={newAction} fontSettings={fontSettings} />
     </div>
   )
 }
-

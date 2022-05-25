@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default function  ArtistList({list, fontSettings}) {
   const style = {
     fontFamily: fontSettings.secondFamily,
