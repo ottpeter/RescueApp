@@ -762,6 +762,7 @@ h1 {
   padding: var(--spacing-1);
   align-items: flex-start;
   font-family: neue-haas-grotesk-display;
+  width: 90%;
 }
 .nftCardInfoArtistList {
   font-size: 10px;
@@ -1169,6 +1170,7 @@ h1 {
   margin-bottom: 16px;
   border-radius: 7px;
 }
+
 @media only screen and (max-width: 1200px) {
   .nftDetailsModal {
     grid-template-columns: none;
@@ -1192,6 +1194,98 @@ h1 {
     padding: 10px;
     width: 100vw;
     height: auto;
+  }
+}
+#transferPopupWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(17, 17, 17, 0.4);
+  z-index: 4;
+}
+#transferPopup {
+  position: absolute;
+  padding: 32px;
+  top: calc(50% - (460px / 2));
+  left: calc(50% - (400px / 2));
+  background: #F8FDFD;
+  width: 400px;
+  min-height: 260px;
+  box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  z-index: 5;
+}
+.transferPopupTitle {
+  font-family: Inter;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+.transferPopupNormalText {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+.transferPopupInline {
+  display: inline;
+}
+.transferPopupBoldText {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #121212;
+  margin: 0;
+  padding: 0;
+}
+.transferPopupInput {
+  box-sizing: border-box;
+  width: 336px;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+}
+.transferPopupButton {  
+  width: 125px;
+  height: 38px;
+  background: #121212;
+  border: none;
+  border-radius: 50px;
+  font-family: 'neue-haas-grotesk-display';
+  text-transform: uppercase;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+  margin-top: 32px;
+}
+.transferPopupButton:hover {
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 2px solid #121212;
+  color: #121212;
+}
+@media only screen and (max-width: 1200px) {
+  #transferPopup {
+    left: 0;
+    width: calc(100% - 64px);
+  }
+  #transferPopupWrapper {
+    height: 110vh;
+    overflow: hidden;
   }
 }
 .scroll {
@@ -1803,6 +1897,17 @@ h1 {
 #nftBuyButton:hover {
   background-image: url('./assets/buyHover.svg');
   cursor: pointer;
+}
+
+/* a11y*/
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /* Toast messages*/

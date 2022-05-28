@@ -5,9 +5,8 @@ import { getAllFromRoot, getContractName, transferNft, verify_sha256 } from '../
 
 
 export default function TransferModal({token, artistList, newAction, setOpenModal}) {
-  const [receiver, setReceiver] = useState("receiver.near");
-  const [music, setMusic] = useState(null);
-  const [image, setImage] = useState(null);
+  const [receiver, setReceiver] = useState("");
+  const [transferInputOpen, setTransferInputOpen] = useState(false);
   const [selected, setSelected] = useState("info");
   const [all, setAll] = useState([]);                                     // All NFTs that belong to same root. Including root.
   const [vault, setVaultName] = useState("");  
@@ -15,10 +14,11 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
   const title = token.metadata.title;
   const description = token.metadata.description;
   const imageCID = token.metadata.media;
-  const imageHash = token.metadata.media_hash;
   const extra = JSON.parse(token.metadata.extra);
-  const musicCID = extra.music_cid;
-  const musicHash = extra.music_hash;
+
+  function close(e) {
+    if (e.key === 'Escape') setTransferInputOpen(false);
+  }
 
   useEffect(async () => {
     const vaultName = await getContractName();
@@ -28,6 +28,10 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
     const root = token.token_id.match(FonoRootRegEx)[0];
     const fetchResult = await getAllFromRoot(root);
     setAll(fetchResult);
+
+    window.addEventListener('keydown', close);
+
+    return () => window.removeEventListener('keydown', close);
   }, [])
   
 
@@ -68,43 +72,6 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
       });
   }
 
-  function loadImage() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://ipfs.io/ipfs/" + imageCID);
-    xhr.responseType = "blob";
-    xhr.onload = function() {
-      let blob = xhr.response;
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onload = async function(e) {
-        const hash_correct = await verify_sha256(blob, imageHash);
-        if (hash_correct) setImage(e.target.result);
-        else newAction({
-          errorMsg: "There was an error while loading the image!", errorMsgDesc: "The image hash is incorrect.",
-        });
-      }
-    }
-    xhr.send();
-  }
-  function loadMusic() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://ipfs.io/ipfs/" + musicCID);
-    xhr.responseType = "blob";
-    xhr.onload = function() {
-      let blob = xhr.response;
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onload = async function(e) {
-        const hash_correct = await verify_sha256(blob, musicHash);
-        if (hash_correct) setMusic(e.target.result);
-        else newAction({
-          errorMsg: "There was an error while loading the music!", errorMsgDesc: "The music hash is incorrect.",
-        });
-      }
-    }
-    xhr.send();
-  }
-
   function getNftStorageLink(tokenId) {
     console.log("tokenId inside getArtistIndex: ", tokenId);
 
@@ -116,8 +83,6 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
     return null;
   }
 
-  //loadMusic();
-  //loadImage();
 
   return (
     <div className="nftDetailsModal">
@@ -201,28 +166,31 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
           }
         </div>
         <div id="nftDetailsModalButtons">
+          <button onClick={() => setTransferInputOpen(true)}>Transfer</button>
+        </div>        
+      </div>
+
+      {transferInputOpen && (<div id="transferPopupWrapper" onClick={() => setTransferInputOpen(false)}>
+        <div id="transferPopup" onClick={e => e.stopPropagation()} >
+          <p className="transferPopupTitle">Confirm Transfer</p>
+          <div>
+            <p className="transferPopupNormalText transferPopupInline">{"You are about to send "}
+            <p className="transferPopupBoldText transferPopupInline">
+              {token.metadata.title} #{extra.generation}</p>
+            </p>
+            <p className="transferPopupNormalText transferPopupInline">{" to:"}</p>
+          </div>
+          <label className="visually-hidden">Receiver</label>
           <input 
             type={"text"} 
             value={receiver} 
             onChange={(e) => handleInputChange(e.target.value)} 
-            className="nftDetailsModalRightSideInput" 
+            className="transferPopupInput" 
           />
-          <button onClick={transfer} className="buttonFrame">Transfer</button>
+          <p className="transferPopupNormalText">You will be redirected to NEAR Web Wallet to confirm your transaction.</p>
+          <button className="transferPopupButton" onClick={transfer}>Transfer</button>
         </div>
-
-
-        
-
-        
-      </div>
-      {/*
-          <AudioPlayer music={null} cid={musicCID} />
-          
-      <div id="nftDetailsModalButtons">
-      </div>
-
-      nftStorageLink={getNftStorageLink(token.token_id)} 
-      */}
+      </div>)}
     </div>
   );
 }
