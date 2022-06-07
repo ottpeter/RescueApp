@@ -20,11 +20,8 @@ function LineVisualizer ({musicCID, play}) {
     audio.crossOrigin = "anonymous";                              // Without this, we would have CORS-error
     audio.load();
     audio.volume = 0.5;
-    const audioCtx = new AudioContext();
-    setAudioContext(audioCtx);
-    console.log(audioContext);
   }, []);
-
+  
   useEffect(() => {
     console.log("play", play)
     if (play) startPlaying();
@@ -34,12 +31,16 @@ function LineVisualizer ({musicCID, play}) {
   
   function connectVisualizer() {
     audioRef.current.play();
+
+    const audioCtx = new AudioContext();
+    setAudioContext(audioCtx);
+    console.log(audioContext);
     
     let canvas = canvasRef.current;
-    let audioSource = audioContext.createMediaElementSource(audioRef.current);
-    let analyzer = audioContext.createAnalyser();
+    let audioSource = audioCtx.createMediaElementSource(audioRef.current);
+    let analyzer = audioCtx.createAnalyser();
     audioSource.connect(analyzer);
-    analyzer.connect(audioContext.destination);
+    analyzer.connect(audioCtx.destination);
     analyzer.fftSize = 256;                                     // Column number
     const bufferLength = analyzer.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -94,6 +95,7 @@ function LineVisualizer ({musicCID, play}) {
   function stopPlaying() {
     console.log("stop")
     audioRef.current.pause();
+    //audioContext.disconnect();
   }
 
 

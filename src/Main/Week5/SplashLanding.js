@@ -9,6 +9,7 @@ import Footer from './Footer';
 import TopMenu from './TopMenu';
 import ObjectContainer from './ObjectContainer';
 import PlayerControls from './PlayerControls';
+import bgVideo from '../../assets/nn36.mp4';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
@@ -45,7 +46,10 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
       <ToastContainer position="bottom-right" autoClose={5000} />
-        <div id='svgContainer' style={{ backgroundImage: `url(${null})`, background: "black" }}>
+        <div id='svgContainer'>
+          <video id="splash5BackgroundVideo" autoPlay loop muted style={{ background: "#000000" }}>
+            <source src={bgVideo} type="video/mp4" />
+          </video>
           <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
           <main>
