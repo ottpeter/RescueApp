@@ -3,33 +3,40 @@ import React, { useEffect, useRef, useState } from 'react';
 
 function LineVisualizer ({musicCID, play}) {
   const canvasRef = useRef(null);
+  const audioRef = useRef(null);
   const [canvasContext, setCanvasContext] = useState(null);
-  
-  let audio = new Audio(`https://daorecords.io:8443/fetch?cid=${musicCID}`);
-  audio.crossOrigin = "anonymous";                              // Without this, we would have CORS-error
-  audio.load();
-  const audioContext = new AudioContext();
-  console.log(audioContext);
+  const [audioContext, setAudioContext] = useState(null);
+  const alpha = "0.5";
+
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || !audioRef.current) return;
     console.log("canvasRef ", canvasRef);
     const canvas = canvasRef.current;
     setCanvasContext(canvas.getContext('2d'));
+
+    console.log("audioRef: ", audioRef);
+    const audio = audioRef.current;
+    audio.crossOrigin = "anonymous";                              // Without this, we would have CORS-error
+    audio.load();
+    audio.volume = 0.5;
+    const audioCtx = new AudioContext();
+    setAudioContext(audioCtx);
+    console.log(audioContext);
   }, []);
 
   useEffect(() => {
-    if (play) experiment();
     console.log("play", play)
-    // otherwise stop
+    if (play) startPlaying();
+    if (!play) stopPlaying();
   }, [play])
 
   
   function connectVisualizer() {
-    audio.play();
+    audioRef.current.play();
     
     let canvas = canvasRef.current;
-    let audioSource = audioContext.createMediaElementSource(audio);
+    let audioSource = audioContext.createMediaElementSource(audioRef.current);
     let analyzer = audioContext.createAnalyser();
     audioSource.connect(analyzer);
     analyzer.connect(audioContext.destination);
@@ -42,50 +49,59 @@ function LineVisualizer ({musicCID, play}) {
     return [canvas, analyzer, bufferLength, dataArray, barWidth];
   }
 
-  function experiment() {
-      if (canvasContext) {
-        const [canvas, analyzer, bufferLength, dataArray, barWidth] = connectVisualizer();
-        
-        function animate() {
-          let fromLeft = 0;
-          canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-          analyzer.getByteFrequencyData(dataArray);
+  function startPlaying() {
+    if (canvasContext) {
+      const [canvas, analyzer, bufferLength, dataArray, barWidth] = connectVisualizer();
+      
+      function animate() {
+        let fromLeft = 0;
+        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+        analyzer.getByteFrequencyData(dataArray);
 
-          // Left side
-          for (let i = 0; i < bufferLength; i++) {
-            const barHeight = dataArray[i] * 0.9;                // Never hit the top of the canvas
-            
-            const red = i * barHeight/20;                        // We calculate colors based on the music
-            const green = i * 4;                                 // and space-from-left
-            const blue = barHeight / 2;
-            
-            canvasContext.fillStyle = `rgba(${red}, ${green}, ${blue}, 0.5)`
-            canvasContext.fillRect((canvas.width/2) - fromLeft, canvas.height - barHeight, barWidth, barHeight);
-            fromLeft = fromLeft + barWidth
-          }
-          // Right side
-          for (let i = 0; i < bufferLength; i++) {
-            const barHeight = dataArray[i] * 0.9;                // Never hit the top of the canvas
-            
-            const red = i * barHeight/20;                        // We calculate colors based on the music
-            const green = i * 4;                                 // and space-from-left
-            const blue = barHeight / 2;
-            
-            canvasContext.fillStyle = `rgba(${red}, ${green}, ${blue}, 0.5)`
-            canvasContext.fillRect(fromLeft + barWidth, canvas.height - barHeight, barWidth, barHeight);
-            fromLeft = fromLeft + barWidth
-          }
-
-          requestAnimationFrame(animate);
+        // Left side
+        for (let i = 0; i < bufferLength; i++) {
+          const barHeight = dataArray[i] * 0.9;                // Never hit the top of the canvas
+          
+          const red = i * barHeight/20;                        // We calculate colors based on the music
+          const green = i * 4;                                 // and space-from-left
+          const blue = barHeight / 2;
+          
+          canvasContext.fillStyle = `rgba(${red}, ${green}, ${blue}, ${alpha})`
+          canvasContext.fillRect((canvas.width/2) - fromLeft, (canvas.height/2) - barHeight, barWidth, barHeight);
+          canvasContext.fillRect((canvas.width/2) - fromLeft, (canvas.height/2), barWidth, barHeight);
+          fromLeft = fromLeft + barWidth
         }
-        animate();
+        // Right side
+        for (let i = 0; i < bufferLength; i++) {
+          const barHeight = dataArray[i] * 0.9;                // Never hit the top of the canvas
+          
+          const red = i * barHeight/20;                        // We calculate colors based on the music
+          const green = i * 4;                                 // and space-from-left
+          const blue = barHeight / 2;
+          
+          canvasContext.fillStyle = `rgba(${red}, ${green}, ${blue}, ${alpha})`
+          canvasContext.fillRect(fromLeft + barWidth, (canvas.height/2) - barHeight, barWidth, barHeight);
+          canvasContext.fillRect(fromLeft + barWidth, (canvas.height/2), barWidth, barHeight);
+          fromLeft = fromLeft + barWidth;
+        }
+
+        requestAnimationFrame(animate);
       }
+      animate();
+    }
   }
 
+  function stopPlaying() {
+    console.log("stop")
+    audioRef.current.pause();
+  }
+
+
   return (
-      <div id='testContainer' style={{  position: "absolute", zIndex: "5000"  }}>
-        <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} />
-      </div>
+    <>
+      <canvas id="lineVisualizer" ref={canvasRef} width={window.innerWidth} height={window.innerHeight} />
+      <audio ref={audioRef} src={`https://daorecords.io:8443/fetch?cid=${musicCID}`} />
+    </>
   );
 }
 

@@ -8,7 +8,7 @@ import SplashLandingGrid from './SplashLandingGrid';
 import Footer from './Footer';
 import TopMenu from './TopMenu';
 import ObjectContainer from './ObjectContainer';
-import flowerBackground from '../../assets/flowerBackground.jpg';
+import PlayerControls from './PlayerControls';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
@@ -45,17 +45,19 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
       <ToastContainer position="bottom-right" autoClose={5000} />
-        <div id='svgContainer' style={{ backgroundImage: `url(${flowerBackground})` }}>
+        <div id='svgContainer' style={{ backgroundImage: `url(${null})`, background: "black" }}>
           <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
           <main>
-            <button onClick={() => setPlay(!play)} style={{  position: "relative", zIndex: "50000" }} >{"CLICK ME! :)"}</button>
             <LineVisualizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} play={play} />
             <ObjectContainer />
+            
             <SplashLandingGrid
               tokenId={nftList[index].token_id}
               metadata={nftList[index].metadata}
               newAction={newAction}
+              playing={play}
+              setPlay={setPlay}
             />
           </main>
 

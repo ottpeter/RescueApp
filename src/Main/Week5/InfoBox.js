@@ -1,9 +1,7 @@
 import React from 'react';
 import AudioPlayerNftStorage from '../../Common/AudioPlayerNftStorage';
 import Box from './Box';
-import Week2Desc from './Desc';
-import SongName from './SongName';
-import titleImage from '../../assets/splash4_title.png';
+import Desc from './Desc';
 import ArtistList from './ArtistList';
 import Buy from './Buy';
 
@@ -18,23 +16,19 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     family: 'Inter',
     secondFamily: 'Inter',
     size: '14px',
-    color: "#000000",
+    color: "#F2F2F2",
     buttonSize: '16px',
     normalSize: '12px'
   }
 
   const aList = [
     {
-      name: "COMA-CHI",
-      twitter: "https://twitter.com/coma_chi",
-      insta: "https://www.instagram.com/coma_chi/",
-      youtube: "https://www.youtube.com/user/QueensRoom"
-    },
-    {
-      name: "MeccaGodzilla",
-      twitter: "https://twitter.com/meccagodzilla",
-      insta: "https://www.instagram.com/meccagodzilla",
-      youtube: "https://www.youtube.com/manafestvision"
+      name: "Rare Vandal",
+      telegram: "https://t.me/VanDAOism",
+      twitter: "https://twitter.com/vandigital",
+      insta: "https://www.instagram.com/vandigital/",
+      facebook: "https://www.facebook.com/Vandigital",
+      youtube: "https://www.youtube.com/channel/UCEW2jxaki4FH3TYKLJlVjwA"
     }
   ]
 
@@ -43,7 +37,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
 
   return (
     <div style={overflow}>
-      <SongName title={"Watch your mouth"} image={titleImage} fontSettings={fontSettings} />
+      
       <div id="splashInfoFlex" className="Week2splashInfoFlex">
         {(screenWidth < 1200) && (
           <div className="previewBoxItem">
@@ -52,7 +46,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
         )}
         <div id="Week2splashArtistDescBox">
           <ArtistList fontSettings={fontSettings} list={aList} />
-          <Week2Desc desc={metadata.description} fontSettings={fontSettings} />
+          <Desc desc={metadata.description} fontSettings={fontSettings} />
         </div>
         <Box gen={extra.generation} price={extra.original_price} fontSettings={fontSettings} />
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
-import DaoLogo from '../../assets/DaoLogoSplash2.svg';
+import DaoLogo from '../../assets/DaoLogoSplash3.svg';
 import RealityChain from '../../assets/RealityChainSplash2.svg';
 import CryptoVoxels from '../../assets/CryptoVoxelsSplash2.svg';
 
 
-/** Footer for Week4 */
+/** Footer for Week5 */
 export default function Footer() {
   return (
     <footer>

@@ -1,15 +1,13 @@
 import React from 'react'
 
 
-export default function SongName({title, fontSettings, image}) {
+export default function SongName({title, image}) {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   const overflow = ((screenHeight < 814) && (screenWidth > 1200)) ? true : false;
 
   const style = {
-    fontFamily: fontSettings.family,
-    color: fontSettings.color,
-    fontSize: fontSettings.size,
+    fontFamily: "Inter",
     fontWeight: "normal",
     lineHeight: "84px",
     letterSpacing: "0.01em",
@@ -27,13 +25,13 @@ export default function SongName({title, fontSettings, image}) {
 
   if (!overflow) {
     return (
-      <div id="splashTitleWeek4">
+      <div id="splashTitleWeek5">
         <img src={image} alt={title} />
       </div>
     )
   } else {
     return (
-      <div id="splashTitleWeek4">
+      <div id="splashTitleWeek5">
         <img src={image} alt={title} style={plc} />
       </div>
     )

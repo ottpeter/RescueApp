@@ -27,13 +27,13 @@ export default function Box({gen, price, fontSettings}) {
     color: fontSettings.color,
     lineHeight: "17px",
     letterSpaceing: "0.05em",
-    color: "#333333"
+    color: "#F2F2F2"
   };
   const valueStyle = {
     fontFamily: fontSettings.family,
-    color: "#5D06C4",
-    fontSize: "24px",
-    lineHeight: "29px",
+    color: "#FF246B",
+    fontSize: "20px",
+    lineHeight: "24px",
     letterSpacing: "0.05em",
     fontWeight: "bold"
   }

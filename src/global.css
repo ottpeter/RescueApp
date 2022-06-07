@@ -1486,11 +1486,40 @@ h1 {
   padding-right: 120px;
   
 }
+#splashLandingGrid5 {
+  display: grid;
+  /*height: 100%;*/
+  grid-template: 20% 80% / 50% 50%;
+  margin-top: var(--nav-size);
+  margin-bottom: var(--footer-size);
+  /*padding: 120px;*/
+  
+  height: calc(100vh - var(--nav-size) - var(--footer-size));
+  padding-left: 120px;
+  padding-right: 120px;
+  position: relative;
+  z-index: 3;
+  
+}
 #splashPicture {
   /*grid-area: picture;*/
   margin: auto;
   height: 500px;
   z-index: 1;
+}
+#pictureContainer5 {
+  margin: auto;
+  width: 500px;
+  height: 500px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+#splashPicture5 {
+  height: 500px;
+  filter: drop-shadow(0px 2px 50px rgba(0, 0, 0, 0.5));
+  border-radius: 10px;
+  position: relative;
+  z-index: 3;
 }
 #splashInfoFlex {
   /*grid-area: info;*/
@@ -1579,6 +1608,17 @@ h1 {
   margin-bottom: -240px;
   margin-left: -160px;
   position: relative;
+  z-index: 2;
+}
+#splashTitleWeek5 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+  align-self: center;
+}
+#splashTitleWeek5 img {
+  position: relative;
+  max-width: 85%;
   z-index: 2;
 }
 .splashInfoElementFirst {
@@ -1705,6 +1745,26 @@ h1 {
   background: #F2F2F2;
   color: #333333;
   border: 2px solid #333333;
+  cursor: pointer;
+}
+#splashBuy5 {
+  margin-left: calc((386px / 2) + 44px);
+  margin-top: var(--spacing-2);
+  position: relative;
+  z-index: 2;
+}
+#splashBuy5 button {
+  background: #FF246B;
+  color: #F2F2F2;
+  border-radius: 50px;
+  border: none;
+  width: 96px;
+  height: 39px;
+}
+#splashBuy5 button:hover {
+  background: #F2F2F2;
+  color: #FF246B;
+  border: 2px solid #FF246B;
   cursor: pointer;
 }
 
@@ -2056,8 +2116,22 @@ h1 {
 }
 
 
+/** Line Eq*/
 
+#lineVisualizer {
+  position: absolute;
+  z-index: 2;
+}
 
+#lineEqControls {
+  position: relative;
+  z-index: 4;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  top: calc(-250px - 1px);
+  left: calc(250px - 100px);
+}
 
 
 

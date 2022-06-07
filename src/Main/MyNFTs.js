@@ -45,6 +45,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
     if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 3;
     if (tokenId.includes('fono-root-5-') || tokenId === 'fono-root-5') return 4;
+    if (tokenId.includes('fono-root-6-') || tokenId === 'fono-root-6') return 5;
     return 0;
   }
 
@@ -161,6 +162,16 @@ const artistLists = [
       twitter: "https://twitter.com/meccagodzilla",
       insta: "https://www.instagram.com/meccagodzilla",
       youtube: "https://www.youtube.com/manafestvision"
+    }
+  ],
+  [
+    {
+      name: "Rare Vandal",
+      telegram: "https://t.me/VanDAOism",
+      twitter: "https://twitter.com/vandigital",
+      insta: "https://www.instagram.com/vandigital/",
+      facebook: "https://www.facebook.com/Vandigital",
+      youtube: "https://www.youtube.com/channel/UCEW2jxaki4FH3TYKLJlVjwA"
     }
   ]
 ];
