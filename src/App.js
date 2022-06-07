@@ -15,6 +15,7 @@ import Withdraw from './Admin/Withdraw';
 import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
 import Week4SplashLanding from './Main/Week4/SplashLanding';
+import Week5SplashLanding from './Main/Week5/SplashLanding';
 
 
 export default function App() {
@@ -128,7 +129,7 @@ export default function App() {
           exact
           path='testnft0926'
           element={
-            <Week4SplashLanding
+            <Week5SplashLanding
               index={4} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
