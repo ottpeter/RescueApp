@@ -239,7 +239,7 @@ nav {
   border-radius: 1px;
   right: 478px;
   top: var(--nav-size);
-  z-index: 2;
+  z-index: 5;
 }
 #dropdownContainer a {
   font-family: Inter;
@@ -1489,7 +1489,7 @@ h1 {
 #splashLandingGrid5 {
   display: grid;
   /*height: 100%;*/
-  grid-template: 20% 80% / 50% 50%;
+  grid-template: 12% 88% / 50% 50%;
   margin-top: var(--nav-size);
   margin-bottom: var(--footer-size);
   /*padding: 120px;*/
@@ -1498,7 +1498,7 @@ h1 {
   padding-left: 120px;
   padding-right: 120px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   
 }
 #splashPicture {
@@ -1614,7 +1614,6 @@ h1 {
   grid-column-start: 1;
   grid-column-end: 3;
   text-align: center;
-  align-self: center;
 }
 #splashTitleWeek5 img {
   position: relative;
@@ -1872,6 +1871,34 @@ h1 {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+  #splashLandingGrid5 {
+    padding: 0;
+    grid-template: auto auto / auto auto;
+  }
+  #splash5RightContainer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  #splashPicture5 {
+    height: 50vw;
+    margin: auto;
+    text-align: center;
+  }
+  #pictureContainer5 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+  }
+  #splashBuy5 {
+    margin: auto;
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+    width: 100vw;
+    text-align: center;
+  }
+  .week2SplashSmallInfoBoxElement {
+    height: auto;
   }
 }
 
@@ -2132,6 +2159,7 @@ h1 {
 #lineVisualizer {
   position: absolute;
   z-index: 2;
+  top: 20vh;
 }
 
 #lineEqControls {
@@ -2143,7 +2171,18 @@ h1 {
   top: calc(-250px - 1px);
   left: calc(250px - 100px);
 }
-
+@media only screen and (max-width: 1200px) { 
+  #lineEqControls {
+    width: 100vw;
+    height: auto;
+    
+    left: 0px;
+    top: 0px;
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+    text-align: center;
+  }
+}
 
 
 

@@ -6,7 +6,7 @@ function LineVisualizer ({musicCID, play}) {
   const audioRef = useRef(null);
   const [canvasContext, setCanvasContext] = useState(null);
   const [audioContext, setAudioContext] = useState(null);
-  const alpha = "0.5";
+  const alpha = "1.0";
 
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function LineVisualizer ({musicCID, play}) {
 
   
   function connectVisualizer() {
+    console.log("Connecting visualizer...")
     audioRef.current.play();
 
     const audioCtx = new AudioContext();
@@ -51,6 +52,11 @@ function LineVisualizer ({musicCID, play}) {
   }
 
   function startPlaying() {
+    if (audioContext) {                                         // This will happen when the user pauses -> restarts the audio
+      audioRef.current.play();
+      return;
+    }
+
     if (canvasContext) {
       const [canvas, analyzer, bufferLength, dataArray, barWidth] = connectVisualizer();
       
@@ -58,6 +64,7 @@ function LineVisualizer ({musicCID, play}) {
         let fromLeft = 0;
         canvasContext.clearRect(0, 0, canvas.width, canvas.height);
         analyzer.getByteFrequencyData(dataArray);
+        //console.log(dataArray)
 
         // Left side
         for (let i = 0; i < bufferLength; i++) {
@@ -66,6 +73,7 @@ function LineVisualizer ({musicCID, play}) {
           const red = i * barHeight/20;                        // We calculate colors based on the music
           const green = i * 4;                                 // and space-from-left
           const blue = barHeight / 2;
+          //console.log(`red: ${red}  green: ${green}  blue: ${blue}`);
           
           canvasContext.fillStyle = `rgba(${red}, ${green}, ${blue}, ${alpha})`
           canvasContext.fillRect((canvas.width/2) - fromLeft, (canvas.height/2) - barHeight, barWidth, barHeight);
@@ -93,9 +101,8 @@ function LineVisualizer ({musicCID, play}) {
   }
 
   function stopPlaying() {
-    console.log("stop")
+    console.log("stopPlaying...")
     audioRef.current.pause();
-    //audioContext.disconnect();
   }
 
 

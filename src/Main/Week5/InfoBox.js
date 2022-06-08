@@ -10,7 +10,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   const extra = JSON.parse(metadata.extra);
-  const overflow = ((screenHeight < 814) && (screenWidth > 1200)) ? ({ overflowY: "scroll" }) : null;
+  
 
   const fontSettings = {
     family: 'Inter',
@@ -36,14 +36,8 @@ export default function InfoBox({tokenId, metadata, newAction}) {
 
 
   return (
-    <div style={overflow}>
-      
+    <div id="splash5RightContainer">
       <div id="splashInfoFlex" className="Week2splashInfoFlex">
-        {(screenWidth < 1200) && (
-          <div className="previewBoxItem">
-            <AudioPlayerNftStorage nftStorageLink={fetchLink} color={"#333333"} dark={true} />
-          </div>
-        )}
         <div id="Week2splashArtistDescBox">
           <ArtistList fontSettings={fontSettings} list={aList} />
           <Desc desc={metadata.description} fontSettings={fontSettings} />

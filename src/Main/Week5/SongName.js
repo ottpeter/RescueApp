@@ -18,8 +18,6 @@ export default function SongName({title, image}) {
     marginLeft: "0 !important",
     width: "100%",
     marginLeft: 0,
-    marginTop: "-100px",
-    marginBottom: "-150px",
   }
 
 

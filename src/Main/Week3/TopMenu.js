@@ -44,6 +44,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
               <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
               <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
               <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
+              <Link to={'/weekfive'} className="controlsButton hamburgerElement">Week Five</Link>
           </div>
         )}
       </>
@@ -67,6 +68,7 @@ export default function TopMenuSplash2s({setShowWallet, showWallet}) {
             <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
             <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
             <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
+            <Link to={'/weekfive'} className="controlsButton menuButton">Week Five</Link>
           </div>
         )}
 
