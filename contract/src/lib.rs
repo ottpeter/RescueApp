@@ -97,7 +97,7 @@ impl Contract {
                 spec: "nft-1.0.0".to_string(),
                 name: "SPLASH".to_string(),
                 symbol: "SPLASH".to_string(),
-                icon: Some("https://bafkreiavs3lq4vcbd3zo6dnaztwxfgs4wl7s6jvo5chxu45qthw2ddqgfu.ipfs.nftstorage.link/".to_string()),
+                icon: Some("https://bafkreidcyhpdyo7kq4kdcr3yr3l5ewyey6mvzqlxjm67n4opqxhw2zllja.ipfs.nftstorage.link/".to_string()),
                 base_uri: None,
                 reference: None,
                 reference_hash: None,
