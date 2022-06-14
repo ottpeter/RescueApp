@@ -46,6 +46,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 3;
     if (tokenId.includes('fono-root-5-') || tokenId === 'fono-root-5') return 4;
     if (tokenId.includes('fono-root-6-') || tokenId === 'fono-root-6') return 5;
+    if (tokenId.includes('fono-root-7-') || tokenId === 'fono-root-7') return 6;
     return 0;
   }
 
@@ -172,6 +173,14 @@ const artistLists = [
       insta: "https://www.instagram.com/vandigital/",
       facebook: "https://www.facebook.com/Vandigital",
       youtube: "https://www.youtube.com/channel/UCEW2jxaki4FH3TYKLJlVjwA"
+    }
+  ],
+  [
+    {
+      name: "Supa Mojo",
+      twitter: "https://twitter.com/missninjamojo",
+      insta: "https://www.instagram.com/ojommojo/",
+      youtube: "https://www.youtube.com/watch?v=un7-k7qpF74"
     }
   ]
 ];

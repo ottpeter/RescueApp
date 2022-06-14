@@ -16,6 +16,7 @@ import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
 import Week4SplashLanding from './Main/Week4/SplashLanding';
 import Week5SplashLanding from './Main/Week5/SplashLanding';
+import Week6SplashLanding from './Main/Week6/SplashLanding';
 import Migration from './Migration';
 
 
@@ -135,8 +136,8 @@ export default function App() {
           exact
           path='testnft0926'
           element={
-            <Week5SplashLanding
-              index={6} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
+            <Week6SplashLanding
+              index={1} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
         />
@@ -182,6 +183,15 @@ export default function App() {
           element={
             <Week5SplashLanding 
               index={6} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='weeksix'
+          element={
+            <Week6SplashLanding 
+              index={7} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
             />
           }
         />

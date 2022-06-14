@@ -1620,6 +1620,16 @@ h1 {
   max-width: 85%;
   z-index: 2;
 }
+#splashTitleWeek6 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+#splashTitleWeek6 img {
+  position: relative;
+  height: 20vh;
+  z-index: 4;
+}
 #splash5BackgroundVideo {
   width: 100vw;
   height: 100vh;
@@ -1777,6 +1787,25 @@ h1 {
   border: 2px solid #FF246B;
   cursor: pointer;
 }
+#splashBuy6 {
+  margin-left: calc((386px / 2) + 44px);
+  margin-top: var(--spacing-2);
+  position: relative;
+  z-index: 2;
+}
+#splashBuy6 button {
+  background: linear-gradient(98.5deg, #6AE4CE 0%, #4440FF 109.06%);
+  color: #F2F2F2;
+  border-radius: 50px;
+  border: none;
+  width: 96px;
+  height: 39px;
+}
+#splashBuy6 button:hover {
+  background: linear-gradient(98.5deg, #6AE4CE 0%, #4440FF 109.06%);
+  color: yellow;
+  cursor: pointer;
+}
 
 
 .splash-eq {
@@ -1862,6 +1891,10 @@ h1 {
     margin-bottom: -66px;
     margin-left: 0;
   }
+  #splashTitleWeek6 img {
+    height: auto;
+    width: 100%;
+  }
   #splashBuy3 {
     margin-left: 0;
     text-align: center;
@@ -1871,6 +1904,10 @@ h1 {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+  #splashBuy6 {
+    margin: auto;
+    text-align: center;
   }
   #splashLandingGrid5 {
     padding: 0;
@@ -1966,6 +2003,44 @@ h1 {
   50%{background-position:53% 100%}
   100%{background-position:48% 0%}
 }
+
+#backgroundContainerSplashThree {
+  background-image: url('./assets/stellarBackground.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+#colorContainerSplashSix {
+  background: linear-gradient(50deg, #73b8ea, #b4e870);
+  background-size: 400% 400%;
+
+  -webkit-animation: WeekSixAnimation 37s ease infinite;
+  -moz-animation: WeekSixAnimation 37s ease infinite;
+  -o-animation: WeekSixAnimation 37s ease infinite;
+  animation: WeekSixAnimation 37s ease infinite;
+}
+
+@-webkit-keyframes WeekSixAnimation {
+  0%{background-position:0% 97%}
+  50%{background-position:100% 4%}
+  100%{background-position:0% 97%}
+}
+@-moz-keyframes WeekSixAnimation {
+  0%{background-position:0% 97%}
+  50%{background-position:100% 4%}
+  100%{background-position:0% 97%}
+}
+@-o-keyframes WeekSixAnimation {
+  0%{background-position:0% 97%}
+  50%{background-position:100% 4%}
+  100%{background-position:0% 97%}
+}
+@keyframes WeekSixAnimation {
+  0%{background-position:0% 97%}
+  50%{background-position:100% 4%}
+  100%{background-position:0% 97%}
+}
+
 
 #backgroundContainerSplashThree {
   background-image: url('./assets/stellarBackground.jpg');
@@ -2168,7 +2243,7 @@ h1 {
   width: 200px;
   height: 200px;
   text-align: center;
-  top: calc(-250px - 1px);
+  top: calc(-250px - 30px);
   left: calc(250px - 100px);
 }
 @media only screen and (max-width: 1200px) { 

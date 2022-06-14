@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import hamburger from '../../assets/hamburger.svg'
 import 'regenerator-runtime/runtime';
 import Wallet from './Wallet';
-import hamburger from '../assets/hamburger.svg';
-import daoLogo from '../assets/DaoLogo.svg';
+import logo from '../../assets/SoundSplashLogo2.svg'
 
 
-/** Top Menu for Main */
-export default function TopMenuSplash1({setShowWallet, showWallet}) {
+/** Top Menu for Week4 */
+export default function TopMenu({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
   const [splashMenuOpen, setSplashMenuOpen] = useState(false);
@@ -22,15 +22,14 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
     setShowWallet(false);
   }
 
-
   if (screenWidth < 1200) {                               // This is the hamburger view
     return (
       <>
-        <nav id="splash-1-nav">
+        <nav id="splash-1-nav" className="splash-2-nav">
           <button onClick={hamburgerClicked} className="hamburgerIcon">
             <img src={hamburger} alt='Menu'></img>
           </button>
-          <Wallet 
+          <Wallet
             setShowWallet={setShowWallet}
             showWallet={showWallet}
             setMenuOpen={setMenuOpen}
@@ -47,34 +46,35 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
               <Link to={'/weekthree'} className="controlsButton hamburgerElement">Week Three</Link>
               <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
               <Link to={'/weekfive'} className="controlsButton hamburgerElement">Week Five</Link>
-              <Link to={'/weeksix'} className="controlsButton hamburgerElement">Week Six</Link>
           </div>
         )}
       </>
     )
   } else {                                                // This is the normal view
     return (
-      <nav id="splash-1-nav">
-        <Link to={'/'} className='daoLogo'>
-          <img src={daoLogo} alt={'DAOrevords'}/>
-          <p>.io</p>
-        </Link>
-        <button onClick={splashDropdownClicked} className="controlsButton menuButton">SPLASH DROPS</button>
-        <Link to={'/my-nfts'} className="controlsButton menuButton">MY NFTS</Link>
+      <nav id="splash-1-nav" className="splash-2-nav">
+        <div className='splashLogo'>
+          <Link to={'/'}>
+            <img src={logo} alt={'SoundSplash'} />
+          </Link>
+        </div>
+        <Link to={''} className="controlsButton menuButton InterMenu"></Link>
+        <Link to={''} className="controlsButton menuButton InterMenu"></Link>
+        <button onClick={splashDropdownClicked} className="controlsButton menuButton InterMenu">SPLASH DROPS</button>
+        <Link to={'/my-nfts'} className="controlsButton menuButton InterMenu">MY NFTS</Link>
 
         {splashMenuOpen && (
-          <div id="dropdownContainer">
+          <div id="dropdownContainer" className="dropdownContainerSplashTwo">
             {/** List of the drops, we will append this as we go */}
             <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
             <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
             <Link to={'/weekthree'} className="controlsButton menuButton">Week Three</Link>
             <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
             <Link to={'/weekfive'} className="controlsButton menuButton">Week Five</Link>
-            <Link to={'/weeksix'} className="controlsButton menuButton">Week Six</Link>
           </div>
         )}
 
-        <Wallet 
+        <Wallet
           setShowWallet={setShowWallet}
           showWallet={showWallet}
           setMenuOpen={setMenuOpen}
@@ -83,5 +83,5 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
       </nav>
     )
   }
-
+  
 }
