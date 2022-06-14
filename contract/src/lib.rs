@@ -97,7 +97,7 @@ impl Contract {
                 spec: "nft-1.0.0".to_string(),
                 name: "SPLASH".to_string(),
                 symbol: "SPLASH".to_string(),
-                icon: Some("https://bafkreidcyhpdyo7kq4kdcr3yr3l5ewyey6mvzqlxjm67n4opqxhw2zllja.ipfs.nftstorage.link/".to_string()),
+                icon: Some("https://bafkreidcyhpdyo7kq4kdcr3yr3l5ewyey6mvzqlxjm67n4opqxhw2zllja.ipfs.nftstorage.link/s".to_string()),
                 base_uri: None,
                 reference: None,
                 reference_hash: None,
@@ -136,6 +136,7 @@ impl Contract {
     /// * `amount`: amount to copy from index
     #[payable]
     pub fn copy(orig: AccountId, from_index: U128, amount: u64) {
+        return;
         log!("Copying NFTS based on the state of an existing contract...");
 
         ext_contract_orig::nft_tokens(
@@ -150,5 +151,23 @@ impl Contract {
             0, // yocto NEAR to attach to the callback
             Gas(100_000_000_000_000) // gas to attach to the callback
         ));
+    }
+
+    /// Temporary function
+    /// Change every fono-root.optr.near to nft.soundsplash.near
+    #[payable]
+    pub fn alter_vault(&mut self, old_vault: AccountId) {
+        return;
+        let tokens_to_alter: Vec::<TokenId> = self.tokens_per_owner.get(&old_vault).unwrap().iter().collect();
+
+        for current_token in tokens_to_alter {
+            self.internal_transfer(                                   // Transfer the NFT from Vault to the new owner
+                &old_vault, 
+                &env::current_account_id(), 
+                &current_token, 
+                None,                                                 // No approval ID
+                None                                                  // No memo
+            );
+        }
     }
 }

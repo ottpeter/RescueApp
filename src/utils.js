@@ -2,7 +2,7 @@ import { connect, Contract, keyStores, WalletConnection, utils, KeyPair } from '
 import * as nearAPI from "near-api-js";
 const CryptoJS = require('crypto-js');
 
-const mode = 'development';       // 'mainnet' || 'development'
+const mode = 'mainnet';       // 'mainnet' || 'development'
 
 /** Real config. It's async. It was important when we tried to clone the site, so the config is not burnt in */
 async function getRealConfig(env) {
@@ -165,7 +165,8 @@ export async function getBuyableTokens() {
   }
 
   await window.contract.nft_tokens(options)
-    .then((response) => {                                          
+    .then((response) => {    
+      console.log("RESPONSE: ", response)                                      
       inVault = response.filter((nft) => nft.owner_id === contractAccount);
       rootIDs = inVault.map((nft) => {                             // First we make a list of the NFTs that are in the Vault
         const pos = nft.token_id.lastIndexOf("-");

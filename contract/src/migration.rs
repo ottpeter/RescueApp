@@ -53,3 +53,24 @@ impl Contract {
         }
     }
 }
+
+/*
+    /// Temporary function
+    /// Change every fono-root.optr.near to nft.soundsplash.near
+    #[payable]
+    pub fn alter_vault(&mut self, old_vault: AccountId) {
+        let tokens_to_alter: Vec::<TokenId> = self.tokens_per_owner.get(&old_vault).unwrap().iter().collect();
+
+        for current_token in tokens_to_alter {
+            self.internal_transfer(                                   // Transfer the NFT from Vault to the new owner
+                &old_vault, 
+                &env::current_account_id(), 
+                &current_token, 
+                None,                                                 // No approval ID
+                None                                                  // No memo
+            );
+        }
+    }
+
+    // The above function was needed to fix the problem that the Vault address changed as well. We will remove this function now for safety reasons.
+*/
