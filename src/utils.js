@@ -2,6 +2,8 @@ import { connect, Contract, keyStores, WalletConnection, utils, KeyPair } from '
 import * as nearAPI from "near-api-js";
 const CryptoJS = require('crypto-js');
 
+const mode = 'development';       // 'mainnet' || 'development'
+
 /** Real config. It's async. It was important when we tried to clone the site, so the config is not burnt in */
 async function getRealConfig(env) {
   let contractName;
@@ -48,7 +50,7 @@ export async function getContractName() {
 
 // Initialize contract & set global variables
 export async function initContract() {
-  const nearConfig = await getRealConfig('mainnet');
+  const nearConfig = await getRealConfig(mode);
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig));
   
   window.walletConnection = new WalletConnection(near)  
@@ -56,13 +58,13 @@ export async function initContract() {
   
   window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
     viewMethods: ['nft_metadata', 'nft_token', 'nft_tokens_for_owner', 'nft_tokens', 'get_crust_key', 'get_next_buyable', 'view_guestbook_entries'],
-    changeMethods: ['new_default_meta', 'new', 'mint_root', 'set_crust_key', 'buy_nft_from_vault', 'transfer_nft', 'create_guestbook_entry', 'withdraw'],
+    changeMethods: ['new_default_meta', 'new', 'mint_root', 'set_crust_key', 'buy_nft_from_vault', 'transfer_nft', 'create_guestbook_entry', 'withdraw', 'copy'],
   })
 }
 
 export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, musicHash, price, revenue, foreverRoyalty) {
   let success = false;
-  const contractAccount = (await getRealConfig('mainnet')).contractName;
+  const contractAccount = (await getRealConfig(mode)).contractName;
   
   const root_args = {
     receiver_id: window.accountId,
@@ -154,7 +156,7 @@ export async function buyNFTfromVault(tokenId, price) {
 export async function getBuyableTokens() {
   let rootIDs = null;
   let inVault = null;
-  const contractAccount = (await getRealConfig('mainnet')).contractName
+  const contractAccount = (await getRealConfig(mode)).contractName
 
   console.log(window.accountId)
   console.log(contractAccount)
@@ -269,7 +271,7 @@ export async function getGuestBookEntries() {
 
 // does not work
 export async function checkIfAccountExists() {
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('mainnet')));
+  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig(mode)));
   const account = await near.account("account-ain9ahzair.testnet");
   const result = await account.getAccountDetails();
   return result;
@@ -325,7 +327,7 @@ export async function withdrawFunds(amount) {
 }
 
 export async function getBalance() {
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig('mainnet')));
+  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig(mode)));
   const account = await near.account(window.accountId);
   const yocto =  await account.getAccountBalance();
   return utils.format.formatNearAmount(yocto.available);
@@ -346,5 +348,5 @@ export function logout() {
 }
 
 export async function login() {
-  window.walletConnection.requestSignIn((await getRealConfig('mainnet')).contractName)
+  window.walletConnection.requestSignIn((await getRealConfig(mode)).contractName)
 }

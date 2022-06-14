@@ -54,8 +54,8 @@ impl Contract {
         }
         log!(" Revenue Table {:?}", revenue);
 
-        let token_id = "fono-root-".to_string() + &self.root_nounce.to_string();                // We generate the ID for the RootNFT. The RootNFT ID only has 1 number in it, like fono-root-22
-        self.root_nounce = self.root_nounce + 1;                                                // We increment nounce to avoid collision
+        let token_id = "fono-root-".to_string() + &self.root_nonce.to_string();                // We generate the ID for the RootNFT. The RootNFT ID only has 1 number in it, like fono-root-22
+        self.root_nonce = self.root_nonce + 1;                                                // We increment nonce to avoid collision
 
         let token = Token {
             owner_id: receiver_id,
@@ -71,7 +71,7 @@ impl Contract {
         );
 
 
-        // Although `instance_nonce` is sent from front-end, we make sure that it's value is 0
+        // Although `instance_nounce` is sent from front-end, we make sure that it's value is 0
         let mut modified_metadata = metadata;
         let mut extra_obj: Extra = serde_json::from_str(&modified_metadata.extra.unwrap()).unwrap();
         extra_obj.instance_nounce = 0;

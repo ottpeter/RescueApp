@@ -16,6 +16,7 @@ import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
 import Week4SplashLanding from './Main/Week4/SplashLanding';
 import Week5SplashLanding from './Main/Week5/SplashLanding';
+import Migration from './Migration';
 
 
 export default function App() {
@@ -103,6 +104,11 @@ export default function App() {
           exact
           path='init'
           element={ configObj.admin?<button onClick={initContract}>INIT</button> : <p>loading...</p> }
+        />
+        <Route
+          exact
+          path='migration'
+          element={<Migration contractName={configObj.contractName} />}
         />
         <Route 
           exact

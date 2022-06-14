@@ -49,7 +49,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
         </div>
         {safariAgent &&  <div className="previewBoxItem" style={{ marginTop: "32px" }}>
           <AudioPlayerNftStorage 
-            nftStorageLink={`https://daorecords.io:8443/fetch?cid=${extra.music_cid}`} 
+            nftStorageLink={fetchLink} 
             color={"#F2F2F2"}
             dark={false}
         /></div>}
