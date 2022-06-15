@@ -11,6 +11,7 @@ import Pending from './Activity/Pending';
 import Ok from './Activity/Ok';
 import Err from './Activity/Err';
 import MyNFTs from './Main/MyNFTs';
+import TokenModal from './Main/TokenModal';
 import Withdraw from './Admin/Withdraw';
 import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
@@ -18,6 +19,7 @@ import Week4SplashLanding from './Main/Week4/SplashLanding';
 import Week5SplashLanding from './Main/Week5/SplashLanding';
 import Week6SplashLanding from './Main/Week6/SplashLanding';
 import Migration from './Migration';
+import TransferModal from './Main/TransferModal';
 
 
 export default function App() {
@@ -130,6 +132,10 @@ export default function App() {
           element={
             <MyNFTs newAction={newAction} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowWallet={setShowWallet} showWallet={showWallet} />
           }
+        />
+        <Route
+          path='nfts/:tokenId'
+          element={<TransferModal newAction={newAction} />}
         />
         {/** The 12 SoundSplash NFT Landing Pages */}
         <Route 

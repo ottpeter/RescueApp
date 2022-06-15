@@ -1,38 +1,64 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import AudioPlayer from '../Common/AudioPlayer';
 import AudioPlayerNftStorage from "../Common/AudioPlayerNftStorage";
-import { getAllFromRoot, getContractName, transferNft, verify_sha256 } from '../utils'
+import { getAllFromRoot, getContractName, getNftDetails, transferNft, verify_sha256 } from '../utils';
+import artistLists from '../artistLists.json';
 
 
-export default function TransferModal({token, artistList, newAction, setOpenModal}) {
+export default function TransferModal({newAction}) {
+  let params = useParams();
+  let navigate = useNavigate();
+  let location = useLocation();
   const [receiver, setReceiver] = useState("");
   const [transferInputOpen, setTransferInputOpen] = useState(false);
   const [selected, setSelected] = useState("info");
   const [all, setAll] = useState([]);                                     // All NFTs that belong to same root. Including root.
   const [vault, setVaultName] = useState("");  
+  const [token, setToken] = useState(null);
+  const [extra, setExtra] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
+  const artistList = artistLists[getArtistIndex(params.tokenId)];
   
-  const title = token.metadata.title;
-  const description = token.metadata.description;
-  const imageCID = token.metadata.media;
-  const extra = JSON.parse(token.metadata.extra);
 
   function close(e) {
-    if (e.key === 'Escape') setTransferInputOpen(false);
+    if (e.key === 'Escape') navigate('/my-nfts')
   }
+  
+  useEffect(async () => {
+    const urlParams = window.location.search;
+    if (urlParams.includes('errorCode')) {
+      newAction({
+        errorMsg: "There was an error while processing the transaction!", errorMsgDesc: "errorCode",
+      }); 
+    } else if (urlParams.includes('transactionHashes')) {
+      newAction({
+        successMsg: "NFT transfered!", successMsgDesc: "You successfully transfered the NFT!",
+      });
+    }
+  }, []);
 
   useEffect(async () => {
+    setToken(null);
+    setExtra(null);
+
     const vaultName = await getContractName();
     setVaultName(vaultName);
-
+    
+    const fetchedToken = await getNftDetails(params.tokenId);
+    setToken(fetchedToken);
+    setExtra(JSON.parse(fetchedToken.metadata.extra));
+    setIsOwner(fetchedToken.owner_id === window.accountId);
+    
     const FonoRootRegEx = /fono-root-[0-9]{1,9}/;
-    const root = token.token_id.match(FonoRootRegEx)[0];
+    const root = fetchedToken.token_id.match(FonoRootRegEx)[0];
     const fetchResult = await getAllFromRoot(root);
     setAll(fetchResult);
 
     window.addEventListener('keydown', close);
 
     return () => window.removeEventListener('keydown', close);
-  }, [])
+  }, [location])
   
 
   async function handleInputChange(accountName) {
@@ -72,32 +98,23 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
       });
   }
 
-  function getNftStorageLink(tokenId) {
-    console.log("tokenId inside getArtistIndex: ", tokenId);
 
-    /** We will manually need to update this list throughout the SoundSplash */
-    if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return "https://bafybeiehqpn5z5izotm5ddnhvqkoj3ovylgqnnpz3wuhmrhurwh5dwanii.ipfs.nftstorage.link/";
-    if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return "https://bafybeid2ojnkez22otr3aeajs33vnsl7do6vwhsreufzn53zwirjn4lrb4.ipfs.nftstorage.link/";
-    if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return "https://nftstorage.link/ipfs/bafybeif55rfqftq6jkpuabvxuj2zm555zb5dpr6z4ha4m6dpfxodu5lobi";
-    if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return "https://bafybeihpdjr36dqneqfunibpr56sm2i4h5hsykho5dov2xtflglnh6sceq.ipfs.nftstorage.link/";
-    return null;
-  }
+  if (!token || !extra) return <p>Loading...</p>;
 
-
-  return (
-    <div className="nftDetailsModal">
+  return (    
+    <div className="nftDetailsModal" key={token.id}>
       <div id="nftDetailsModalPicture">
-        <img src={`https://daorecords.io:8443/fetch?cid=${imageCID}`} alt={title}></img>
+        <img src={`https://daorecords.io:8443/fetch?cid=${token.metadata.media}`} alt={token.metadata.title}></img>
       </div>
       <div id="nftDetailsModalRightSide">
-        <button id="nftDetailsModalClose" onClick={() => setOpenModal(false)}><CloseButton /></button>
+        <button id="nftDetailsModalClose" onClick={() => navigate('/my-nfts')}><CloseButton /></button>
         <div id="nftDetailsModalTitleAndGen">
           <p>{token.metadata.title}</p>
-          <p>#{JSON.parse(token.metadata.extra).generation}</p>
+          <p>#{extra.generation}</p>
         </div>
         <ul id="nftDetailsModalArtistList">
-          {artistList.map((artist) => (
-            <li>
+          {artistList.map((artist, i) => (
+            <li key={"artist-" + i}>
               {artist.name}
             </li>
           ))}
@@ -125,7 +142,7 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
         <div className={"nftDetailsModalSwitchableBox " + (selected !== "info" ? "scroll" : null)}>
           {(selected === "info") && (
             <>
-              {description}
+              {token.metadata.description}
             </>
           )}
 
@@ -138,7 +155,7 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
                   : 
                     <p className="nftDetailsModalRightAccount">{nft.owner_id}</p>
                   }
-                  <p className="nftDetailsModalRightGen">GEN: {JSON.parse(nft.metadata.extra).generation}</p>
+                  <p className="nftDetailsModalRightGen">GEN: {extra.generation}</p>
                 </div>
               ))}
             </>
@@ -165,9 +182,11 @@ export default function TransferModal({token, artistList, newAction, setOpenModa
             <p className="loadingLabel">loading music...</p>
           }
         </div>
-        <div id="nftDetailsModalButtons">
-          <button onClick={() => setTransferInputOpen(true)}>Transfer</button>
-        </div>        
+        {isOwner && 
+          <div id="nftDetailsModalButtons">
+            <button onClick={() => setTransferInputOpen(true)}>Transfer</button>
+          </div>
+        }
       </div>
 
       {transferInputOpen && (<div id="transferPopupWrapper" onClick={() => setTransferInputOpen(false)}>
@@ -203,4 +222,18 @@ function CloseButton() {
       <path d="M13.4375 5L10 0.9375L6.5625 5M10 13.75V0.9375V13.75Z" stroke="#121212" strokeMiterlimit="10"/>
     </svg>
   )
+}
+
+function getArtistIndex(tokenId) {
+  console.log("tokenId inside getArtistIndex: ", tokenId);
+
+  /** We will manually need to update this list throughout the SoundSplash */
+  if (tokenId.includes('fono-root-0-') || tokenId === 'fono-root-0') return 2;
+  if (tokenId.includes('fono-root-2-') || tokenId === 'fono-root-2') return 0;
+  if (tokenId.includes('fono-root-3-') || tokenId === 'fono-root-3') return 1;
+  if (tokenId.includes('fono-root-4-') || tokenId === 'fono-root-4') return 3;
+  if (tokenId.includes('fono-root-5-') || tokenId === 'fono-root-5') return 4;
+  if (tokenId.includes('fono-root-6-') || tokenId === 'fono-root-6') return 5;
+  if (tokenId.includes('fono-root-7-') || tokenId === 'fono-root-7') return 6;
+  return 0;
 }

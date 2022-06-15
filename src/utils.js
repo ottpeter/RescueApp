@@ -270,6 +270,26 @@ export async function getGuestBookEntries() {
   return result;
 }
 
+// Get details for a given NFT (JsonToken)
+// Currently we can only do this by fetching all of the NFTs, and then filtering them.
+export async function getNftDetails(tokenId) {
+  let result = null;
+  
+  const options = {
+    from_index: "0",
+    limit: 1000000000,
+  }
+
+  await window.contract.nft_tokens(options)
+    .then((response) => {
+      console.log("Response (getNftDetails): ", response);
+      result = response.filter((nft) => nft.token_id === tokenId)[0];
+    })
+    .catch((err) => console.error("Error while fetching NFT list (getNftDetails): ", err));
+
+    return result;
+}
+
 // does not work
 export async function checkIfAccountExists() {
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, await getRealConfig(mode)));
