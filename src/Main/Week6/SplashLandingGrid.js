@@ -13,7 +13,7 @@ export default function SplashLandingGrid({tokenId, metadata, newAction, playing
 
   return (
     <div id="splashLandingGrid5" style={overflow}>
-      <SongName title={"Spacesuit Apocalypse"} image={titleImage}  />
+      <SongName title={"Home"} image={titleImage}  />
       <ThePicture imageCID={metadata.media} playing={playing} setPlay={setPlay} />
       <InfoBox
         tokenId={tokenId}

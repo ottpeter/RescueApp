@@ -31,7 +31,8 @@ export default function InfoBox({tokenId, metadata, newAction}) {
       name: "Supa Mojo",
       twitter: "https://twitter.com/missninjamojo",
       insta: "https://www.instagram.com/ojommojo/",
-      youtube: "https://www.youtube.com/watch?v=un7-k7qpF74"
+      youtube: "https://www.youtube.com/watch?v=un7-k7qpF74",
+      website: "https://supamojo.bigcartel.com/"
     }
   ]
 

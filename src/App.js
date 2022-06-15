@@ -99,7 +99,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/weekfive" />}
+          element={<Navigate replace to="/weeksix" />}
         />
         <Route 
           exact

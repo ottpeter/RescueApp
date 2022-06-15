@@ -10,7 +10,7 @@ import TopMenu from './TopMenu';
 import ObjectContainer from './ObjectContainer';
 import PlayerControls from './PlayerControls';
 import bgVideo from '../../assets/nn36.mp4';
-import bg from "../../assets/week5bg.png";
+import bg from "../../assets/week6bg.png";
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
