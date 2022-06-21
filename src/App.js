@@ -18,6 +18,7 @@ import Week3SplashLanding from './Main/Week3/SplashLanding';
 import Week4SplashLanding from './Main/Week4/SplashLanding';
 import Week5SplashLanding from './Main/Week5/SplashLanding';
 import Week6SplashLanding from './Main/Week6/SplashLanding';
+import Week7SplashLanding from './Main/Week7/SplashLanding';
 import Migration from './Migration';
 import TransferModal from './Main/TransferModal';
 
@@ -197,6 +198,15 @@ export default function App() {
           path='weeksix'
           element={
             <Week6SplashLanding 
+              index={7} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='weekseven'
+          element={
+            <Week7SplashLanding 
               index={7} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
             />
           }

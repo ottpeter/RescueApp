@@ -1,14 +1,14 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getBuyableTokens } from '../../utils';
+import { getBuyableTokens, verify_sha256 } from '../../utils';
 import 'regenerator-runtime/runtime';
 import LineVisualizer from './Equalizer';
 import SplashLandingGrid from './SplashLandingGrid';
 import Footer from './Footer';
 import TopMenu from './TopMenu';
 import ObjectContainer from './ObjectContainer';
-import bg from "../../assets/week6bg.png";
+import bgVideo from '../../assets/moonBg40.mp4';
 
 
 export default function SplashLanding({index, newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
@@ -45,25 +45,26 @@ export default function SplashLanding({index, newAction, openGuestBook, setGuest
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
       <ToastContainer position="bottom-right" autoClose={5000} />
-        <div id='colorContainerSplashTwo'>
-          <div id='svgContainer' style={{ backgroundImage: `url(${bg})` }}>
-            <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
+        <div id='svgContainer'>
+          <video id="splash5BackgroundVideo" autoPlay loop muted style={{ background: "#000000" }}>
+            <source src={bgVideo} type="video/mp4" />
+          </video>
+          <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
-            <main>
-              <LineVisualizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} play={play} />
-              <ObjectContainer />
-              
-              <SplashLandingGrid
-                tokenId={nftList[index].token_id}
-                metadata={nftList[index].metadata}
-                newAction={newAction}
-                playing={play}
-                setPlay={setPlay}
-              />
-            </main>
+          <main>
+            <LineVisualizer musicCID={JSON.parse(nftList[index].metadata.extra).music_cid} play={play} />
+            <ObjectContainer />
+            
+            <SplashLandingGrid
+              tokenId={nftList[index].token_id}
+              metadata={nftList[index].metadata}
+              newAction={newAction}
+              playing={play}
+              setPlay={setPlay}
+            />
+          </main>
 
-            {(screenWidth > 1200)&& <Footer />}
-          </div> 
+          {(screenWidth > 1200)&& <Footer />}
         </div>
     </>
   )

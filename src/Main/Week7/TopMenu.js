@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import hamburger from '../../assets/hamburger.svg'
+import hamburger from '../../assets/whiteHamburger.svg'
 import 'regenerator-runtime/runtime';
 import Wallet from './Wallet';
-import logo from '../../assets/SoundSplashLogo2.svg'
+import logo from '../../assets/SoundSplashLogo.svg'
 
 
-/** Top Menu for Week4 */
+/** Top Menu for Week5 */
 export default function TopMenu({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,9 +44,9 @@ export default function TopMenu({setShowWallet, showWallet}) {
               <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
               <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
               <Link to={'/weekthree'} className="controlsButton hamburgerElement">Week Three</Link>
+              <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
               <Link to={'/weekfive'} className="controlsButton hamburgerElement">Week Five</Link>
               <Link to={'/weeksix'} className="controlsButton hamburgerElement">Week Six</Link>
-              <Link to={'/weekseven'} className="controlsButton hamburgerElement">Week Seven</Link>
           </div>
         )}
       </>
@@ -59,10 +59,10 @@ export default function TopMenu({setShowWallet, showWallet}) {
             <img src={logo} alt={'SoundSplash'} />
           </Link>
         </div>
-        <Link to={''} className="controlsButton menuButton InterMenu"></Link>
-        <Link to={''} className="controlsButton menuButton InterMenu"></Link>
-        <button onClick={splashDropdownClicked} className="controlsButton menuButton InterMenu">SPLASH DROPS</button>
-        <Link to={'/my-nfts'} className="controlsButton menuButton InterMenu">MY NFTS</Link>
+        <Link to={''} className="controlsButton menuButton InterMenu F2White"></Link>
+        <Link to={''} className="controlsButton menuButton InterMenu F2White"></Link>
+        <button onClick={splashDropdownClicked} className="controlsButton menuButton InterMenu F2White">SPLASH DROPS</button>
+        <Link to={'/my-nfts'} className="controlsButton menuButton InterMenu F2White">MY NFTS</Link>
 
         {splashMenuOpen && (
           <div id="dropdownContainer" className="dropdownContainerSplashTwo">
@@ -70,9 +70,9 @@ export default function TopMenu({setShowWallet, showWallet}) {
             <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
             <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
             <Link to={'/weekthree'} className="controlsButton menuButton">Week Three</Link>
+            <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
             <Link to={'/weekfive'} className="controlsButton menuButton">Week Five</Link>
             <Link to={'/weeksix'} className="controlsButton menuButton">Week Six</Link>
-            <Link to={'/weekseven'} className="controlsButton menuButton">Week Seven</Link>
           </div>
         )}
 
