@@ -28,12 +28,14 @@ export default function InfoBox({tokenId, metadata, newAction}) {
 
   const aList = [
     {
-      name: "Rare Vandal",
-      telegram: "https://t.me/VanDAOism",
-      twitter: "https://twitter.com/vandigital",
-      insta: "https://www.instagram.com/vandigital/",
-      facebook: "https://www.facebook.com/Vandigital",
-      youtube: "https://www.youtube.com/channel/UCEW2jxaki4FH3TYKLJlVjwA"
+      name: "JahWise",
+      twitter: "https://twitter.com/jahwise_p",
+      insta: "https://www.instagram.com/jahwiseproductions/"
+    },
+    {
+      name: "Blufyah",
+      twitter: "https://twitter.com/blufyah",
+      insta: "https://www.instagram.com/blufyah/"
     }
   ]
 

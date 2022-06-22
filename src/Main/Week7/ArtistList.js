@@ -19,7 +19,6 @@ export default function  Week2ArtistList({list, fontSettings}) {
             <p className="splashArtistListElementFirst splashArtistListElementFirstWeek4">{artist.name}</p>
             <a className="splashArtistListElementIcon" href={artist.twitter}><Twitter /></a>
             <a className="splashArtistListElementIcon" href={artist.insta}><Insta /></a>
-            <a className="splashArtistListElementIcon" href={artist.youtube}><YouTube /></a>
           </li>
         ))}
       </ul>
