@@ -21,6 +21,9 @@ import Week6SplashLanding from './Main/Week6/SplashLanding';
 import Week7SplashLanding from './Main/Week7/SplashLanding';
 import Migration from './Migration';
 import TransferModal from './Main/TransferModal';
+import ReactDraggableOnly from './Experiment/ReactDraggableOnly';
+import ReactDraggableGridSize from './Experiment/ReactDraggableGridSize';
+import ReactDraggableFont from './Experiment/ReactDraggableFont';
 
 
 export default function App() {
@@ -223,6 +226,22 @@ export default function App() {
               <AdminFooter />
             </>
           }
+        />
+
+        <Route 
+          exact
+          path='experiment1'
+          element={<ReactDraggableOnly />}
+        />
+        <Route 
+          exact
+          path='experiment2'
+          element={<ReactDraggableGridSize />}
+        />
+        <Route 
+          exact
+          path='experiment3'
+          element={<ReactDraggableFont />}
         />
       </Routes>
     </HashRouter>
