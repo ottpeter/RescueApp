@@ -235,5 +235,6 @@ function getArtistIndex(tokenId) {
   if (tokenId.includes('fono-root-5-') || tokenId === 'fono-root-5') return 4;
   if (tokenId.includes('fono-root-6-') || tokenId === 'fono-root-6') return 5;
   if (tokenId.includes('fono-root-7-') || tokenId === 'fono-root-7') return 6;
+  if (tokenId.includes('fono-root-8-') || tokenId === 'fono-root-8') return 7;
   return 0;
 }
