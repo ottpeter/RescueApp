@@ -6,7 +6,7 @@ import Wallet from './Wallet';
 import logo from '../../assets/SoundSplashLogo.svg'
 
 
-/** Top Menu for Week5 */
+/** Top Menu for Week8 */
 export default function TopMenu({setShowWallet, showWallet}) {
   const screenWidth = window.innerWidth;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,6 +47,7 @@ export default function TopMenu({setShowWallet, showWallet}) {
               <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
               <Link to={'/weekfive'} className="controlsButton hamburgerElement">Week Five</Link>
               <Link to={'/weeksix'} className="controlsButton hamburgerElement">Week Six</Link>
+              <Link to={'/weekseven'} className="controlsButton hamburgerElement">Week Seven</Link>
           </div>
         )}
       </>
@@ -73,6 +74,7 @@ export default function TopMenu({setShowWallet, showWallet}) {
             <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
             <Link to={'/weekfive'} className="controlsButton menuButton">Week Five</Link>
             <Link to={'/weeksix'} className="controlsButton menuButton">Week Six</Link>
+            <Link to={'/weekseven'} className="controlsButton menuButton">Week Seven</Link>
           </div>
         )}
 
