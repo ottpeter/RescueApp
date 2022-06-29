@@ -11,7 +11,6 @@ import Pending from './Activity/Pending';
 import Ok from './Activity/Ok';
 import Err from './Activity/Err';
 import MyNFTs from './Main/MyNFTs';
-import TokenModal from './Main/TokenModal';
 import Withdraw from './Admin/Withdraw';
 import Week2SplashLanding from './Main/Week2/SplashLanding';
 import Week3SplashLanding from './Main/Week3/SplashLanding';
@@ -19,6 +18,7 @@ import Week4SplashLanding from './Main/Week4/SplashLanding';
 import Week5SplashLanding from './Main/Week5/SplashLanding';
 import Week6SplashLanding from './Main/Week6/SplashLanding';
 import Week7SplashLanding from './Main/Week7/SplashLanding';
+import Week8SplashLanding from './Main/Week8/SplashLanding';
 import Migration from './Migration';
 import TransferModal from './Main/TransferModal';
 import ReactDraggableOnly from './Experiment/ReactDraggableOnly';
@@ -146,8 +146,8 @@ export default function App() {
           exact
           path='testnft0926'
           element={
-            <Week6SplashLanding
-              index={1} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
+            <Week8SplashLanding
+              index={9} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
         />

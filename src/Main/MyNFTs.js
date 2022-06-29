@@ -36,6 +36,7 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     if (tokenId.includes('fono-root-6-') || tokenId === 'fono-root-6') return 5;
     if (tokenId.includes('fono-root-7-') || tokenId === 'fono-root-7') return 6;
     if (tokenId.includes('fono-root-8-') || tokenId === 'fono-root-8') return 7;
+    if (tokenId.includes('fono-root-9-') || tokenId === 'fono-root-9') return 8;
     return 0;
   }
 
