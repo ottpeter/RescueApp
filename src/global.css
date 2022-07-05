@@ -1644,6 +1644,16 @@ h1 {
   padding-top: var(--spacing-3);
   z-index: 4;
 }
+#splashTitleWeek9 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+#splashTitleWeek9 img {
+  position: relative;
+  width: 30vw;
+  z-index: 4;
+}
 #splash5BackgroundVideo {
   width: 100vw;
   height: 100vh;
@@ -1859,6 +1869,25 @@ h1 {
   color: #FFDE00;
   cursor: pointer;
 }
+#splashBuy9 {
+  margin-left: calc((386px / 2) + 44px);
+  margin-top: var(--spacing-2);
+  position: relative;
+  z-index: 2;
+}
+#splashBuy9 button {
+  background: linear-gradient(79.02deg, #EA00A8 1.73%, #B300F2 27.98%, #EBBB72 46.11%, #990AF5 63.61%, #243AFF 79.23%, #57DDEF 104.86%);
+  color: #F2F2F2;
+  border-radius: 50px;
+  border: none;
+  width: 96px;
+  height: 39px;
+}
+#splashBuy9 button:hover {
+  background: linear-gradient(79.02deg, #EA00A8 1.73%, #B300F2 27.98%, #EBBB72 46.11%, #990AF5 63.61%, #243AFF 79.23%, #57DDEF 104.86%);
+  color: darkred;
+  cursor: pointer;
+}
 
 .splash-eq {
   position: absolute;
@@ -1951,6 +1980,10 @@ h1 {
     height: auto;
     width: 100%;
   }
+  #splashTitleWeek9 img {
+    height: auto;
+    width: 100%;
+  }
   #splashBuy3 {
     margin-left: 0;
     text-align: center;
@@ -1966,6 +1999,11 @@ h1 {
     text-align: center;
   }
   #splashBuy7 {
+    margin: auto;
+    padding: var(--spacing-2);
+    text-align: center;
+  }
+  #splashBuy9 {
     margin: auto;
     padding: var(--spacing-2);
     text-align: center;

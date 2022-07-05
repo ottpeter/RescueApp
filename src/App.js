@@ -19,6 +19,7 @@ import Week5SplashLanding from './Main/Week5/SplashLanding';
 import Week6SplashLanding from './Main/Week6/SplashLanding';
 import Week7SplashLanding from './Main/Week7/SplashLanding';
 import Week8SplashLanding from './Main/Week8/SplashLanding';
+import Week9SplashLanding from './Main/Week9/SplashLanding';
 import Migration from './Migration';
 import TransferModal from './Main/TransferModal';
 import ReactDraggableOnly from './Experiment/ReactDraggableOnly';
@@ -146,7 +147,7 @@ export default function App() {
           exact
           path='testnft0926'
           element={
-            <Week8SplashLanding
+            <Week9SplashLanding
               index={9} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} 
             />
           }
