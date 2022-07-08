@@ -3,7 +3,7 @@ use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::{Base64VecU8, U128};
 use near_sdk::{
-    env, log, near_bindgen, AccountId, Balance, CryptoHash, PanicOnDefault, Promise, PromiseOrValue, ext_contract, Gas
+    env, log, near_bindgen, AccountId, Balance, CryptoHash, PanicOnDefault, Promise, PromiseOrValue, ext_contract
 };
 
 use crate::internal::*;
@@ -130,44 +130,31 @@ impl Contract {
         this
     }
 
-    /// The function will copy the state of an existing contract
-    /// * `orig`: account id of the original contract, from which we will copy the values
-    /// * `from_index`: from_index for nft_tokens
-    /// * `amount`: amount to copy from index
+    /// Mantravine revenue table alteration function
     #[payable]
-    pub fn copy(orig: AccountId, from_index: U128, amount: u64) {
-        return;
-        log!("Copying NFTS based on the state of an existing contract...");
+    pub fn alter_mantravine(&mut self) {
+        let new_revenue_table = HashMap::from([
+            (AccountId::new_unchecked("izzyroo.near".parse().unwrap()), 1700),
+            (AccountId::new_unchecked("farhanremy.near".parse().unwrap()), 1700),
+            (AccountId::new_unchecked("781443edb4ee2ea3bce333f2fe2fe4e597c58ee050eb9e97f0a5b8d21c33bf9e".parse().unwrap()), 1700),
+            (AccountId::new_unchecked("adelinethc.near".parse().unwrap()), 1500),
+            (AccountId::new_unchecked("mantravine.near".parse().unwrap()), 3400)
+        ]);
+        let total = 1700 + 1700 + 1700 + 1500 + 3400;
 
-        ext_contract_orig::nft_tokens(
-            Some(from_index), 
-            Some(amount),
-            orig,
-            0, // yocto NEAR to attach
-            Gas(100_000_000_000_000) // gas to attach
-        )
-        .then(ext_self::migration_callback(
-            env::current_account_id(), // this contract's account id
-            0, // yocto NEAR to attach to the callback
-            Gas(100_000_000_000_000) // gas to attach to the callback
-        ));
-    }
+        let mut root = self.tokens_by_id.get(&"fono-root-4".parse().unwrap()).unwrap();
+        root.revenue = new_revenue_table.clone();
+        self.tokens_by_id.insert(&"fono-root-4".parse().unwrap(), &root);
 
-    /// Temporary function
-    /// Change every fono-root.optr.near to nft.soundsplash.near
-    #[payable]
-    pub fn alter_vault(&mut self, old_vault: AccountId) {
-        return;
-        let tokens_to_alter: Vec::<TokenId> = self.tokens_per_owner.get(&old_vault).unwrap().iter().collect();
 
-        for current_token in tokens_to_alter {
-            self.internal_transfer(                                   // Transfer the NFT from Vault to the new owner
-                &old_vault, 
-                &env::current_account_id(), 
-                &current_token, 
-                None,                                                 // No approval ID
-                None                                                  // No memo
-            );
+        for n in 0..25 {
+            let current_id = format!("fono-root-4-{}", n);
+            if !self.tokens_by_id.contains_key(&current_id) { continue; }
+            let mut instance = self.tokens_by_id.get(&current_id).unwrap();
+            instance.revenue = new_revenue_table.clone();
+            self.tokens_by_id.insert(&current_id, &instance);
         }
+
+        assert_eq!(total, 10000, "Total should be 100%");
     }
 }
