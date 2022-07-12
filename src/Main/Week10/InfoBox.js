@@ -21,7 +21,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
     family: 'Inter',
     secondFamily: 'Inter',
     size: '14px',
-    color: "#F2F2F2",
+    color: "#000000",
     buttonSize: '16px',
     normalSize: '12px'
   }
@@ -40,7 +40,7 @@ export default function InfoBox({tokenId, metadata, newAction}) {
 
   return (
     <div id="splash5RightContainer">
-      <div id="splashInfoFlex" className="Week2splashInfoFlex">
+      <div id="splashInfoFlex" className="Week2splashInfoFlex Week2splashInfoFlex" >
         <div id="Week2splashArtistDescBox">
           <ArtistList fontSettings={fontSettings} list={aList} />
           <Desc desc={metadata.description} fontSettings={fontSettings} />

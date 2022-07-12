@@ -1504,6 +1504,11 @@ h1 {
   z-index: 2;
   
 }
+.week10Glass {
+  background: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+}
 #splashPicture {
   /*grid-area: picture;*/
   margin: auto;
