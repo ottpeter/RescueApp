@@ -50,6 +50,7 @@ export default function TopMenu({setShowWallet, showWallet}) {
               <Link to={'/weekseven'} className="controlsButton hamburgerElement">Week Seven</Link>
               <Link to={'/weeknine'} className="controlsButton hamburgerElement">Week Nine</Link>
               <Link to={'/weekten'} className="controlsButton hamburgerElement">Week Ten</Link>
+              <Link to={'/weekeleven'} className="controlsButton hamburgerElement">Week Eleven</Link>
           </div>
         )}
       </>
@@ -79,6 +80,7 @@ export default function TopMenu({setShowWallet, showWallet}) {
             <Link to={'/weekseven'} className="controlsButton menuButton">Week Seven</Link>
             <Link to={'/weeknine'} className="controlsButton menuButton">Week Nine</Link>
             <Link to={'/weekten'} className="controlsButton menuButton">Week Ten</Link>
+            <Link to={'/weekeleven'} className="controlsButton menuButton">Week Eleven</Link>
           </div>
         )}
 
