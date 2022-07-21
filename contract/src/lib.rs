@@ -157,4 +157,23 @@ impl Contract {
 
         assert_eq!(total, 10000, "Total should be 100%");
     }
+
+    /// DavePsy description alteration
+    #[payable]
+    pub fn alter_davepsy(&mut self) {
+        let new_description = "This is a song about being late again.....again.  Loosely based on an old Oddities jam from 2003, it's evident that in the past 20 years not much has changed for davepsy. Alarm clocks are his apparent kryptonite. Rapping about them helps, if only slightly. Nineteen Ninety Nix (Circle Research) ties the sound all the way together with the requisite beats, bleeps and boops that he does so well. We put the fun in frustration. (it's not....there?) We misplaced the fun in frustration.";
+
+        let mut root = self.token_metadata_by_id.get(&"fono-root-12".parse().unwrap()).unwrap();
+        root.description = Some(new_description.clone().to_string());
+        self.token_metadata_by_id.insert(&"fono-root-12".parse().unwrap(), &root);
+
+
+        for n in 0..25 {
+            let current_id = format!("fono-root-12-{}", n);
+            if !self.tokens_by_id.contains_key(&current_id) { continue; }
+            let mut instance = self.token_metadata_by_id.get(&current_id).unwrap();
+            instance.description = Some(new_description.clone().to_string());
+            self.token_metadata_by_id.insert(&current_id, &instance);
+        }
+    }
 }
