@@ -109,7 +109,7 @@ export default function App() {
         <Route 
           exact
           path='/'
-          element={<Navigate replace to="/weekeleven" />}
+          element={<Navigate replace to="/weektwelve" />}
         />
         <Route 
           exact
@@ -251,6 +251,15 @@ export default function App() {
           element={
             <Week11SplashLanding 
               index={12} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='weektwelve'
+          element={
+            <Week12SplashLanding 
+              index={13} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
             />
           }
         />

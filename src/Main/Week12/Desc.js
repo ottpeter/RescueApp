@@ -13,7 +13,7 @@ export default function Desc({desc, fontSettings}) {
   }
 
   return (
-    <div id="splashDesc" className="splashInfoElement Week2Desc" style={style}>
+    <div id="splashDesc" className="splashInfoElement Week12Desc" style={style}>
       {desc}
     </div>
   )

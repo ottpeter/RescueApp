@@ -1555,6 +1555,9 @@ h1 {
   margin-top: 16px;
   overflow: visible !important;
 }
+.Week12Desc {
+  margin-top: 16px;
+}
 #splashDesc {
   max-height: 27vh;
   overflow-y: scroll;
