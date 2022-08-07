@@ -8,6 +8,7 @@ import Landing from './Landing';
 import Logo from './Logo';
 import BottomMenu from './BottomMenu';
 import MyNFTs from './MyNFTs';
+import globeBg from '../../assets/globe_bg.jpg';
 
 
 export default function Troaco({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet, isMyNfts}) {
@@ -48,7 +49,7 @@ export default function Troaco({newAction, openGuestBook, setGuestBook, setShowW
         <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
         <Logo />
 
-        <main style={{background: "black"}}>
+        <main style={{backgroundImage: `url(${globeBg})`, backgroundSize: "cover"}}>
           {isMyNfts ? 
             <MyNFTs newAction={newAction} nftList={mockMyNFTlist} selected={selected} setSelected={setSelected} />
           : 
@@ -66,7 +67,7 @@ const mockNFTlist = [
     "token_id": "fono-root-0-2",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Under Achiever Interlude",
+      "title": "A Song",
       "description": "This is a classic Rare Vandal beat from the early days of his beat making on the Roland W30. Original disk image could not be found.",
       "media": "QmXQx8HhofwhegdiUDkAv2XYuPoHsUpzC3a9JkTvacrkBz",
       "media_hash": "OTU3MGQ4NGNmZDYyYzBhZjA4ZTBjMjI2NjhiOTA5M2FkMDRjNjRiNTRiOTIxOGJmYTkxMjFhZDcxZWU5NDM3OQ==",
@@ -93,7 +94,7 @@ const mockNFTlist = [
     "token_id": "fono-root-1-0",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Respect The Architects",
+      "title": "Toronto",
       "description": "Respect The Architects\n\nMasia One x Janine Annice x Noyz134\n\nProduced by JCB\nEngineered by ALX\nArtwork by Noyz134\n\nWeek One of SoundSplash features \"Respect The Architects\" a global Hip Hop collaboration bringing together talents from Canada, Singapore, Malaysia, UK & Portugal.",
       "media": "QmcseQ65KWXmud2Lsj2fJgA3jVAagAqTQXo38ckrXZQpz3",
       "media_hash": "YjFjYmNjNGEzZWNjZDUxNWIyOGE0N2YyNWJmYjNmNDNhMGVhYmFlMjBiMjJhZTZlZmQxZTI5ZWNmODAwMmY3OA==",
@@ -124,7 +125,7 @@ const mockNFTlist = [
     "token_id": "fono-root-2-11",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Respect The Architects",
+      "title": "Great Escape",
       "description": "\"Respect the Architects\" is a bilingual boombap banger combining talents from Singapore, Malaysia, Canada, Portugal and UK and pays tribute to the visionaries that are building our creative futures. Originally put forward as an anthem for NxM, the collaboration grew as Singaporean-Canadian Hiphop emcee Masia One, Malaysian visual and recording artist Noyz134, UK's soul vocalist Janine Annice added their flavours to the raw hard hitting beat by Canada's JCB and mix and master from Portugal’s own ALX. The hand drawn artwork depicts a futuristic scene, both ominmous with watchful cameras and faceless structures, as well as hopeful as people band together to work toward another way. The message of digital art is clear: As we forge our way forward through innovation and creativity, we must take time to “Respect the Architects”.",
       "media": "QmcseQ65KWXmud2Lsj2fJgA3jVAagAqTQXo38ckrXZQpz3",
       "media_hash": "YjFjYmNjNGEzZWNjZDUxNWIyOGE0N2YyNWJmYjNmNDNhMGVhYmFlMjBiMjJhZTZlZmQxZTI5ZWNmODAwMmY3OA==",
@@ -155,7 +156,7 @@ const mockNFTlist = [
     "token_id": "fono-root-3-9",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Causty Monton",
+      "title": "La La La",
       "description": "Put It On Me is a SterryO produced joint, inspired by how I made crypto my career. The blames I get for not being the random human anymore, because I now choose to make Metaverse my home. Stay ready and see y'all in the Metaverse. - Dedeukwu",
       "media": "QmXwrqaGFeqVBWxs4JsThGpium1TnDmi91vDgQBmqrhJN3",
       "media_hash": "OTQxODE3Y2MyMzVkYTFmYTQxM2I4YTY2Y2M5MjVjMjE1YTY5M2U4YjEzZTU0YWM2MjFhMzdjNmQ1NDUxMjA4ZQ==",
@@ -182,7 +183,7 @@ const mockNFTlist = [
     "token_id": "fono-root-4-9",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Multiverse",
+      "title": "Lion City",
       "description": "\"Multiverse\" is the lead single from Mantravine's upcoming album Asama.  Asama is a sanskrit word that means odd, and is symbolic of the odd time rhythms used in Mantravine's latest album. Multiverse uses psychedelic dance grooves, handpans, electrifying guitar, magical horn melodies, global percussions and forest sounds to weave into an enchanting emotional masterpiece.  \n\nFeatures: Muhammad Farhan (Keys, Trumpet), Isuru Wijesoma (Guitar), Eriko Murakami (Trombone) and Rupak George (Ableton).\nArtwork: Abhinav Tyagi",
       "media": "QmeEz18BY3StXnvBzxmVNmWj5aUsYh5YYyEvUNXepE1Qer",
       "media_hash": "OGY4NmQwNWMzODc1NzU3MmJmYzEwNzY1NjA0MDM0ZWE5ZTRiMjI5OTc0MWQyOTczOTExZjg5MGRkYTViYzQ2Yw==",
@@ -212,7 +213,7 @@ const mockNFTlist = [
     "token_id": "fono-root-5-13",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Watch Your Mouth",
+      "title": "Steet Food",
       "description": "COMA-CHI, one of Japan's most respected MC/singers teams up with indie music producer/MC and cultural ambassador MeccaGodZilla of NYC to bring you a hardcore trap inspired banger as a reminder and warning to simply \"Watch Your Mouth!\" \nAs a featured single on the \"Spiritual Bitch EP,\"  \"Watch Your Mouth\" is 1 of 3 songs that explores COMA-CHI's diversity as a singer/MC that continues to evolve both lyrically and spiritually.  Backed by Mecca's cinematic production style, these 2 international Hip-Hop cultural collaborators look forward to releasing a lot more music in the metaverse.",
       "media": "Qmb3daz5FsEKx43aoVGheic8U8sUa8mbFP3B8Qo9H9Ghuf",
       "media_hash": "M2VhYzI5ZjgzNTllNzgwZmU3N2U3OTZmM2YyZjYzOWQzN2ZmOTQ0MTM1ZGVmYmRhZTMzNTc4ODEzOTVhMTM2YQ==",
@@ -240,7 +241,7 @@ const mockNFTlist = [
     "token_id": "fono-root-6-15",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Spacesuit Apocalypse",
+      "title": "Dusty Wonton",
       "description": "Spacesuit Apocalypse brings together the lyrical prowess of the Rare Vandal and the musical madness of DJ Lethal Skillz. Showcasing the attributes of a high ranking NearNaut, this NFT-themed collaboration represents a new generation of Web3 Hip Hop that stays true to its roots. Did you find the Easter Egg?\n",
       "media": "Qmc4HDFzwzT8rbgVAHpYFoyjuv2sgM19NrByVxehCwgnHY",
       "media_hash": "ZjFkYmUwM2EyYzM1YWUwMjY4ZTVlZDg5ODQzNmZjNDk5MjkxNTRkZDQwZmNlOGM4YWNlMzdmNzU5MjI2OTQxNQ==",
@@ -297,7 +298,7 @@ const mockNFTlist = [
     "token_id": "fono-root-8-7",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Blood Moon",
+      "title": "KLX",
       "description": "The Blood Moon is upon us, in an epic tale between good and evil.  Trinidadian artist Blufyah describes the noble hunter destroying the vampires, werewolves and wickedness in the world. Producer JahWise creates a bass heavy soundscape, laced with live drums to make this NFT a unique collectable for the Roots Reggae lover.",
       "media": "QmSj1rvESFz96FabomnQvjZGeTNyv5RmmcxzN6nUp9jbAG",
       "media_hash": "Y2Y5NmExODNkN2EwMDE5NTY1YjhlODA5ZDM2YWVhZjYyZWJiYjMyNDFkZjc5ZmI1MTRjMjE0MDA3OWI2NTlmOA==",
@@ -325,7 +326,7 @@ const mockNFTlist = [
     "token_id": "fono-root-9-5",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Hercules",
+      "title": "Chameleon",
       "description": "KlapYaHandz Cambodian artist Vin Vitou would like to share that no matter how successful you are, you should not look down on people who are trying to achieve their goal. His \"Hercules\" NFT embodies the spirit of elevating beyond being judgmental of others, and remembering we all had to start at the bottom once, and must empower one another.",
       "media": "QmZFUsFsVKRwe4ckiuGxmwkmSSTzdThmkZCwSxEfZNtU6c",
       "media_hash": "ODdmYWQ0ZWZlOGIzNDNmMTkwZDUzYTZjMzMzYTdmYzU2YTc0MjU5N2Q2ODdjNTAzODhjM2MyOTVmNTg4ODY4MA==",
@@ -352,7 +353,7 @@ const mockNFTlist = [
     "token_id": "fono-root-10-4",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Clorofila En Tinta",
+      "title": "GLS",
       "description": "Clorofila En Tinta represents dignified life in all its expressions, putting together native stories immersed in family vibes. We made this song during a difficult situation in Venezuela, due to high levels of political and social violence, so with our music we hope to contribute to the encounter between the same people through what everyone can contribute positively to the community both in Venezuela and globally.",
       "media": "Qmbc2a7fLMnM5keDA11XJhoF3n1RhQFE8P4P4FAoL61CVU",
       "media_hash": "ODM3NWQ4MDY4MDE1MmExNzljYTAyZTFjYjU0MTQ5OGM3NjAwN2M2ZDZkMjQ4OWY1MmNlMjExMmRmMDQ0OWQ2NQ==",
@@ -379,7 +380,7 @@ const mockNFTlist = [
     "token_id": "fono-root-11-4",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "BAD",
+      "title": "Essence",
       "description": "When you flex your skills with attitude and style you know that you're a BAD... Produced by JCB and Blake Harden BAD is penned and rapped by Nigerian emcee Reespect, showcasing her lyrical prowess and wordsmithery on a song re-created just for SoundSplash!",
       "media": "QmbDkMYRMKbarBZEaqNaxNqoHAPbvWzTwLknix2vfEyv4M",
       "media_hash": "NTBjZGRjNWVkODBjODQ3OGY3ODQ1ZGZiZDBhNjg5ODNlYmM0NzI3MTM3ZGRlY2RjNTQzNzM3NTUzMTMxZGM2MA==",
@@ -409,7 +410,7 @@ const mockNFTlist = [
     "token_id": "fono-root-12-4",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Snuz Butt",
+      "title": "Mongolia",
       "description": "This is a song about being late again.....again.  Loosely based on an old Oddities jam from 2003, it's evident that in the past 20 years not much has changed for davepsy. Alarm clocks are his apparent kryptonite. Rapping about them helps, if only slightly. Nineteen Ninety Nix (Circle Research) ties the sound all the way together with the requisite beats, bleeps and boops that he does so well. We put the fun in frustration. (it's not....there?) We misplaced the fun in frustration.",
       "media": "QmXiQs5AqmF6TgvdrMFjt4C4dxRa2SbEWf6wfTXzb3XVzW",
       "media_hash": "MDM4N2VhZDMwNjg4OGIzYjg3NjNkYmI4YThmMjBhMzk4ZGRmZTc4ZDEyNWE4OGZlYTA4YzRiZTUwYTg1OTk5ZA==",
@@ -437,7 +438,7 @@ const mockNFTlist = [
     "token_id": "fono-root-13-2",
     "owner_id": "nft.soundsplash.near",
     "metadata": {
-      "title": "Positive Energy",
+      "title": "Effected",
       "description": "Positive Energy is exactly what we need in these times and Indonesia's ambassador of Reggae, Ras Muhamad is here to spread the good vibes alongside producer Wizzow.  This \"Positive Energy\" NFT shares a message that negativity must be removed by positive thoughts and action, as expressed in Ras' lyric, \"I rather hold a friendship than keep man an enemy\".  \n\nThe live electric guitars solo performed by Ras Muhamad meld perfectly with the backbeat from Wizzow, a well respected producer and active council member for Beat DAO & Svara DAO. \"Positive Energy\" is a gem to be listened to and owned, celebrating the universal expression of love at the heart of Reggae music.",
       "media": "Qmf4VQp1heabJi7e8CmCJC63hKyHTr13Yy5UQaweApD5pw",
       "media_hash": "NDk2MTkyMjU4M2NiYzYwNjBmOGY1NDlmZDVlNjE2MDUzMjZiMDVlZjAxM2I2ZTRlZDc2NDM2Yjg1OWUxNDkwZA==",
