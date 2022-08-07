@@ -28,6 +28,7 @@ import TransferModal from './Main/TransferModal';
 import ReactDraggableOnly from './Experiment/ReactDraggableOnly';
 import ReactDraggableGridSize from './Experiment/ReactDraggableGridSize';
 import ReactDraggableFont from './Experiment/ReactDraggableFont';
+import Troaco from './Main/Troaco/Troaco';
 
 
 export default function App() {
@@ -260,6 +261,24 @@ export default function App() {
           element={
             <Week12SplashLanding 
               index={13} newAction={newAction} configObj={configObj} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='troaco'
+          element={
+            <Troaco 
+              newAction={newAction} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} isMyNfts={false}
+            />
+          }
+        />
+        <Route 
+          exact
+          path='troacomynfts'
+          element={
+            <Troaco 
+              newAction={newAction} openGuestBook={openGuestBook} setGuestBook={setGuestBook} setShowActivity={setShowActivity} showActivity={showActivity} actionHistory={actionHistory} setShowWallet={setShowWallet} showWallet={showWallet} isMyNfts={true}
             />
           }
         />

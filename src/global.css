@@ -96,6 +96,54 @@ nav {
   position: absolute;
   z-index: 2;
 }
+#troacoTopNav {
+  margin-top: 30px;
+  font-family: VCR;
+  align-items: flex-start;
+  justify-content: end;
+  background: transparent;
+  position: absolute;
+  z-index: 2;
+}
+#troacoBottomNav {
+  bottom: 30px;
+  left: 240px;
+  width: calc(100% - 2 * 240px);
+  text-align: center;
+  top: unset;
+  background: transparent;
+  justify-content: space-between;
+  align-items: baseline;
+  position: absolute;
+  z-index: 2;
+}
+#troacoSongMenu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  font-family: VCR;
+  color: #BDBDBD;
+  text-transform: uppercase;
+  list-style-type: none;
+}
+.troacoSongSelected {
+  color: #F2F2F2;
+}
+#troacoSocialLinks {
+  position: absolute;
+  bottom: 10px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+}
+#troacoSocialLinks a {
+  margin-top: 4px;
+}
+#troacoLogo {
+  position: absolute;
+  bottom: var(--spacing-3);
+  right: var(--spacing-5);
+}
 .logo {
   flex-grow: 1;
   font-family: SK-Primo;
@@ -148,6 +196,18 @@ nav {
   margin-right: 32px;
   margin-top: 7px;
   font-family: 'neue-haas-grotesk-display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #F2F2F2;
+}
+.troacoMenuButton {
+  margin-right: 32px;
+  margin-top: 7px;
+  font-family: VCR;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -455,6 +515,82 @@ main {
 .guestText {
   margin-top: 20px;
 }
+
+.troacoConnectWallet {
+  padding-top: var(--spacing-5);
+  height: 100vh;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+.troacoWalletBadge {
+  background: url('./assets/connect_frame_white.svg') no-repeat;
+  text-transform: uppercase;
+  color: #F2F2F2;
+  font-family: VCR;
+  font-size: 16px;
+  width: 179px;
+  height: 39px;
+  margin-right: 32px;
+  border: none;
+}
+.troacoWalletBadge:hover {
+  font-weight: bold;
+}
+.troacoWalletContainer {
+  position: absolute;
+  background: url('./assets/connect_frame_white.svg') no-repeat;
+  font-family: IBM;
+  color: #F2F2F2;
+  font-size: 10px;
+  top: 45px;
+  width: 159px;
+  height: 84px;
+  padding: 8px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 2px solid #F2F2F2;
+  border-radius: 7px;
+  right: var(--spacing-3);
+  z-index: 9998;
+}
+#troacoDisconnect {
+  background: url('./assets/disconnect_white.svg') no-repeat;
+  width: 84px;
+  height: 28px;
+  border: none;
+}
+#troacoDisconnect:hover {
+  background: url('./assets/disconnect_hover_white.svg') no-repeat;
+}
+#troacoWalletBalanceFlex {
+  display: flex;
+  align-items: center;
+}
+#troacoWalletBalanceFlex>* {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.walletFlexPlaceholder {
+  flex-grow: 1;
+}
+#troacoWalletNearLogo {
+  margin-left: 5px;
+}
+#troacoWalletDollarFlex {
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+#troacoWalletDollarFlex>* {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#troacoWalletButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
 
 
 #counter {
@@ -1197,6 +1333,374 @@ h1 {
     height: auto;
   }
 }
+
+.buyModal {
+  position: absolute;
+  display: grid;
+  grid-template-areas: 
+    'bar'
+    'content';
+  top: 100px;
+  left: 16%;
+  width: 1000px;
+  /*background-color: rgba(255, 255, 255, 0.90);*/
+  border: 2px solid var(--control-grey);
+  box-shadow: 0px 1px 4px rgba(0,0,0, 0.2);
+  background-color: var(--modal-grey);
+  z-index: 3;
+}
+#buyModalBar {
+  grid-area: bar;
+  font-family: VCR;
+  font-size: 16px;
+  height: 38px;
+  border-bottom: 1px solid #333;
+  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#buyModalBar p {
+  margin: -10px 0;
+  flex-grow: 1;
+  text-transform: uppercase;
+  text-align: center;
+}
+#buyModalBar button {
+  margin: 0px 2px;
+  border: none;
+  background: transparent;
+  font-family: VCR;
+  font-size: 16px;
+}
+#buyModalContent {
+  grid-area: content;
+
+  padding: var(--spacing-3);
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  grid-template-areas: 
+  'picture right'
+  'audio buttons';
+}
+#buyModalPicture {
+  grid-area: picture;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#buyModalPicture img {
+  width: 100%;
+}
+#buyModalRightSide {
+  grid-area: right;
+
+  display: flex;
+  flex-direction: column;
+}
+.buyModalRightSideContent {
+  padding: var(--spacing-1);
+  font-family: IBM;
+  font-size: 14px;
+  background-color: var(--modal-grey);
+  border: solid 1px var(--control-grey);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.buyModalRightSideGenBox {
+  font-family: IBM;
+  font-weight: bolder;
+  height: 45px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: solid 1px var(--control-grey);
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+.buyModalRightSideInput {
+  flex-grow: 1;
+  margin-right: 20px;
+  height: 34px;
+  padding-left: 12px;
+  background: #efefef;
+}
+.buyModalMenuLine {
+  height: 10px;
+  margin-bottom: 20px;
+  border: none;
+  
+  display: flex;
+}
+.buyModalMenuButton {
+  font-family: IBM;
+  font-size: 12px;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  flex-grow: 1;
+}
+.buyModalMenuSelected {
+  text-decoration: underline;
+}
+#buyModalAudio {
+  grid-area: audio;
+  margin-top: 20px;
+  padding-right: 25px;
+  
+  display: flex;
+  align-items: center;
+}
+#buyModalButton {
+  grid-area: buttons;
+  font-family: VCR;
+  font-size: 16px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.buyModalRightOwnerDiv {
+  padding: 8px;
+  border: 1px solid var(--control-grey);
+  margin-bottom: 20px;
+  display: flex;
+}
+.buyModalRightAccount {
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin: 0;
+  flex-grow: 1;
+}
+.buyModalRightGen {
+  font-weight: bolder;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+
+.troacoModal {
+  position: absolute;
+  display: grid;
+  grid-template-areas: 
+    'bar'
+    'content';
+  width: 55vw;
+  height: 72vh;
+  top: calc(50vh - (72vh/2));
+  left: calc(50vw - (55vw/2));
+  z-index: 3;
+}
+#troacoModalContent {
+  grid-area: content;
+
+  padding: var(--spacing-3);
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  grid-template-areas: 
+  'picture right'
+  'audio buttons';
+}
+#troacoModalPicture {
+  grid-area: picture;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#troacoModalPicture img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0px 10px 100px rgba(0, 0, 0, 0.5));
+  border-radius: 10px;
+}
+#troacoModalRightSide {
+  grid-area: right;
+  background: rgba(217, 217, 217, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding-left: var(--spacing-1);
+  padding-right: var(--spacing-1);
+
+  display: flex;
+  flex-direction: column;
+}
+.troacoModalRightSideContent {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #F2F2F2;
+  margin-top: 8px;
+  flex-grow: 1;
+}
+#troacoModalTitleLine {
+  display: flex;
+  flex-direction: row;
+}
+.troacoModalLeftSpacer {
+  margin-left: 64px;
+}
+.troacoModalBigText {
+  font-family: VCR;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 23px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+#troacoModalAudio {
+  grid-area: audio;
+  margin-top: 20px;
+  padding-right: 25px;
+  
+  display: flex;
+  align-items: center;
+}
+#troacoModalButton {
+  grid-area: buttons;
+  font-family: VCR;
+  font-size: 16px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+#troacoModalButtons {
+  text-align: end;
+  margin-top: 16px;
+}
+#troacoModalSwitchBox {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-self: end;
+  margin-bottom: 16px;
+}
+.troacoModalMenuKnob {
+  border: none;
+  background: transparent;
+  font-family: VCR;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 12px;
+  color: #BDBDBD;
+}
+.troacoModalMenuSelected {
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+#troacoModalListContainer {
+  height: 37vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: #128612 #004E00;                       /* Firefox scrollbar styling is different*/
+  padding-left: 0;
+}
+
+.troacoModalSmallGlass {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  grid-auto-flow: row;
+  grid-template-areas: 
+  'upper_line'
+  'bottom_line';
+  width: 94%;
+  background: rgba(217, 217, 217, 0.2);
+  border-radius: 7px;
+  list-style-type: none;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+.toacoModalSmallGlassUpperLine {
+  grid-area: upper_line;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: row;
+}
+.troacoModalSmallGlassBottomLine {
+  grid-area: bottom_line;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.troacoModalSmallGlassElement {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.troacoModalStrongText {
+  font-family: VCR;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.troacoModalWeakText {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #E0E0E0;  
+}
+.troacoSmallBuy {
+  background: url('./assets/buy_small.svg') no-repeat;
+  width: 41px;
+  height: 24px;
+  /*background-repeat: no-repeat;*/
+  border: none;
+  color: white;
+  background-color: none;
+  border-radius: 2px;
+  
+  margin-bottom: -4px;
+}
+.troacoSmallBuy:hover {
+  background: url('./assets/buy_small_hover.svg') no-repeat;
+}
+.troacoModalSmallGlassGenMargin {
+  margin-left: 24px;
+}
+.troacoModalSmallGlassPriceMargin {
+  margin-left: 8px;
+}
+
+/*SCROLLBAR EXPERIMENT*/
+#troacoModalListContainer::-webkit-scrollbar {              /* scrollbar width */
+  width: 7px;
+}
+#troacoModalListContainer::-webkit-scrollbar-track {        /* scrollbar Track */
+  background: #C9D6FF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {                                   /* scrollbar Handle */
+  background: #ee0979;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #333333, #555555);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #333333, #555555); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 10px;
+}
+#troacoModalListContainer::-webkit-scrollbar-thumb:hover {  /* scrollbar Handle on hover */
+  background: purple;
+}
+/*END of EXPERIMENT*/
+
+
+
 #transferPopupWrapper {
   position: absolute;
   top: 0;
@@ -2289,10 +2793,10 @@ h1 {
 
 
 #nftBuyButton {
-  background-image: url('./assets/buy.svg');
-  width: 120px;
+  background: url('./assets/buy.svg') no-repeat;
+  width: 130px;
   height: 37px;
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;*/
   border: none;
   color: white;
   background-color: none;
@@ -2300,7 +2804,22 @@ h1 {
   margin-left: var(--spacing-3);
 }
 #nftBuyButton:hover {
-  background-image: url('./assets/buyHover.svg');
+  background: url('./assets/buyHover.svg') no-repeat;
+  cursor: pointer;
+}
+#transferButton {
+  background: url('./assets/transfer.svg') no-repeat;
+  width: 160px;
+  height: 37px;
+  /*background-repeat: no-repeat;*/
+  border: none;
+  color: white;
+  background-color: none;
+  border-radius: 2px;
+  margin-left: var(--spacing-3);
+}
+#transferButton:hover {
+  background: url('./assets/transferHover.svg') no-repeat;
   cursor: pointer;
 }
 
