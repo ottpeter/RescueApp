@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Draggable from 'react-draggable';
+import Arrows from './Arrows';
 import BuyModal from './BuyModal';
 import SongNavigation from './SongNavigation';
 
@@ -14,6 +15,7 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
   const [startPos, setStartPos] = useState(null);         // The starting X position of mouse when the dragging is started
   const [isBeingMoved, setIsBeingMoved] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+  
 
   useEffect(() => {
     setSelected(0);
@@ -27,14 +29,14 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
     listStyleType: "none",
     display: "flex",
     alignItems: "center",
-    height: `${listElementWidth*3}px`,
+    height: "100vh",
     width: "max-content",
     margin: "0",
     padding: "0",
   }
   
   const transitionStyleTemp = {
-    transition: "transform 2.3s",
+    transition: "transform 0.3s",             // centering animation
   }
   
   const liStyleTemp = {
@@ -50,7 +52,7 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
     marginLeft: `${bigMargin}px`,
     marginRight: `${bigMargin}px`,
     marginTop: `${-listElementWidth/2}px`,
-    transition: "margin 1.3s ease-in",
+    transition: "margin 0.3s ease-in",       // create space for the bubble animation
   }
   
   const bubbleStyleTemp = {
@@ -70,7 +72,7 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
-    transition: "width 1s, height 1s, transform 1s",
+    transition: "width 0.3s, height 0.3s, transform 0.3s",         // bubble grow back animation
   }
 
   const bubbleStyleSelectedTemp = {
@@ -81,7 +83,7 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
     height: "160%",
     margin: 0,
     marginLeft: `${-(listElementWidth*1.6*magicNumber)}px`,
-    transition: "width 2.3s, height 2.3s, margin 2.3s, font ease-out 0.0s",
+    transition: "width 0.3s, height 0.3s, margin 0.3s, font ease-out 0.0s",     // bubble grow animation
   }
 
   useEffect(() => {
@@ -89,7 +91,6 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
       x: (3*listElementWidth) - (selected*listElementWidth) - bigMargin, 
       y: 0
     }));
-    setOpenModal(false);
   
     return () => {
       setPos(({x: (3*listElementWidth) -bigMargin, y: 0}));
@@ -160,6 +161,8 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
           })}
         </ul>
       </Draggable>
+
+      <Arrows selected={selected} setSelected={setSelected} max={nftList.length-1} />
 
       <SongNavigation nftList={nftList} selected={selected} setSelected={setSelected} />
 

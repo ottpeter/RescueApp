@@ -3,6 +3,7 @@ import { utils } from 'near-api-js';
 import { getAllFromRoot, transferNft } from '../../utils';
 import SlimAudioPlayer from '../../Common/SlimAudioPlayer';
 import nearLogo from '../../assets/near_white.svg';
+import closeIcon from '../../assets/close.svg';
 
 
 export default function InfoModal({id, metadata, newAction, setOpenModal}) {
@@ -194,6 +195,10 @@ export default function InfoModal({id, metadata, newAction, setOpenModal}) {
             <div id="troacoModalButtons">
               <button onClick={() => setTransferInputOpen(true)} id="transferButton"></button>
             </div>
+
+            <button id="troacoModalClose" onClick={() => setOpenModal(false)}>
+              <img src={closeIcon} alt={'X'}></img>
+            </button>
           </div>
         </div>
       </div>

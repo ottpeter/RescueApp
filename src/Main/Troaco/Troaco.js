@@ -9,10 +9,19 @@ import Logo from './Logo';
 import BottomMenu from './BottomMenu';
 import MyNFTs from './MyNFTs';
 import globeBg from '../../assets/globe_bg.jpg';
+import GuestBook from './GuestBook';
 
 
 export default function Troaco({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet, isMyNfts}) {
   const [selected, setSelected] = useState(0);
+
+  const bgStyle = {
+    backgroundImage: `url(${globeBg})`,
+    backgroundSize: "auto",
+    backgroundPosition: "center",
+    backgroundRepeat: "repeat-x",
+  }
+
   /*
   const screenWidth = window.innerWidth;
   const [nftList, setNftList] = React.useState([]);  
@@ -46,16 +55,22 @@ export default function Troaco({newAction, openGuestBook, setGuestBook, setShowW
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
       <ToastContainer position="bottom-right" autoClose={5000} />
-        <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
+        <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} setGuestBook={setGuestBook} />
         <Logo />
 
-        <main style={{backgroundImage: `url(${globeBg})`, backgroundSize: "cover"}}>
+        <main style={bgStyle}>
           {isMyNfts ? 
             <MyNFTs newAction={newAction} nftList={mockMyNFTlist} selected={selected} setSelected={setSelected} />
           : 
             <Landing newAction={newAction} nftList={mockNFTlist} selected={selected} setSelected={setSelected} />
           }
         </main>
+
+        {(openGuestBook && <GuestBook 
+          newAction={newAction}
+          setOpenModal={setGuestBook}
+        />)}
+
         <BottomMenu />
     </>
   )

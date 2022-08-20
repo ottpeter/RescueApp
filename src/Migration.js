@@ -13,7 +13,7 @@ export default function Migration({contractName}) {
       amount: parseInt(amount),
       orig: orig
     }
-    const gas = 300_000_000_000_000;
+    const gas = 300000000000000;
     window.contract.copy(args, gas)                                                            // This could be 'new' for user provided init, we are using default
       .then((msg) => console.log("Migration called! ", msg))
       .catch((err) => console.error(err));

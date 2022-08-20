@@ -93,7 +93,7 @@ export async function mintRootNFT(title, desc, imageCID, imageHash, musicCID, mu
     revenue_table: revenue
   }
 
-  const gas = 100_000_000_000_000;
+  const gas = 100000000000000;
   const amount = utils.format.parseNearAmount("0.1");
 
   await window.contract.mint_root(root_args, gas, amount)
@@ -139,7 +139,7 @@ export async function buyNFTfromVault(tokenId, price) {
   const args = {
     token_id: tokenId,
   };
-  const gas = 200_000_000_000_000;
+  const gas = 200000000000000;
   const formattedPrice = utils.format.formatNearAmount(price);    // Human readable
   console.log("price: ", price)
   console.log("formattedPrice: ", formattedPrice)
@@ -161,7 +161,7 @@ export async function getBuyableTokens() {
   console.log(window.accountId)
   console.log(contractAccount)
   const options = {
-    limit: 999_999,
+    limit: 999999,
   }
 
   await window.contract.nft_tokens(options)
@@ -224,7 +224,7 @@ export async function transferNft(tokenId, receiverId) {
     token_id: tokenId,
     receiver_id: receiverId
   }
-  const gas = 100_000_000_000_000;
+  const gas = 100000000000000;
   const amount = utils.format.parseNearAmount("0.1");
 
   await window.contract.transfer_nft(args, gas, amount)
@@ -244,7 +244,7 @@ export async function sendGuestBookEntry(text) {
     date: new Date().toUTCString(),
   }
 
-  const gas = 100_000_000_000_000;
+  const gas = 100000000000000;
   const amount = utils.format.parseNearAmount("0.1");  
 
   await window.contract.create_guestbook_entry({ new_entry: newEntry }, gas, amount)
@@ -301,7 +301,7 @@ export async function checkIfAccountExists() {
 // Will give back all children and the root from a given root. (All NFTs with same media, we could call this a collection)
 export async function getAllFromRoot(rootId) {
   const options = {
-    limit: 999_999,
+    limit: 999999,
   }
   let nftTree = [];                                                                        // NFTs that belong to the given root
 
@@ -318,7 +318,7 @@ export async function totalMinted() {
   // This could be more effective if we rewrote the contract
   let result = -1;
   const options = {
-    limit: 999_999_999_999,
+    limit: 999999999999,
   }
 
   await window.contract.nft_tokens(options)

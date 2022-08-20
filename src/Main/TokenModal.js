@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Draggable from 'react-draggable';
 import { buyNFTfromVault, verify_sha256 } from '../utils';
-import close from '../assets/close.svg';
 import AudioPlayer from '../Common/AudioPlayer';
 
 

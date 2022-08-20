@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { utils } from 'near-api-js';
 import { buyNFTfromVault, verify_sha256 } from '../../utils';
 import SlimAudioPlayer from '../../Common/SlimAudioPlayer';
+import closeIcon from '../../assets/close.svg';
 
 
 export default function TokenModal({id, metadata, newAction, setOpenModal}) {
@@ -41,6 +42,7 @@ export default function TokenModal({id, metadata, newAction, setOpenModal}) {
           <div id="troacoModalPicture">
             <img src={`https://daorecords.io:8443/fetch?cid=${metadata.media}`} alt={metadata.title}></img>
           </div>
+
           <div id="troacoModalRightSide">
             <div id="troacoModalTitleLine">
               <h2 className="troacoModalBigText">{metadata.title} </h2>
@@ -53,6 +55,7 @@ export default function TokenModal({id, metadata, newAction, setOpenModal}) {
               {utils.format.formatNearAmount(JSON.parse(metadata.extra).original_price)} NEAR
             </div>
           </div>
+
           <div id="troacoModalAudio">
             {true ? 
               <SlimAudioPlayer cid={extra.music_cid}  color={"#FFFFFF"} dark={false} />
@@ -60,9 +63,14 @@ export default function TokenModal({id, metadata, newAction, setOpenModal}) {
               <p className="loadingLabel">loading music... </p>
             }
           </div>
+          
           <div id="troacoModalButtons">
             <button onClick={buyNFT} id="nftBuyButton"></button>
           </div>
+
+          <button id="troacoModalClose" onClick={() => setOpenModal(false)}>
+            <img src={closeIcon} alt={'X'}></img>
+          </button>
         </div>
       </div>
     </div>

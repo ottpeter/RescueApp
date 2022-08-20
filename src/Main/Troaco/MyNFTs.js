@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Draggable from 'react-draggable';
+import Arrows from './Arrows';
 import InfoModal from './InfoModal';
 import SongNavigation from './SongNavigation';
 
@@ -27,7 +28,7 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
     listStyleType: "none",
     display: "flex",
     alignItems: "center",
-    height: `${listElementWidth*3}px`,
+    height: "100vh",
     width: "max-content",
     margin: "0",
     padding: "0",
@@ -160,6 +161,8 @@ export default function Landing({selected, setSelected, nftList, newAction}) {
       :
         <h1 className="troacoModalBigText" style={{marginTop: "20vh"}}>You don't have any NFTs yet.</h1>
       }
+
+      <Arrows selected={selected} setSelected={setSelected} max={nftList.length-1} />
 
       <SongNavigation nftList={nftList} selected={selected} setSelected={setSelected} />
 

@@ -5,10 +5,10 @@ import Wallet from './Wallet';
 
 
 /** Top Menu for Troaco */
-export default function TopMenu({setShowWallet, showWallet, changePage}) {
+export default function TopMenu({setShowWallet, showWallet, setGuestBook}) {
   return (
     <nav aria-label='Site Navigation' id="troacoTopNav">      
-      <button onClick={() => console.log("TODO")} className="controlsButton troacoMenuButton" >GUESTBOOK</button>
+      <button onClick={() => setGuestBook(true)} className="controlsButton troacoMenuButton" >GUESTBOOK</button>
       <Link to={'/troacomynfts'} className="controlsButton troacoMenuButton">MY NFTS</Link>
       <Wallet 
         setShowWallet={setShowWallet}
