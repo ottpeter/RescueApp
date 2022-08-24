@@ -95,21 +95,6 @@ mod tests {
     }
 
     #[test]
-    fn crust_save_works() {
-        let context = get_context(0);
-        testing_env!(context.build());
-
-        let mut contract = Contract::new_default_meta(to_valid_account("vault.near"), to_valid_account("carol.near"));        // Vault is owner, Carol will be admin
-
-        contract.set_crust_key("EXAMPLE_ENCRYPTED_KEY".to_string());
-        assert_eq!(
-            contract.get_crust_key(),
-            "EXAMPLE_ENCRYPTED_KEY".to_string(),
-            "ERROR get_crust_key should give EXAMPLE_ENCRYPTED_KEY!"
-        )
-    }
-
-    #[test]
     fn buy_from_vault_works() {
         let mut context = get_context(600_000_000_000_000_000_000_000);                                                           // Alice sends 0.6 NEAR
         testing_env!(context.build());
@@ -903,24 +888,4 @@ mod tests {
         // 80% is 400_000_000_000_000_000_000_000
     }*/
 
-    #[test]
-    fn migration_works() {
-        let context = get_context(600_000_000_000_000_000_000_000);                                                       // Alice is person who interacts
-        testing_env!(context.build());
-        let mut contract = Contract::new_default_meta(to_valid_account("vault.near"), to_valid_account("carol.near"));    // Vault is owner, Carol will be admin
-        let price = U128(500_000_000_000_000_000_000_000);
-
-        contract.mint_root(test_token_metadata(), to_valid_account("carol.near"), price.clone(), None,
-            Some(HashMap::from([                                                                                          // Alice: 20%
-                (to_valid_account("alice.near"), 2000),                                                                   // Vault: 80%
-                (to_valid_account("vault.near"), 8000)
-            ]))
-        );
-
-        //// Shadowing...
-        //let context = get_context(600_000_000_000_000_000_000_000);                                                       // Alice is person who interacts
-        //testing_env!(context.build());
-        let contract2 = Contract::copy(to_valid_account("vault2.near"), to_valid_account("admin.near"), to_valid_account("vault.near") );
-        
-    }
 }
