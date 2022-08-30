@@ -62,6 +62,11 @@
   src: url('./assets/Bebas-Regular.ttf');
 }
 
+@font-face {
+  font-family: GeneralSans;
+  src: url('./assets/GeneralSans-Regular.woff');
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -90,10 +95,14 @@ nav {
   background-color: var(--nav-bg);
 }
 #mainNav {
-  margin-top: 30px;
-  align-items: flex-start;
   background: transparent;
   position: absolute;
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  color: #F5F6F7;
   z-index: 2;
 }
 #troacoTopNav {
@@ -231,19 +240,6 @@ nav {
   border-radius: 5px;
   margin-right: 7px;
 }
-.walletBadge {
-  display: flex;
-  align-items: center;
-  background-color: #e9e6ed;
-  border-radius: 25px;
-  border: transparent;
-  height: 30px;
-  padding-left: 14px;
-  padding-right: 14px;
-  margin-right: 7px;
-  cursor: pointer;
-  /*#4d00b4*/
-}
 .wallet {
   position: absolute;
   top: var(--nav-size);
@@ -345,11 +341,6 @@ footer ul {
   margin-left: 120px;
   margin-right: 120px;
   list-style: none;
-}
-.mynftsFooter {
-  flex-grow: 1;
-  justify-content: flex-end;
-  width: 100%;
 }
 footer ul li {
   margin-right: 49px;
@@ -592,6 +583,153 @@ main {
 }
 
 
+#daorecordsHome {
+  flex-grow: 1;
+  color: #F5F6F7;
+  text-decoration: none;
+  padding-left: 64px;
+}
+.mainControlsLast {
+  padding-right: 64px;
+}
+.walletBadge {
+  width: 219px;
+  height: 42px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.08);
+  border: none;
+  border-radius: 3px;
+  background: #FFAD0D;
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  color: #000000;
+  cursor: pointer;
+}
+.mainMenuButton {
+  margin-right: 32px;
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  color: #F5F6F7;
+  text-decoration: none;
+}
+.mainMenuButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#mynftsFooter {
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0;
+}
+#mynftsFooter ul {
+  margin-left: 64px;
+}
+#mynftsFooter ul li {
+  margin-right: 24px;
+}
+
+#mynftsBackground {
+  background: black;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+#mynftsGrid {
+  display: grid;
+  grid-auto-rows: auto 50px auto 50px;
+  margin-top: var(--nav-size);
+  margin-bottom: var(--footer-size);
+  margin-left: 64px;
+  margin-right: 64px;
+  height: calc(100% - var(--nav-size) - var(--footer-size));
+  background: unset;
+  overflow: unset;
+}
+#mynftsTitle {
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
+  color: #FFAD0D;
+  /*margin-top: 97px;
+  margin-bottom: 64px;*/
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#mynftsTitle img {
+  width: 45px;
+  height: 45px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#mynftsFilterBar {
+  margin-bottom: 48px;
+  color: red;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0  ;
+}
+.mynftsFilter {
+  margin-right: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 23px;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  align-items: center;
+  caret-color: transparent !important;
+  border-radius: 3px;
+  border: 1px solid #DB8C09;
+}
+.mynftsFilter:hover {
+  background-color: #DB8C09;
+  color: #F2F2F2;
+}
+#mynftsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#mynftsList::-webkit-scrollbar {              /* scrollbar width */
+  width: 7px;
+}
+.myNftsCard {
+  margin-bottom: 32px;
+}
+#mynftsPagination {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  list-style-type: none;
+}
+.mynftsPageButton {
+  background-color: #F2F2F2;
+  border: 1px solid #333333;
+  font-family: GeneralSans;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.mynftsPageButtonSelected {
+  color: purple;
+  background-color: #FFFFFF;
+}
 
 #counter {
   font-family: Technology;
@@ -884,58 +1022,91 @@ h1 {
   display: flex;
   flex-direction: column;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
-  background: #FFFFFF;
+  background: #323232;
   border-radius: 10px;
+  padding: 24px;
   border: none;
-  width: 288px;
+  width: 301px;
 }
 .nftCard img {
   max-width: 100%;
+  border-radius: 6px;
 }
 .nftCardInfo {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-1);
   align-items: flex-start;
-  font-family: neue-haas-grotesk-display;
-  width: 90%;
 }
 .nftCardInfoArtistList {
   font-size: 10px;
   /* line-height: 11px;*/
 }
-.nftCardInfoTitleAndGen {
+.nftCardInfoTitle {
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 160%;
+  color: #FFFFFF;
+  margin-top: 16px;
+  margin-bottom: 0px;
+}
+.nftCardInfoBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-top: 19px;
+  font-family: GeneralSans;
+}
+.nftCardGen {
+  flex-grow: 1;
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: left;
+  color: #FFC749;
+}
+.nftCardNearPrice {
+  margin: 0;  
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 160%;
+  margin-right: 8px;
+  color: #FFC749;  
+}
+.nftCardButtons {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-top: 22px;
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 600;
   font-size: 14px;
-  margin-top: var(--spacing-1);
-  margin-bottom: 40px;
-  /* line-height: 17px;*/
-  font-weight: bold;
+  line-height: 160%;
 }
-.nftCardInfoTitleAndGen p {
-  margin: 0;
+.nftCardSecondaryButton {
+  border: 1px solid #FFAD0D;
+  background: transparent;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.08));
+  border-radius: 3px;  
+  height: 34px;
+  width: 118px;
+  margin-right: 17px;
+  color: #FFAD0D;
 }
-.nftCardInfoTitleAndGen > :first-child {
-  flex-grow: 1;
-  text-align: left;
-}
-.nftCardInfoStatus {
-  align-self: flex-end;
-  font-size: 10px;
-  margin: 0;
-  color: #4F4F4F;
-  margin-bottom: 8px;
-  /* line-height: 11px;*/
-}
-.nftCardInfoNearPrice {
-  align-self: flex-end;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 0;
-  color: var(--splash-color);
-  /* line-height: 14px;*/
+.nftCardPrimaryButton {
+  background: #FFAD0D;
+  border: none;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.08);
+  border-radius: 3px;  
+  height: 34px;
+  width: 118px;
+  color: #000000;
 }
 .nftCardInfoDollarPrice {
   align-self: flex-end;
@@ -1204,14 +1375,19 @@ input[type="range"] {
   width: 100%;
   padding-left: 0;
 }
+.nftCardImageContainer {
+  text-align: right;
+  margin-bottom: -38px;
+}
+.nftCardPlay {
+  position: relative;
+  bottom: 56px;
+  right: 16px;
+}
 #nftDetailsModalArtistList li {
   list-style: none;
 }
 .nftCardArtistList {
-  font-size: 12px;
-  line-height: 14px;
-  text-transform: uppercase;
-  color: #121212;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1222,6 +1398,25 @@ input[type="range"] {
 .nftCardArtistListElement {
   list-style: none;
   margin: 0 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 4px !important;
+}
+.nftCardArtistListElement img {
+  width: 32px;
+  height: 32px;
+  border-radius: 500px;
+  margin-right: 4px;
+}
+.nftCardArtistListElement p {
+  font-family: GeneralSans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: #FAFAFB;
+  margin: 0;
 }
 .nftDetailsModalMenuLine {
   display: flex;
@@ -1338,6 +1533,18 @@ input[type="range"] {
     width: 100vw;
     height: auto;
   }
+}
+
+#musicPlayer {
+  position: absolute;
+  width: 280px;
+  height: 100px;
+  bottom: 50px;
+  right: 50px;
+  background: yellow;
+  color: red;
+  text-align: center;
+  z-index: 500;
 }
 
 .buyModal {

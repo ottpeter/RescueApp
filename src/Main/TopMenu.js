@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import Wallet from './Wallet';
 import hamburger from '../assets/hamburger.svg';
-import daoLogo from '../assets/DaoLogo.svg';
 
 
 /** Top Menu for Main */
@@ -14,11 +13,6 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
 
   function hamburgerClicked() {
     setMenuOpen(!menuOpen);
-    setShowWallet(false);
-  }
-
-  function splashDropdownClicked() {
-    setSplashMenuOpen(!splashMenuOpen);
     setShowWallet(false);
   }
 
@@ -41,50 +35,17 @@ export default function TopMenuSplash1({setShowWallet, showWallet}) {
         {menuOpen && (
           <div id="dropdownContainer" className="mobileDropdownContainer">
               <Link to={'/my-nfts'} className="hamburgerElement">MY NFTS</Link>
-              {/** List of the drops, we will append this as we go */}
-              <Link to={'/weekone'} className="controlsButton hamburgerElement">Week One</Link>
-              <Link to={'/weektwo'} className="controlsButton hamburgerElement">Week Two</Link>
-              <Link to={'/weekthree'} className="controlsButton hamburgerElement">Week Three</Link>
-              <Link to={'/weekfour'} className="controlsButton hamburgerElement">Week Four</Link>
-              <Link to={'/weekfive'} className="controlsButton hamburgerElement">Week Five</Link>
-              <Link to={'/weeksix'} className="controlsButton hamburgerElement">Week Six</Link>
-              <Link to={'/weekseven'} className="controlsButton hamburgerElement">Week Seven</Link>
-              <Link to={'/weekeight'} className="controlsButton hamburgerElement">Week Eight</Link>
-              <Link to={'/weeknine'} className="controlsButton hamburgerElement">Week Nine</Link>
-              <Link to={'/weekten'} className="controlsButton hamburgerElement">Week Ten</Link>
-              <Link to={'/weekeleven'} className="controlsButton hamburgerElement">Week Eleven</Link>
-              <Link to={'/weektwelve'} className="controlsButton hamburgerElement">Week Twelve</Link>
           </div>
         )}
       </>
     )
   } else {                                                // This is the normal view
     return (
-      <nav id="splash-1-nav">
-        <Link to={'/'} className='daoLogo'>
-          <img src={daoLogo} alt={'DAOrevords'}/>
-          <p>.io</p>
+      <nav id="mainNav">
+        <Link to={'/'} id='daorecordsHome'>
+          DAOrecords
         </Link>
-        <button onClick={splashDropdownClicked} className="controlsButton menuButton">SPLASH DROPS</button>
-        <Link to={'/my-nfts'} className="controlsButton menuButton">MY NFTS</Link>
-
-        {splashMenuOpen && (
-          <div id="dropdownContainer">
-            {/** List of the drops, we will append this as we go */}
-            <Link to={'/weekone'} className="controlsButton menuButton">Week One</Link>
-            <Link to={'/weektwo'} className="controlsButton menuButton">Week Two</Link>
-            <Link to={'/weekthree'} className="controlsButton menuButton">Week Three</Link>
-            <Link to={'/weekfour'} className="controlsButton menuButton">Week Four</Link>
-            <Link to={'/weekfive'} className="controlsButton menuButton">Week Five</Link>
-            <Link to={'/weeksix'} className="controlsButton menuButton">Week Six</Link>
-            <Link to={'/weekseven'} className="controlsButton menuButton">Week Seven</Link>
-            <Link to={'/weekeight'} className="controlsButton menuButton">Week Eight</Link>
-            <Link to={'/weeknine'} className="controlsButton menuButton">Week Nine</Link>
-            <Link to={'/weekten'} className="controlsButton menuButton">Week Ten</Link>
-            <Link to={'/weekeleven'} className="controlsButton menuButton">Week Eleven</Link>
-            <Link to={'/weektwelve'} className="controlsButton menuButton">Week Twelve</Link>
-          </div>
-        )}
+        <Link to={'/my-nfts'} className="controlsButton mainMenuButton">My NFTs</Link>
 
         <Wallet 
           setShowWallet={setShowWallet}

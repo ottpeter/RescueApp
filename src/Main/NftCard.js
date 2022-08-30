@@ -1,8 +1,11 @@
 import React from 'react';
 import { utils } from 'near-api-js';
+import nearLogo from '../assets/ic_near.svg';
+import placeholder from '../assets/DaoLogo.svg';
+import playIcon from '../assets/play.svg';
 
 
-export default function NftCard({image, artistList, openTransfer, i, metadata}) {
+export default function NftCard({playClicked, artistList, openTransfer, index, metadata}) {
   const extra = JSON.parse(metadata.extra);
   const priceInNear = utils.format.formatNearAmount(extra.original_price);
   const [priceInDollar, setDollar] = React.useState("NaN");
@@ -20,29 +23,39 @@ export default function NftCard({image, artistList, openTransfer, i, metadata}) 
     });
     const dResult = nearPrice.price * priceInNear;
     setDollar(dResult);
-  }, [])
+  }, []);
+
 
   return (
     <>
-    <button onClick={() => openTransfer(i)} className="nftCard">
-      <img src={`https://daorecords.io:8443/fetch?cid=${metadata.media}`} alt={'nft-image'}></img>
-      <div className="nftCardInfo">
-      <ul className="nftCardArtistList">
-          {artistList.map((artist, i) => (
-            <li key={"artist-" + i} className="nftCardArtistListElement">
-              {artist.name}
-            </li>
-          ))}
-        </ul>
-        <div className="nftCardInfoTitleAndGen">
-          <p>{metadata.title}</p>
-          <p>#{extra.generation}</p>
+      <button onClick={() => openTransfer(index)} className="nftCard">
+        <div className="nftCardImageContainer">
+          <img src={`https://daorecords.io:8443/fetch?cid=${metadata.media}`} alt={'nft-image'}></img>
+          <img src={playIcon} alt={'P'} className="nftCardPlay" onClick={(e) => playClicked(index, e)}></img>
         </div>
-        <p className="nftCardInfoStatus">PURCHASED</p>
-        <p className="nftCardInfoNearPrice">{formatNumber(priceInNear,3)} NEAR</p>
-        <p className="nftCardInfoDollarPrice">~ ${formatNumber(priceInDollar,2)}</p>
-      </div>
-    </button>
+        <div className="nftCardInfo">
+          <p className="nftCardInfoTitle">
+            {metadata.title}
+          </p>
+          <ul className="nftCardArtistList">
+            {artistList.map((artist, i) => (
+              <li key={"artist-" + i} className="nftCardArtistListElement">
+                <img src={placeholder} alt={''}></img>
+                <p>@{artist.name}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="nftCardInfoBox">
+            <p className="nftCardGen">Gen #{extra.generation}</p>
+            <p className="nftCardNearPrice">{formatNumber(priceInNear,3)}</p>
+            <img src={nearLogo} alt={'N'}></img>
+          </div>
+          <div className="nftCardButtons">
+            <button className="nftCardSecondaryButton">Stake</button>
+            <button className="nftCardPrimaryButton">Buy</button>
+          </div>
+        </div>
+      </button>
     </>
   )
 }

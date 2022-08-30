@@ -5,20 +5,59 @@ import Footer from './Footer';
 import TopMenu from './TopMenu';
 import { getListForAccount, verify_sha256 } from '../utils';
 import NftCard from './NftCard';
-import svgBackground from '../assets/splash1svg.svg';
 import artistLists from '../artistLists.json';
 import { useNavigate } from 'react-router-dom';
+import Cd1 from '../assets/cd1.png';
+import Cd2 from '../assets/cd2.png';
+import Player from './Player';
 
 
 export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowWallet, showWallet}) {
   const [list, setList] = useState([]);
+  const [nftPages, setNftPags] = useState([]);
+  const [selectedPage, setSelectedPage] = useState(0);
+  const [filters, setFilters] = useState(mockFilters);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [playerVisible, setPlayerVisible] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
+
+  const twoSide = 128;                                              // The 2 side margin is 64px + 64px = 128px
+  const cardWidth = 301;                                            // Width of one NftCard
+  const availSpace = window.innerWidth - twoSide - 3;                   
+  let cardGap = 20;                                                 // cardGap starts at 20px, it can't be smaller then that
+  let cardFitCount = 2;                                             // How many NftCard will fit
+
+  let total = (cardFitCount-1)*(cardWidth+cardGap) + cardWidth;
+  while (total < availSpace) {                                      // We calculate the gap between the card and how much card should be displayed in one page
+    if ((availSpace - total) < cardWidth) {
+      cardGap++;
+    } else {
+      cardFitCount++;
+    }
+    total = (cardFitCount-1)*(cardWidth+cardGap) + cardWidth;
+  }
+
+  const liMargin = {
+    marginRight: `${cardGap}px`
+  }
+  
   let navigate = useNavigate();
 
   useEffect(async () => {
     const nftList = await getListForAccount();
     console.log("nftList", nftList);
-    setList(nftList);
+    const mockNftList = [...nftList, ...nftList, ...nftList, ...nftList];
+    let nPages = [];
+    let page = 0;
+    for (let i = 0; i < mockNftList.length; i = i + cardFitCount) {
+      nPages[page] = mockNftList.slice(i, i+cardFitCount);
+      page++;
+    }
+    console.log("nftPages: ", nPages);
+    setNftPags(nPages);
+    setList(mockNftList);
   }, []);
+
 
   function openTransfer(tokenId) {
     navigate('/nfts/' + tokenId);
@@ -44,41 +83,90 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
     return 10;
   }
 
+  function playClicked(index, event) {
+    event.stopPropagation()
+    setPlayerVisible(true);
+    setSelectedSong(index);
+  }
 
   return (
     <>
       {openGuestBook && ( <GuestBook openModal={openGuestBook} newAction={newAction} setOpenModal={setGuestBook} /> )}
       <ToastContainer hideProgressBar={true} position="bottom-right" transition={Slide} />
       
-      <div id='colorContainer'>
-        <div id='svgContainer' style={{ backgroundImage: `url(${svgBackground})` }}>
-          <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
+      <div id="mynftsBackground">
+        <TopMenu setShowWallet={setShowWallet} showWallet={showWallet} />
 
-          <main style={{ overflowY: "scroll"}}>
-            {list ? 
-              <>
-                <h1>MY NFTs</h1>
-                <ul id="listContainer">
-                  {list && list.map((item, i) => (
-                    <li key={"nftCard-" + i}>
-                      <NftCard 
-                        artistList={artistLists[getArtistIndex(item.token_id)]}
-                        openTransfer={() => openTransfer(item.token_id)} 
-                        i={i} metadata={item.metadata} 
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </>
-            :
-              <h1>You don't have any NFTs yet!</h1>
-            }
-            
-            <Footer />
-          </main>
-        </div>
+        <main id="mynftsGrid">
+          {nftPages[selectedPage] ? 
+            <>
+              <h1 id="mynftsTitle">
+                <img src={Cd1} alt={''}></img>
+                <p>My NFTs</p>
+                <img src={Cd2} alt={''}></img>
+              </h1>
+              <ul id="mynftsFilterBar" role={"menubar"}>
+                {filters.map((filter, index) => (
+                  <li 
+                    key={"filter-" + index}
+                    className="mynftsFilter"
+                    onClick={() => setSelectedFilter(index)}
+                  >
+                    <p>{filter.name}</p>
+                  </li>
+                ))}
+              </ul>
+              <ul id="mynftsList">
+                {nftPages[selectedPage] && nftPages[selectedPage].map((item, i) => (
+                  <li key={"nftCard-" + i} className="myNftsCard" style={((i+1) % cardFitCount) ? liMargin : null}>
+                    <NftCard 
+                      artistList={artistLists[getArtistIndex(item.token_id)]}
+                      openTransfer={() => openTransfer(item.token_id)} 
+                      index={(selectedPage*cardFitCount)+i} 
+                      metadata={item.metadata}
+                      playClicked={playClicked}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <ul id="mynftsPagination">
+                {nftPages && nftPages.map((_page, index) => (
+                  <li 
+                    key={"pageButton-" + index} 
+                    className={selectedPage === index ? "mynftsPageButton mynftsPageButtonSelected" : "mynftsPageButton"}
+                    onClick={() => setSelectedPage(index)}
+                  >
+                    {index+1}
+                  </li>
+                ))}
+              </ul>
+            </>
+          :
+            <h1 id="mynftsTitle">You don't have any NFTs yet!</h1>
+          }  
+        </main>
+
+        <Footer />
       </div>
 
+      {playerVisible && (
+        <Player 
+          list={list}
+          selectedSong={selectedSong}
+          setSelectedSong={setSelectedSong}
+          color={"#FF0000"}
+        />
+      )}
     </>
   );
 }
+
+const mockFilters = [
+  {
+    name: "SoundSplash"
+  }, {
+    name: "Archive"
+  }, {
+    name: "Independent"
+  }
+]

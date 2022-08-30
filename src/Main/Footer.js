@@ -7,11 +7,11 @@ import CryptoVoxels from '../assets/CryptoVoxelsLogo.svg';
 /** Footer for Main */
 export default function Footer() {
   return (
-    <footer className="mynftsFooter">
+    <footer id="mynftsFooter">
       <ul>
         <li>
           <a href={'https://www.daorecords.org/'}>
-            Daorecords.org
+          <img src={DaoLogo} alt={'DAOrecords'} />
           </a>
         </li>
         <li>
