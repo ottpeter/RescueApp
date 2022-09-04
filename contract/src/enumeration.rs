@@ -18,6 +18,11 @@ impl Contract {
             .collect()
     }
 
+    /// Query for NFT tokens on the contract regardless of the owner using pagination
+    pub fn nft_token_details(&self, token_id: TokenId) -> JsonToken {
+        self.nft_token(token_id).unwrap()
+    }
+
     /// Get the total supply of NFTs for a given owner (a number)
     pub fn nft_supply_for_owner(
         &self,
