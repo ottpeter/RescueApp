@@ -19,8 +19,10 @@ impl Contract {
     }
 
     /// Query for NFT tokens on the contract regardless of the owner using pagination
-    pub fn nft_token_details(&self, token_id: TokenId) -> JsonToken {
-        self.nft_token(token_id).unwrap()
+    pub fn nft_token_details(&self, token_id: TokenId) -> Vec<JsonToken> {
+        let mut wrapper_vec = Vec::new();
+        wrapper_vec.push(self.nft_token(token_id.clone()).unwrap());
+        wrapper_vec
     }
 
     /// Get the total supply of NFTs for a given owner (a number)
