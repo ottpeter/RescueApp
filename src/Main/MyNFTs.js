@@ -3,7 +3,7 @@ import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer';
 import TopMenu from './TopMenu';
-import { getListForAccount, verify_sha256 } from '../utils';
+import { getListForAccount, getNftDetails, verify_sha256 } from '../utils';
 import NftCard from './NftCard';
 import artistLists from '../artistLists.json';
 import { useNavigate } from 'react-router-dom';
@@ -44,18 +44,38 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
   let navigate = useNavigate();
 
   useEffect(async () => {
-    const nftList = await getListForAccount();
-    console.log("nftList", nftList);
-    const mockNftList = [...nftList, ...nftList, ...nftList, ...nftList];
-    let nPages = [];
-    let page = 0;
-    for (let i = 0; i < mockNftList.length; i = i + cardFitCount) {
-      nPages[page] = mockNftList.slice(i, i+cardFitCount);
-      page++;
+    let isMounted = true;
+
+    if (isMounted) {
+      const nftList = await getListForAccount();
+      console.log("nftList", nftList);
+      const mockNftList = [...nftList, ...nftList, ...nftList, ...nftList];
+      
+      /* We have to prepair the values here */
+      const mergedNftList = await Promise.all(mockNftList.map(async (nftItem, index) => {
+        const currentNft = await getNftDetails(nftItem.nft_id);
+        const newObj = { ...mockNftList[index], ...currentNft };  
+        return newObj;
+      }));
+
+      console.log("mergedNftList: ", mergedNftList)
+  
+  
+      let nPages = [];
+      let page = 0;
+      for (let i = 0; i < mergedNftList.length; i = i + cardFitCount) {
+        nPages[page] = mergedNftList.slice(i, i+cardFitCount);
+        page++;
+      }
+      console.log("nftPages: ", nPages);
+  
+  
+      setNftPags(nPages);
+      setList(mergedNftList);
+
     }
-    console.log("nftPages: ", nPages);
-    setNftPags(nPages);
-    setList(mockNftList);
+
+    return () => { isMounted = false }
   }, []);
 
 
@@ -123,6 +143,8 @@ export default function MyNFTs({newAction, openGuestBook, setGuestBook, setShowW
                       artistList={artistLists[getArtistIndex(item.token_id)]}
                       openTransfer={() => openTransfer(item.token_id)} 
                       index={(selectedPage*cardFitCount)+i} 
+                      tokenId={item.token_id}
+                      contract={item.contract}
                       metadata={item.metadata}
                       playClicked={playClicked}
                     />

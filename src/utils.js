@@ -208,10 +208,11 @@ export async function getListForAccount() {
     limit: 10000,
   }
 
-  await window.contract.nft_tokens_for_owner(options)
+  await fetch("https://daorecords.io:8443/get/nft_list_for_owner?user=" + window.accountId)
+    .then((res) => res.json())
     .then((response) => {
       console.log("Response: ", response);
-      result = response;
+      result = response.nft_list;
     })
     .catch((err) => console.error("Error while fetching list of NFTs for connected user!"));
 

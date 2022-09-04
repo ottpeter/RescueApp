@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { utils } from 'near-api-js';
 import nearLogo from '../assets/ic_near.svg';
 import placeholder from '../assets/DaoLogo.svg';
 import playIcon from '../assets/play.svg';
 
 
-export default function NftCard({playClicked, artistList, openTransfer, index, metadata}) {
+export default function NftCard({playClicked, artistList, openTransfer, index, metadata, tokenId, contract}) {
   const extra = JSON.parse(metadata.extra);
   const priceInNear = utils.format.formatNearAmount(extra.original_price);
-  const [priceInDollar, setDollar] = React.useState("NaN");
+  const lastDash = tokenId.lastIndexOf('-');
+  const rootID = tokenId.slice(0, lastDash);
+  const [picture, setPicture] = useState(null);
 
   function formatNumber(number, maxDecimal) {
     return Math.round(number * Math.pow(10,maxDecimal)) / Math.pow(10,maxDecimal)
   }
 
-  React.useEffect(async () => {
-    const nearPrice = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=NEARUSDT")
-    .then((res) => res.json())
-    .catch((err) => {
-      console.error("Error while fetching NEAR price", err);
-      return { price: 0 }
-    });
-    const dResult = nearPrice.price * priceInNear;
-    setDollar(dResult);
-  }, []);
-
+  useEffect(async () => {
+    await fetch(`https://daorecords.io:8443/get/thumbnail?root_id=${rootID}&contract=${contract}`)
+      .then((res) => res.json())
+      .then((json) => setPicture("data:image/webp;base64," + json.thumbnail))
+      .catch((err) => console.error("Error while fetching base64 image ", err));
+  }, [])
 
   return (
     <>
       <button onClick={() => openTransfer(index)} className="nftCard">
         <div className="nftCardImageContainer">
-          <img src={`https://daorecords.io:8443/fetch?cid=${metadata.media}`} alt={'nft-image'}></img>
+          <img src={picture} alt={'nft-image'}></img>
           <img src={playIcon} alt={'P'} className="nftCardPlay" onClick={(e) => playClicked(index, e)}></img>
         </div>
         <div className="nftCardInfo">
