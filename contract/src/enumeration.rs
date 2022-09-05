@@ -25,37 +25,6 @@ impl Contract {
         wrapper_vec
     }
 
-    pub fn state_check(&self) -> String {
-        for i in 0..64 {
-            if env::storage_has_key(&[i]) {
-                log!("Has key: {:?}", i);
-            }
-        }
-        let byteArray: Vec<u8> = env::storage_read(&[4]).unwrap();
-        let base64String = Base64VecU8(byteArray);
-        log!("contract: {:?}", base64String);
-        "return".to_string()
-    }
-
-    pub fn state_check2(&self) -> String {
-        let x: Vec<u8> = env::state_read().unwrap();
-        let base64String = Base64VecU8(x);
-        log!("contract: {:?}", base64String);
-        "return".to_string()
-    }
-
-    pub fn state_check3(&self) -> String {
-        for i in 0..8000 {
-            if env::register_len(i) != None {
-                log!("Using register: {:?}", i);
-            }
-        }
-        //let x = env::read_register(0).unwrap();
-        //let base64String = Base64VecU8(x);
-        //log!("contract: {:?}", base64String);
-        "return".to_string()
-    }
-
     /// Get the total supply of NFTs for a given owner (a number)
     pub fn nft_supply_for_owner(
         &self,
