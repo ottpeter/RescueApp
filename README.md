@@ -1,1 +1,1 @@
-SoundSplash is based on FonoRoot.
+ App that rebuilds FonoRoot contract from data that was supplied from the outside. 
