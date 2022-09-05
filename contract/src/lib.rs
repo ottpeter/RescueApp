@@ -125,4 +125,22 @@ impl Contract {
 
         this
     }
+
+    #[init(ignore_state)]
+    pub fn migrate_state() -> Self {
+        // Deserialize the state using the old contract structure.
+        let old_contract: Contract = env::state_read().expect("Old state doesn't exist");
+
+        // Create the new contract using the data from the old contract.
+        Self { 
+            owner_id: old_contract.owner_id, 
+            admin: old_contract.admin, 
+            root_nonce: old_contract.root_nonce,
+            tokens_per_owner: old_contract.tokens_per_owner,
+            tokens_by_id: old_contract.tokens_by_id,
+            token_metadata_by_id: old_contract.token_metadata_by_id,
+            metadata: old_contract.metadata,
+            guestbook: old_contract.guestbook
+        }
+    }
 }
